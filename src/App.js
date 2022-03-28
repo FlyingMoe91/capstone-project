@@ -1,9 +1,9 @@
-import DiveLog from './components/DiveLog';
+import Logbook from './pages/Logbook';
 
 export default function App() {
   return (
     <>
-      <DiveLog
+      <Logbook
         divenumber="1"
         city="Orlando"
         country="USA"

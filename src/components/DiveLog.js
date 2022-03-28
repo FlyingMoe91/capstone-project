@@ -9,7 +9,6 @@ export default function DiveLog({
 }) {
   return (
     <>
-      <Headline>Dive Logs</Headline>
       <DiveLogCard>
         <DiveNumber>2</DiveNumber>
         <span>
@@ -31,10 +30,6 @@ export default function DiveLog({
     </>
   );
 }
-
-const Headline = styled.h1`
-  text-align: center;
-`;
 
 const DiveLogCard = styled.div`
   display: flex;

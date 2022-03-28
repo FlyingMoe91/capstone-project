@@ -13,13 +13,11 @@ describe('DiveLog', () => {
       />
     );
 
-    const headline = screen.getByText('Dive Logs');
     const city = screen.getByText('Orlando, USA', { exact: false });
     const country = screen.getByText('Orlando, USA', { exact: false });
     const location = screen.getByText('DevilsDen');
     const date = screen.getByText('25.06.2013');
 
-    expect(headline).toBeInTheDocument();
     expect(city).toBeInTheDocument();
     expect(country).toBeInTheDocument();
     expect(location).toBeInTheDocument();
