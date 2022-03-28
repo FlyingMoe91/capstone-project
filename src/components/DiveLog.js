@@ -11,14 +11,12 @@ export default function DiveLog({
     <>
       <Headline>Dive Logs</Headline>
       <DiveLogCard>
-        <DiveNumber>{divenumber}</DiveNumber>
+        <DiveNumber>2</DiveNumber>
         <span>
-          <p>
-            {city}, {country}
-          </p>
-          <p>{locationname}</p>
+          <p>Miami, USA</p>
+          <p>Offshore</p>
         </span>
-        <p>{date}</p>
+        <p>25.06.2015</p>
       </DiveLogCard>
       <DiveLogCard>
         <DiveNumber>{divenumber}</DiveNumber>

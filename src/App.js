@@ -8,7 +8,7 @@ export default function App() {
         city="Orlando"
         country="USA"
         locationname="DevilsDen"
-        date="25.06.2013"
+        date="23.06.2013"
       />
     </>
   );
