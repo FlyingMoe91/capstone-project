@@ -8,4 +8,10 @@ export default {
 const Template = args => <DiveLog {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  divenumber: 1,
+  city: 'Orlando',
+  country: 'USA',
+  locationname: 'DevilsDen',
+  date: '25.06.2013',
+};

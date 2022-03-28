@@ -1,7 +1,15 @@
+import DiveLog from './components/DiveLog';
+
 export default function App() {
   return (
     <>
-      <h1>Capstone Project</h1>
+      <DiveLog
+        divenumber="1"
+        city="Orlando"
+        country="USA"
+        locationname="DevilsDen"
+        date="25.06.2013"
+      />
     </>
   );
 }

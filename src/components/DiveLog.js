@@ -1,16 +1,34 @@
 import styled from 'styled-components';
 
-export default function DiveLog() {
+export default function DiveLog({
+  divenumber,
+  city,
+  country,
+  locationname,
+  date,
+}) {
   return (
     <>
       <Headline>Dive Logs</Headline>
       <DiveLogCard>
-        <DiveNumber>1</DiveNumber>
+        <DiveNumber>{divenumber}</DiveNumber>
         <span>
-          <p>Miami, USA</p>
-          <p>Offshore</p>
+          <p>
+            {city}, {country}
+          </p>
+          <p>{locationname}</p>
         </span>
-        <p>23.06.2013</p>
+        <p>{date}</p>
+      </DiveLogCard>
+      <DiveLogCard>
+        <DiveNumber>{divenumber}</DiveNumber>
+        <span>
+          <p>
+            {city}, {country}
+          </p>
+          <p>{locationname}</p>
+        </span>
+        <p>{date}</p>
       </DiveLogCard>
     </>
   );
@@ -26,6 +44,8 @@ const DiveLogCard = styled.div`
   justify-content: space-around;
   border: 2px solid black;
   border-radius: 10px;
+  max-width: 90vw;
+  margin: 15px;
 `;
 
 const DiveNumber = styled.div`
