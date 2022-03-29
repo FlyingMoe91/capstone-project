@@ -19,7 +19,7 @@ export default function DiveLog({
   return (
     <>
       {active && (
-        <DiveLogCard onClick={handleCards}>
+        <DiveLogCard id="divelog" onClick={handleCardToggle}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
             <p>
@@ -35,7 +35,7 @@ export default function DiveLog({
       )}
 
       {!active && (
-        <DiveLogDetailsCard onClick={handleCards}>
+        <DiveLogDetailsCard onClick={handleCardToggle}>
           <DiveNumberDetails>{divenumber}</DiveNumberDetails>
           <DetailsCardHead>
             <div>
@@ -68,7 +68,7 @@ export default function DiveLog({
     </>
   );
 
-  function handleCards() {
+  function handleCardToggle() {
     setActive(!active);
   }
 }
