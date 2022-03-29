@@ -7,6 +7,13 @@ export default function Logbook({
   country,
   locationname,
   date,
+  typeOfDive,
+  timeIn,
+  timeOut,
+  bottomTime,
+  maxDepth,
+  buddyName,
+  notes,
 }) {
   return (
     <>
@@ -17,8 +24,14 @@ export default function Logbook({
         country={country}
         locationname={locationname}
         date={date}
+        typeOfDive={typeOfDive}
+        timeIn={timeIn}
+        timeOut={timeOut}
+        bottomTime={bottomTime}
+        maxDepth={maxDepth}
+        buddyName={buddyName}
+        notes={notes}
       />
-      ;
     </>
   );
 }

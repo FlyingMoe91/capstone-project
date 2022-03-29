@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 export default function DiveLog({
   divenumber,
@@ -6,29 +7,70 @@ export default function DiveLog({
   country,
   locationname,
   date,
+  typeOfDive,
+  timeIn,
+  timeOut,
+  bottomTime,
+  maxDepth,
+  buddyName,
+  notes,
 }) {
+  const [active, setActive] = useState(true);
   return (
     <>
-      <DiveLogCard>
-        <DiveNumber>2</DiveNumber>
-        <span>
-          <p>Miami, USA</p>
-          <p>Offshore</p>
-        </span>
-        <p>25.06.2015</p>
-      </DiveLogCard>
-      <DiveLogCard>
-        <DiveNumber>{divenumber}</DiveNumber>
-        <span>
-          <p>
-            {city}, {country}
-          </p>
-          <p>{locationname}</p>
-        </span>
-        <p>{date}</p>
-      </DiveLogCard>
+      {active && (
+        <DiveLogCard onClick={handleCards}>
+          <DiveNumber>{divenumber}</DiveNumber>
+          <div>
+            <p>
+              {city}, {country}
+            </p>
+            <p>{locationname}</p>
+          </div>
+          <div>
+            <p>{date}</p>
+            <p>{typeOfDive}</p>
+          </div>
+        </DiveLogCard>
+      )}
+
+      {!active && (
+        <DiveLogDetailsCard onClick={handleCards}>
+          <DiveNumberDetails>{divenumber}</DiveNumberDetails>
+          <DetailsCardHead>
+            <div>
+              <p>
+                {city}, {country}
+              </p>
+              <p>{locationname}</p>
+            </div>
+            <div>
+              <p>{date}</p>
+              <p>{typeOfDive}</p>
+            </div>
+          </DetailsCardHead>
+          <CardDetails>
+            <p>time in: </p>
+            {timeIn}
+            <p>time out: </p>
+            {timeOut}
+            <p>bottom time: </p>
+            {bottomTime}
+            <p>max. deth: </p>
+            {maxDepth}
+            <p>buddy: </p>
+            {buddyName}
+            <p>notes: </p>
+            {notes}
+          </CardDetails>
+        </DiveLogDetailsCard>
+      )}
     </>
   );
+
+  function handleCards() {
+    setActive(!active);
+  }
 }
 
 const DiveLogCard = styled.div`
@@ -39,6 +81,16 @@ const DiveLogCard = styled.div`
   border-radius: 10px;
   max-width: 90vw;
   margin: 15px;
+  background-color: lightblue;
+`;
+
+const DiveLogDetailsCard = styled.div`
+  position: relative;
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 90vw;
+  margin: 30px;
+  padding: 10px 20px;
 `;
 
 const DiveNumber = styled.div`
@@ -51,4 +103,39 @@ const DiveNumber = styled.div`
   font-size: 1.5rem;
   border: 2px solid grey;
   border-radius: 50%;
+  background-color: white;
+`;
+
+const DiveNumberDetails = styled.div`
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 50px;
+  font-size: 1.5rem;
+  border: 2px solid grey;
+  border-radius: 50%;
+`;
+
+const DetailsCardHead = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: lightblue;
+`;
+
+const CardDetails = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+
+  p {
+    margin: 0;
+  }
 `;
