@@ -73,7 +73,7 @@ export default function DiveLog({
   }
 }
 
-const DiveLogCard = styled.button`
+const DiveLogCard = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
