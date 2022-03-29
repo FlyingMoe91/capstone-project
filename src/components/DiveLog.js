@@ -17,9 +17,9 @@ export default function DiveLog({
 }) {
   const [active, setActive] = useState(true);
   return (
-    <>
+    <li>
       {active && (
-        <DiveLogCard id="divelog" onClick={handleCardToggle}>
+        <DiveLogCard id="divelog" onClick={() => handleCardToggle()}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
             <p>
@@ -51,21 +51,21 @@ export default function DiveLog({
           </DetailsCardHead>
           <CardDetails>
             <p>time in: </p>
-            {timeIn}
+            <p>{timeIn}</p>
             <p>time out: </p>
-            {timeOut}
+            <p>{timeOut}</p>
             <p>bottom time: </p>
-            {bottomTime}
-            <p>max. deth: </p>
-            {maxDepth}
+            <p>{bottomTime}</p>
+            <p>max. depth: </p>
+            <p>{maxDepth}</p>
             <p>buddy: </p>
-            {buddyName}
+            <p>{buddyName}</p>
             <p>notes: </p>
-            {notes}
+            <p>{notes}</p>
           </CardDetails>
         </DiveLogDetailsCard>
       )}
-    </>
+    </li>
   );
 
   function handleCardToggle() {
@@ -73,7 +73,7 @@ export default function DiveLog({
   }
 }
 
-const DiveLogCard = styled.div`
+const DiveLogCard = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -91,6 +91,7 @@ const DiveLogDetailsCard = styled.div`
   max-width: 90vw;
   margin: 30px;
   padding: 10px 20px;
+  background-color: teal;
 `;
 
 const DiveNumber = styled.div`
@@ -103,14 +104,14 @@ const DiveNumber = styled.div`
   font-size: 1.5rem;
   border: 2px solid grey;
   border-radius: 50%;
-  background-color: white;
+  background-color: aliceblue;
 `;
 
 const DiveNumberDetails = styled.div`
   position: absolute;
   left: -20px;
   top: -20px;
-  background-color: white;
+  background-color: aliceblue;
   width: 50px;
   height: 50px;
   text-align: center;
@@ -134,6 +135,8 @@ const CardDetails = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 20px;
+  padding: 5px;
+  background-color: aliceblue;
 
   p {
     margin: 0;

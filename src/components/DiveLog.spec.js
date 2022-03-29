@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import DiveLog from './DiveLog';
 
 describe('DiveLog', () => {
@@ -26,12 +25,26 @@ describe('DiveLog', () => {
   });
 
   it('calls handleCardToggle when clicking on box', () => {
-    const callback = jest.fn();
-    render(<DiveLog onClick={callback} locationname="DevilsDen" />);
+    render(
+      <DiveLog
+        timeIn="07:45"
+        timeOut="08:40"
+        bottomTime="55min"
+        maxDepth="21.4m"
+        buddyName="JonDoe"
+      />
+    );
 
-    const diveLogCard = screen.getByRole('div', { id: 'divelog' });
-    userEvent.click(diveLogCard);
+    const buddyName = screen.getByRole('listitem');
+    const maxDepth = screen.getByRole('listitem');
+    const bottomTime = screen.getByRole('listitem');
+    const timeOut = screen.getByRole('listitem');
+    const timeIn = screen.getByRole('listitem');
 
-    expect(callback).toHaveBeenCalled();
+    expect(buddyName).toBeInTheDocument('JonDoe');
+    expect(maxDepth).toBeInTheDocument('21.4m');
+    expect(bottomTime).toBeInTheDocument('55min');
+    expect(timeOut).toBeInTheDocument('08:40');
+    expect(timeIn).toBeInTheDocument('07:45');
   });
 });
