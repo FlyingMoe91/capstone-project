@@ -29,7 +29,7 @@ describe('DiveLog', () => {
     const callback = jest.fn();
     render(<DiveLog onClick={callback} locationname="DevilsDen" />);
 
-    const diveLogCard = screen.getByRole('button', { id: 'divelog' });
+    const diveLogCard = screen.getByRole('div', { id: 'divelog' });
     userEvent.click(diveLogCard);
 
     expect(callback).toHaveBeenCalled();
