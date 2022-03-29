@@ -7,22 +7,42 @@ export default function Logbook({
   country,
   locationname,
   date,
+  typeOfDive,
+  timeIn,
+  timeOut,
+  bottomTime,
+  maxDepth,
+  buddyName,
+  notes,
 }) {
   return (
     <>
       <Headline>Dive Logs</Headline>
-      <DiveLog
-        divenumber={divenumber}
-        city={city}
-        country={country}
-        locationname={locationname}
-        date={date}
-      />
-      ;
+      <Grid>
+        <DiveLog
+          divenumber={divenumber}
+          city={city}
+          country={country}
+          locationname={locationname}
+          date={date}
+          typeOfDive={typeOfDive}
+          timeIn={timeIn}
+          timeOut={timeOut}
+          bottomTime={bottomTime}
+          maxDepth={maxDepth}
+          buddyName={buddyName}
+          notes={notes}
+        />
+      </Grid>
     </>
   );
 }
 
 const Headline = styled.h1`
   text-align: center;
+`;
+
+const Grid = styled.ul`
+  list-style: none;
+  padding: 0;
 `;

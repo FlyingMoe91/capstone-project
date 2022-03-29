@@ -5,8 +5,6 @@ export default createGlobalStyle`
     box-sizing: border-box;
 }
 body{
-    display: grid;
-    grid-template-rows: 48px auto;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
