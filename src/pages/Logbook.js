@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import AddDive from '../components/AddDive';
 import DiveLog from '../components/DiveLog';
 
 export default function Logbook({
@@ -15,25 +17,29 @@ export default function Logbook({
   buddyName,
   notes,
 }) {
+  const [active, setActive] = useState(true);
   return (
     <>
-      <Headline>Dive Logs</Headline>
-      <Grid>
-        <DiveLog
-          divenumber={divenumber}
-          city={city}
-          country={country}
-          locationname={locationname}
-          date={date}
-          typeOfDive={typeOfDive}
-          timeIn={timeIn}
-          timeOut={timeOut}
-          bottomTime={bottomTime}
-          maxDepth={maxDepth}
-          buddyName={buddyName}
-          notes={notes}
-        />
-      </Grid>
+      {!active && <Headline>Dive Logs</Headline>}
+      {!active && (
+        <Grid>
+          <DiveLog
+            divenumber={divenumber}
+            city={city}
+            country={country}
+            locationname={locationname}
+            date={date}
+            typeOfDive={typeOfDive}
+            timeIn={timeIn}
+            timeOut={timeOut}
+            bottomTime={bottomTime}
+            maxDepth={maxDepth}
+            buddyName={buddyName}
+            notes={notes}
+          />
+        </Grid>
+      )}
+      <AddDive />
     </>
   );
 }
