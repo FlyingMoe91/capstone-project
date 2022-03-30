@@ -5,14 +5,14 @@ export default function DiveLog({
   divenumber,
   city,
   country,
-  locationname,
+  location,
   date,
   typeOfDive,
   timeIn,
   timeOut,
   bottomTime,
   maxDepth,
-  buddyName,
+  buddy,
   notes,
 }) {
   const [active, setActive] = useState(true);
@@ -25,7 +25,7 @@ export default function DiveLog({
             <p>
               {city}, {country}
             </p>
-            <p>{locationname}</p>
+            <p>{location}</p>
           </div>
           <div>
             <p>{date}</p>
@@ -42,7 +42,7 @@ export default function DiveLog({
               <p>
                 {city}, {country}
               </p>
-              <p>{locationname}</p>
+              <p>{location}</p>
             </div>
             <div>
               <p>{date}</p>
@@ -57,9 +57,9 @@ export default function DiveLog({
             <p>bottom time: </p>
             <p>{bottomTime}</p>
             <p>max. depth: </p>
-            <p>{maxDepth}</p>
+            <p>{maxDepth}m</p>
             <p>buddy: </p>
-            <p>{buddyName}</p>
+            <p>{buddy}</p>
             <p>notes: </p>
             <p>{notes}</p>
           </CardDetails>

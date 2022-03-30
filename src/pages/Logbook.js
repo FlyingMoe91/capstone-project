@@ -3,40 +3,46 @@ import { useState } from 'react';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../DiveLog/DiveLog';
 
-export default function Logbook({
-  divenumber,
-  city,
-  country,
-  locationname,
-  date,
-  typeOfDive,
-  timeIn,
-  timeOut,
-  bottomTime,
-  maxDepth,
-  buddyName,
-  notes,
-}) {
+export default function Logbook({ divenumber }) {
   const [active, setActive] = useState(true);
+  const [diveData, setDiveData] = useState([]);
+
+  console.log(diveData);
   return (
     <>
       {active && <Headline>Dive Logs</Headline>}
       {active && (
-        <Grid>
-          <DiveLog
-            divenumber={divenumber}
-            city={city}
-            country={country}
-            locationname={locationname}
-            date={date}
-            typeOfDive={typeOfDive}
-            timeIn={timeIn}
-            timeOut={timeOut}
-            bottomTime={bottomTime}
-            maxDepth={maxDepth}
-            buddyName={buddyName}
-            notes={notes}
-          />
+        <Grid role="list">
+          {diveData.map(
+            ({
+              location,
+              city,
+              country,
+              date,
+              buddy,
+              typeOfDive,
+              timeIn,
+              timeOut,
+              bottomTime,
+              maxDepth,
+              notes,
+            }) => (
+              <DiveLog
+                location={location}
+                city={city}
+                country={country}
+                date={date}
+                buddy={buddy}
+                typeOfDive={typeOfDive}
+                timeIn={timeIn}
+                timeOut={timeOut}
+                bottomTime={bottomTime}
+                maxDepth={maxDepth}
+                notes={notes}
+                divenumber={divenumber}
+              />
+            )
+          )}
         </Grid>
       )}
       {!active && (
@@ -53,9 +59,10 @@ export default function Logbook({
     setActive(!active);
   }
 
-  function handleCreateDive(diveData) {
-    console.log(diveData);
+  function handleCreateDive(newData) {
+    setDiveData([newData], ...diveData);
     setActive(!active);
+    console.log(newData);
   }
 }
 

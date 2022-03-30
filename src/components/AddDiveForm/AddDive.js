@@ -6,19 +6,6 @@ import ButtonBack from '../Button/Button';
 export default function AddDive({ handleTogglePage, onCreateDive }) {
   const [diveData, setDiveData] = useState('');
 
-  function handelOnChange(event) {
-    const { name, value } = event.target;
-    setDiveData({
-      ...diveData,
-      [name]: value,
-    });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    onCreateDive(diveData);
-  }
-
   return (
     <>
       <ButtonBack onClick={handleTogglePage} />
@@ -154,6 +141,19 @@ export default function AddDive({ handleTogglePage, onCreateDive }) {
       </FormStyled>
     </>
   );
+
+  function handelOnChange(event) {
+    const { name, value } = event.target;
+    setDiveData({
+      ...diveData,
+      [name]: value,
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onCreateDive(diveData);
+  }
 }
 
 const Headline = styled.h1`
