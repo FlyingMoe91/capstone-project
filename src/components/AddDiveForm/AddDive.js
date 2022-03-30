@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ButtonBack from './Button';
+import ButtonBack from '../Button/Button';
 
 export default function AddDive({ handleTogglePage }) {
   return (

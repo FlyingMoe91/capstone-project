@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import AddDive from '../components/AddDive';
-import DiveLog from '../components/DiveLog';
+import AddDive from '../components/AddDiveForm/AddDive';
+import DiveLog from '../DiveLog/DiveLog';
 
 export default function Logbook({
   divenumber,
