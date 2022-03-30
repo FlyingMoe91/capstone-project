@@ -16,4 +16,5 @@ const ButtonStyled = styled.button`
   position: absolute;
   left: 10px;
   top: 10px;
+  background-color: #97e6e4;
 `;

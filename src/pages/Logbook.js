@@ -20,8 +20,8 @@ export default function Logbook({
   const [active, setActive] = useState(true);
   return (
     <>
-      {!active && <Headline>Dive Logs</Headline>}
-      {!active && (
+      {active && <Headline>Dive Logs</Headline>}
+      {active && (
         <Grid>
           <DiveLog
             divenumber={divenumber}
@@ -39,9 +39,14 @@ export default function Logbook({
           />
         </Grid>
       )}
-      <AddDive />
+      {!active && <AddDive handleTogglePage={handleTogglePage} />}
+      {active && <TogglePage onClick={handleTogglePage}>add dive</TogglePage>}
     </>
   );
+
+  function handleTogglePage() {
+    setActive(!active);
+  }
 }
 
 const Headline = styled.h1`
@@ -51,4 +56,14 @@ const Headline = styled.h1`
 const Grid = styled.ul`
   list-style: none;
   padding: 0;
+`;
+
+const TogglePage = styled.button`
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: #97e6e4;
 `;

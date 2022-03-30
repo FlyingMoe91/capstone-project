@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import ButtonBack from './Button';
 
-export default function AddDive() {
+export default function AddDive({ handleTogglePage }) {
   return (
     <>
-      <ButtonBack />
+      <ButtonBack onClick={handleTogglePage} />
       <Headline>log new dive</Headline>
       <FormStyled>
         <DivStyled>
