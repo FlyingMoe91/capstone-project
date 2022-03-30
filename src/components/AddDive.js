@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import ButtonBack from './Button';
 
 export default function AddDive() {
   return (
     <>
+      <ButtonBack />
       <Headline>log new dive</Headline>
       <FormStyled>
         <DivStyled>
@@ -49,6 +51,7 @@ export default function AddDive() {
           <label htmlFor="notes">notes</label>
           <textarea id="notes" type="text" rows="8"></textarea>
         </LastDivStyled>
+        <Button>log dive</Button>
       </FormStyled>
     </>
   );
@@ -64,7 +67,6 @@ const FormStyled = styled.form`
   gap: 20px;
   max-width: 500px;
   margin: 20px;
-  align-items: center;
 
   input {
     width: 100%;
@@ -82,4 +84,15 @@ const LastDivStyled = styled.div`
   grid-column-end: 3;
   display: flex;
   flex-direction: column;
+`;
+
+const Button = styled.button`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background-color: #97e6e4;
+  width: 200px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
 `;
