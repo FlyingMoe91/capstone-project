@@ -39,12 +39,22 @@ export default function Logbook({
           />
         </Grid>
       )}
-      {!active && <AddDive handleTogglePage={handleTogglePage} />}
+      {!active && (
+        <AddDive
+          handleTogglePage={handleTogglePage}
+          onCreateDive={handleCreateDive}
+        />
+      )}
       {active && <TogglePage onClick={handleTogglePage}>add dive</TogglePage>}
     </>
   );
 
   function handleTogglePage() {
+    setActive(!active);
+  }
+
+  function handleCreateDive(diveData) {
+    console.log(diveData);
     setActive(!active);
   }
 }
