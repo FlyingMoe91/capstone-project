@@ -5,32 +5,29 @@ export default function DiveLog({
   divenumber,
   city,
   country,
-  locationname,
+  location,
   date,
   typeOfDive,
   timeIn,
   timeOut,
   bottomTime,
   maxDepth,
-  buddyName,
+  buddy,
   notes,
 }) {
   const [active, setActive] = useState(true);
+
   return (
-    <li>
+    <>
       {active && (
         <DiveLogCard id="divelog" onClick={() => handleCardToggle()}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
-            <p>
-              {city}, {country}
-            </p>
-            <p>{locationname}</p>
+            <p>{city}</p>
+            <p>{country}</p>
+            <p>{location}</p>
           </div>
-          <div>
-            <p>{date}</p>
-            <p>{typeOfDive}</p>
-          </div>
+          <Date>{date}</Date>
         </DiveLogCard>
       )}
 
@@ -39,14 +36,12 @@ export default function DiveLog({
           <DiveNumberDetails>{divenumber}</DiveNumberDetails>
           <DetailsCardHead>
             <div>
-              <p>
-                {city}, {country}
-              </p>
-              <p>{locationname}</p>
+              <p>{city}</p>
+              <p> {country}</p>
+              <p>{location}</p>
             </div>
             <div>
-              <p>{date}</p>
-              <p>{typeOfDive}</p>
+              <Date>{date}</Date>
             </div>
           </DetailsCardHead>
           <CardDetails>
@@ -57,15 +52,17 @@ export default function DiveLog({
             <p>bottom time: </p>
             <p>{bottomTime}</p>
             <p>max. depth: </p>
-            <p>{maxDepth}</p>
+            <p>{maxDepth}m</p>
             <p>buddy: </p>
-            <p>{buddyName}</p>
+            <p>{buddy}</p>
+            <p>type of dive</p>
+            <p>{typeOfDive}</p>
             <p>notes: </p>
             <p>{notes}</p>
           </CardDetails>
         </DiveLogDetailsCard>
       )}
-    </li>
+    </>
   );
 
   function handleCardToggle() {
@@ -74,14 +71,38 @@ export default function DiveLog({
 }
 
 const DiveLogCard = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  text-align: center;
   border: 2px solid black;
   border-radius: 10px;
   max-width: 90vw;
   margin: 15px;
+  padding: 0 10px;
   background-color: lightblue;
+
+  p {
+    margin: 5px;
+    max-width: 160px;
+    overflow-wrap: break-word;
+  }
+`;
+
+const Date = styled.p`
+  font-size: 0.9rem;
+`;
+
+const DetailsCardHead = styled.div`
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  padding: 10px;
+  background-color: lightblue;
+
+  p {
+    margin: 5px;
+    max-width: 160px;
+    overflow-wrap: break-word;
+  }
 `;
 
 const DiveLogDetailsCard = styled.div`
@@ -91,7 +112,7 @@ const DiveLogDetailsCard = styled.div`
   max-width: 90vw;
   margin: 30px;
   padding: 10px 20px;
-  background-color: teal;
+  background-color: lightblue;
 `;
 
 const DiveNumber = styled.div`
@@ -104,14 +125,16 @@ const DiveNumber = styled.div`
   font-size: 1.5rem;
   border: 2px solid grey;
   border-radius: 50%;
-  background-color: aliceblue;
+  background-color: #2d9ac2;
+  color: white;
 `;
 
 const DiveNumberDetails = styled.div`
   position: absolute;
   left: -20px;
   top: -20px;
-  background-color: aliceblue;
+  background-color: #2d9ac2;
+  color: white;
   width: 50px;
   height: 50px;
   text-align: center;
@@ -123,22 +146,16 @@ const DiveNumberDetails = styled.div`
   border-radius: 50%;
 `;
 
-const DetailsCardHead = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  text-align: center;
-  margin-bottom: 10px;
-  background-color: lightblue;
-`;
-
 const CardDetails = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 20px;
+  gap: 10px;
   padding: 5px;
   background-color: aliceblue;
 
   p {
     margin: 0;
+    max-width: 160px;
+    overflow-wrap: break-word;
   }
 `;
