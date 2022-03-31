@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
+import BackgroundImage from '../images/Background.jpg';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
-import BackgroundImage from '../images/Background.jpg';
 
 export default function Logbook() {
   const [active, setActive] = useState(true);
-  const [diveData, setDiveData] = useState([]);
+  const [diveData, setDiveData] = useLocalStorage('diveDate', []);
 
   return (
     <Wrapper>
