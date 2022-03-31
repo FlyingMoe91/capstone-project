@@ -1,46 +1,50 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import AddDive from '../components/AddDiveForm/AddDive';
-import DiveLog from '../DiveLog/DiveLog';
+import DiveLog from '../components/DiveLog/DiveLog';
 
-export default function Logbook({ divenumber }) {
+export default function Logbook() {
   const [active, setActive] = useState(true);
   const [diveData, setDiveData] = useState([]);
 
-  console.log(diveData);
   return (
     <>
       {active && <Headline>Dive Logs</Headline>}
       {active && (
         <Grid role="list">
           {diveData.map(
-            ({
-              location,
-              city,
-              country,
-              date,
-              buddy,
-              typeOfDive,
-              timeIn,
-              timeOut,
-              bottomTime,
-              maxDepth,
-              notes,
-            }) => (
-              <DiveLog
-                location={location}
-                city={city}
-                country={country}
-                date={date}
-                buddy={buddy}
-                typeOfDive={typeOfDive}
-                timeIn={timeIn}
-                timeOut={timeOut}
-                bottomTime={bottomTime}
-                maxDepth={maxDepth}
-                notes={notes}
-                divenumber={divenumber}
-              />
+            (
+              {
+                location,
+                city,
+                country,
+                date,
+                buddy,
+                typeOfDive,
+                timeIn,
+                timeOut,
+                bottomTime,
+                maxDepth,
+                notes,
+              },
+              index
+            ) => (
+              <li key={date + timeIn}>
+                <DiveLog
+                  location={location}
+                  city={city}
+                  country={country}
+                  date={date}
+                  buddy={buddy}
+                  typeOfDive={typeOfDive}
+                  timeIn={timeIn}
+                  timeOut={timeOut}
+                  bottomTime={bottomTime}
+                  maxDepth={maxDepth}
+                  notes={notes}
+                  divenumber={index + 1}
+                />
+              </li>
             )
           )}
         </Grid>
@@ -60,9 +64,8 @@ export default function Logbook({ divenumber }) {
   }
 
   function handleCreateDive(newData) {
-    setDiveData([newData], ...diveData);
+    setDiveData([...diveData, newData]);
     setActive(!active);
-    console.log(newData);
   }
 }
 
@@ -73,10 +76,12 @@ const Headline = styled.h1`
 const Grid = styled.ul`
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column-reverse;
 `;
 
 const TogglePage = styled.button`
-  position: absolute;
+  position: fixed;
   right: 10px;
   bottom: 20px;
   width: 65px;

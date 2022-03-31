@@ -146,7 +146,7 @@ export default function AddDive({ handleTogglePage, onCreateDive }) {
     const { name, value } = event.target;
     setDiveData({
       ...diveData,
-      [name]: value,
+      [name]: value.trim(),
     });
   }
 

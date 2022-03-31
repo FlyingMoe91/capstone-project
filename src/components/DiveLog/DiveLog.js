@@ -16,8 +16,9 @@ export default function DiveLog({
   notes,
 }) {
   const [active, setActive] = useState(true);
+
   return (
-    <li>
+    <>
       {active && (
         <DiveLogCard id="divelog" onClick={() => handleCardToggle()}>
           <DiveNumber>{divenumber}</DiveNumber>
@@ -65,7 +66,7 @@ export default function DiveLog({
           </CardDetails>
         </DiveLogDetailsCard>
       )}
-    </li>
+    </>
   );
 
   function handleCardToggle() {
@@ -140,5 +141,7 @@ const CardDetails = styled.div`
 
   p {
     margin: 0;
+    max-width: 160px;
+    overflow-wrap: break-word;
   }
 `;
