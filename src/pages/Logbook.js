@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
+import BackgroundImage from '../images/Background.jpg';
 
 export default function Logbook() {
   const [active, setActive] = useState(true);
   const [diveData, setDiveData] = useState([]);
 
   return (
-    <>
+    <Wrapper>
       {active && <Headline>Dive Logs</Headline>}
       {active && (
         <Grid role="list">
@@ -56,7 +57,7 @@ export default function Logbook() {
         />
       )}
       {active && <TogglePage onClick={handleTogglePage}>add dive</TogglePage>}
-    </>
+    </Wrapper>
   );
 
   function handleTogglePage() {
@@ -69,13 +70,24 @@ export default function Logbook() {
   }
 }
 
+const Wrapper = styled.section`
+  background: url(${BackgroundImage}) center;
+  background-attachment: fixed;
+  padding-top: 20px;
+  min-height: 100vh;
+`;
+
 const Headline = styled.h1`
+  margin: 0;
   text-align: center;
+  font-size: 2.5rem;
+  color: white;
 `;
 
 const Grid = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column-reverse;
 `;
@@ -87,5 +99,6 @@ const TogglePage = styled.button`
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  background-color: #97e6e4;
+  background-color: #2e5bd8;
+  color: white;
 `;

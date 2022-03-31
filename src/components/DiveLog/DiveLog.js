@@ -77,11 +77,19 @@ export default function DiveLog({
 const DiveLogCard = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   border: 2px solid black;
   border-radius: 10px;
   max-width: 90vw;
   margin: 15px;
+  padding: 0 10px;
+  background-color: lightblue;
+`;
+
+const DetailsCardHead = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 10px;
   background-color: lightblue;
 `;
 
@@ -92,7 +100,7 @@ const DiveLogDetailsCard = styled.div`
   max-width: 90vw;
   margin: 30px;
   padding: 10px 20px;
-  background-color: teal;
+  background-color: lightblue;
 `;
 
 const DiveNumber = styled.div`
@@ -105,7 +113,8 @@ const DiveNumber = styled.div`
   font-size: 1.5rem;
   border: 2px solid grey;
   border-radius: 50%;
-  background-color: aliceblue;
+  background-color: #2d9ac2;
+  color: white;
 `;
 
 const DiveNumberDetails = styled.div`
@@ -122,14 +131,6 @@ const DiveNumberDetails = styled.div`
   font-size: 1.5rem;
   border: 2px solid grey;
   border-radius: 50%;
-`;
-
-const DetailsCardHead = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  text-align: center;
-  margin-bottom: 10px;
-  background-color: lightblue;
 `;
 
 const CardDetails = styled.div`

@@ -8,7 +8,7 @@ export default function AddDive({ handleTogglePage, onCreateDive }) {
 
   return (
     <>
-      <ButtonBack onClick={handleTogglePage} />
+      <ButtonBack name="back" onClick={handleTogglePage} />
       <Headline>log new dive</Headline>
       <FormStyled
         aria-label="log new dive"
@@ -104,7 +104,7 @@ export default function AddDive({ handleTogglePage, onCreateDive }) {
           ></input>
         </DivStyled>
         <DivStyled>
-          <label htmlFor="bottomTime">botton time</label>
+          <label htmlFor="bottomTime">bottom time</label>
           <input
             id="bottomTime"
             name="bottomTime"
@@ -137,7 +137,7 @@ export default function AddDive({ handleTogglePage, onCreateDive }) {
             maxLength="500"
           ></textarea>
         </LastDivStyled>
-        <Button>log dive</Button>
+        <Button name="log dive">log dive</Button>
       </FormStyled>
     </>
   );
@@ -158,6 +158,9 @@ export default function AddDive({ handleTogglePage, onCreateDive }) {
 
 const Headline = styled.h1`
   text-align: center;
+  margin: 0;
+  font-size: 2.5rem;
+  color: white;
 `;
 
 const FormStyled = styled.form`
@@ -166,6 +169,7 @@ const FormStyled = styled.form`
   gap: 20px;
   max-width: 500px;
   margin: 20px;
+  color: white;
 
   input {
     width: 100%;
@@ -188,10 +192,12 @@ const LastDivStyled = styled.div`
 const Button = styled.button`
   grid-column-start: 1;
   grid-column-end: 3;
-  background-color: #97e6e4;
+  background-color: #2e5bd8;
+  color: white;
   width: 200px;
   height: 50px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
+  font-size: 1.3rem;
 `;
