@@ -8,7 +8,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
 
   return (
     <>
-      <ButtonBack variant="back" name="back" onClick={onClickBack}>
+      <ButtonBack name="back" onClick={onClickBack}>
         <IoMdArrowRoundBack />
       </ButtonBack>
       <Headline>log new dive</Headline>

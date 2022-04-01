@@ -13,8 +13,8 @@ Back.args = {
   variant: 'back',
 };
 
-export const Add = Template.bind({});
-Add.args = {
+export const Round = Template.bind({});
+Round.args = {
   children: 'round',
   variant: 'round',
 };

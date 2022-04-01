@@ -79,11 +79,11 @@ export default function Logbook() {
 const Wrapper = styled.section`
   background: url(${BackgroundImage}) center no-repeat;
   background-attachment: fixed;
-  padding-top: 20px;
   min-height: 100vh;
 `;
 
 const Headline = styled.h1`
+  padding-top: 20px;
   margin: 0;
   text-align: center;
   font-size: 2.5rem;
