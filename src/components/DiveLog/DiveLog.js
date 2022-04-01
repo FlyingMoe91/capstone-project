@@ -32,9 +32,9 @@ export default function DiveLog({
           </div>
           <BoxDateDelete>
             <Date>{date}</Date>
-            <ButtonTrash>
+            <ButtonDelete>
               <FaTrash onClick={() => onDelete(_id)} />
-            </ButtonTrash>
+            </ButtonDelete>
           </BoxDateDelete>
         </DiveLogCard>
       )}
@@ -107,11 +107,12 @@ const Date = styled.p`
   font-size: 0.9rem;
 `;
 
-const ButtonTrash = styled.button`
+const ButtonDelete = styled.button`
   border: none;
   background-color: transparent;
   color: #2e5bd8;
   cursor: pointer;
+  font-size: 1rem;
 `;
 
 const DetailsCardHead = styled.div`

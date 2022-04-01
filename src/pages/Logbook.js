@@ -16,7 +16,7 @@ export default function Logbook() {
       {active && <Headline>Dive Logs</Headline>}
       {active && (
         <Grid role="list">
-          {diveData.map(
+          {diveData?.map(
             (
               {
                 location,

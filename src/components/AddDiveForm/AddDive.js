@@ -19,7 +19,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
         onSubmit={handleSubmit}
       >
         <DivStyled>
-          <label htmlFor="location">location</label>
+          <label htmlFor="location">dive spot</label>
           <input
             id="location"
             name="location"
@@ -30,7 +30,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
           ></input>
         </DivStyled>
         <DivStyled>
-          <label htmlFor="city">city</label>
+          <label htmlFor="city">location</label>
           <input
             id="city"
             name="city"

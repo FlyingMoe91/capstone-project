@@ -8,8 +8,8 @@ describe('AddDive', () => {
     render(<AddDive onClick={mockCallback} />);
 
     const form = screen.getByRole('form', { text: 'log new dive' });
-    const locationInput = screen.getByLabelText('location');
-    const cityInput = screen.getByLabelText('city');
+    const locationInput = screen.getByLabelText('dive spot');
+    const cityInput = screen.getByLabelText('location');
     const buttonSubmit = screen.getByRole('button', { name: /log dive/i });
 
     expect(form).toBeInTheDocument();

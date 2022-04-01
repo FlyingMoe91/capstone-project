@@ -13,8 +13,8 @@ describe('DiveLog', () => {
       />
     );
 
-    const city = screen.getByText('Orlando, USA', { exact: false });
-    const country = screen.getByText('Orlando, USA', { exact: false });
+    const city = screen.getByText('Orlando', { exact: false });
+    const country = screen.getByText('USA', { exact: false });
     const location = screen.getByText('DevilsDen');
     const date = screen.getByText('25.06.2013');
 
