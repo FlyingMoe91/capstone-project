@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../Button/Button';
 
-export default function AddDive({ handleTogglePage, onCreateDive }) {
+export default function AddDive({ onClickBack, onCreateDive }) {
   const [diveData, setDiveData] = useState('');
 
   return (
     <>
-      <ButtonBack variant="back" name="back" onClick={handleTogglePage}>
+      <ButtonBack variant="back" name="back" onClick={onClickBack}>
         <IoMdArrowRoundBack />
       </ButtonBack>
       <Headline>log new dive</Headline>

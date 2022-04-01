@@ -54,7 +54,7 @@ export default function Logbook() {
       )}
       {!active && (
         <AddDive
-          handleTogglePage={handleTogglePage}
+          onClickBack={handleTogglePage}
           onCreateDive={handleCreateDive}
         />
       )}
