@@ -30,6 +30,3 @@ export default styled.button`
       font-size: 1.3rem;
     `}
 `;
-
-// import { IoMdArrowRoundBack } from 'react-icons/io';
-// <IoMdArrowRoundBack />

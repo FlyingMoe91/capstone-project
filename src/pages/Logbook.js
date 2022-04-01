@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import useLocalStorage from '../Hooks/useLocalStorage';
+import { useLocalStorage } from 'usehooks-ts';
 import BackgroundImage from '../images/Background.jpg';
 import Button from '../components/Button/Button';
 import AddDive from '../components/AddDiveForm/AddDive';
