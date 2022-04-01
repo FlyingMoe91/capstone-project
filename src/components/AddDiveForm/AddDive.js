@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../Button/Button';
 
@@ -149,6 +150,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
   function handelOnChange(event) {
     const { name, value } = event.target;
     setDiveData({
+      _id: nanoid(),
       ...diveData,
       [name]: value.trim(),
     });

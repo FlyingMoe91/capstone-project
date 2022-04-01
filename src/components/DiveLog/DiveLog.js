@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
 
 export default function DiveLog({
   divenumber,
@@ -14,6 +15,8 @@ export default function DiveLog({
   maxDepth,
   buddy,
   notes,
+  onDelete,
+  _id,
 }) {
   const [active, setActive] = useState(true);
 
@@ -27,7 +30,12 @@ export default function DiveLog({
             <p>{country}</p>
             <p>{location}</p>
           </div>
-          <Date>{date}</Date>
+          <BoxDateDelete>
+            <Date>{date}</Date>
+            <ButtonTrash>
+              <FaTrash onClick={() => onDelete(_id)} />
+            </ButtonTrash>
+          </BoxDateDelete>
         </DiveLogCard>
       )}
 
@@ -88,8 +96,22 @@ const DiveLogCard = styled.div`
   }
 `;
 
+const BoxDateDelete = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
 const Date = styled.p`
   font-size: 0.9rem;
+`;
+
+const ButtonTrash = styled.button`
+  border: none;
+  background-color: transparent;
+  color: #2e5bd8;
+  cursor: pointer;
 `;
 
 const DetailsCardHead = styled.div`

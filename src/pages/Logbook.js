@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import { useLocalStorage } from 'usehooks-ts';
 import BackgroundImage from '../images/Background.jpg';
 import Button from '../components/Button/Button';
@@ -29,10 +30,11 @@ export default function Logbook() {
                 bottomTime,
                 maxDepth,
                 notes,
+                _id,
               },
               index
             ) => (
-              <li key={date + timeIn}>
+              <li key={nanoid()}>
                 <DiveLog
                   location={location}
                   city={city}
@@ -46,6 +48,8 @@ export default function Logbook() {
                   maxDepth={maxDepth}
                   notes={notes}
                   divenumber={index + 1}
+                  _id={_id}
+                  onDelete={handleDeleteDive}
                 />
               </li>
             )
@@ -73,6 +77,10 @@ export default function Logbook() {
   function handleCreateDive(newData) {
     setDiveData([...diveData, newData]);
     setActive(!active);
+  }
+
+  function handleDeleteDive(Id) {
+    setDiveData(diveData.filter(dive => dive._id !== Id));
   }
 }
 
