@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
+import BackgroundImage from '../images/Background.jpg';
+import Button from '../components/Button/Button';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
-import BackgroundImage from '../images/Background.jpg';
 
 export default function Logbook() {
   const [active, setActive] = useState(true);
-  const [diveData, setDiveData] = useState([]);
+  const [diveData, setDiveData] = useLocalStorage('diveDate', []);
 
   return (
     <Wrapper>
@@ -52,11 +54,15 @@ export default function Logbook() {
       )}
       {!active && (
         <AddDive
-          handleTogglePage={handleTogglePage}
+          onClickBack={handleTogglePage}
           onCreateDive={handleCreateDive}
         />
       )}
-      {active && <TogglePage onClick={handleTogglePage}>add dive</TogglePage>}
+      {active && (
+        <TogglePage variant="round" onClick={handleTogglePage}>
+          add dive
+        </TogglePage>
+      )}
     </Wrapper>
   );
 
@@ -71,13 +77,13 @@ export default function Logbook() {
 }
 
 const Wrapper = styled.section`
-  background: url(${BackgroundImage}) center;
+  background: url(${BackgroundImage}) center no-repeat;
   background-attachment: fixed;
-  padding-top: 20px;
   min-height: 100vh;
 `;
 
 const Headline = styled.h1`
+  padding-top: 20px;
   margin: 0;
   text-align: center;
   font-size: 2.5rem;
@@ -92,13 +98,8 @@ const Grid = styled.ul`
   flex-direction: column-reverse;
 `;
 
-const TogglePage = styled.button`
+const TogglePage = styled(Button)`
   position: fixed;
   right: 10px;
   bottom: 20px;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background-color: #2e5bd8;
-  color: white;
 `;

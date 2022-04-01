@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import Button from '../Button/Button';
 
-import ButtonBack from '../Button/Button';
-
-export default function AddDive({ handleTogglePage, onCreateDive }) {
+export default function AddDive({ onClickBack, onCreateDive }) {
   const [diveData, setDiveData] = useState('');
 
   return (
     <>
-      <ButtonBack name="back" onClick={handleTogglePage} />
+      <ButtonBack name="back" onClick={onClickBack}>
+        <IoMdArrowRoundBack />
+      </ButtonBack>
       <Headline>log new dive</Headline>
       <FormStyled
         aria-label="log new dive"
@@ -137,7 +139,9 @@ export default function AddDive({ handleTogglePage, onCreateDive }) {
             maxLength="500"
           ></textarea>
         </LastDivStyled>
-        <Button name="log dive">log dive</Button>
+        <ButtonSubmit variant="submit" name="log dive">
+          log dive
+        </ButtonSubmit>
       </FormStyled>
     </>
   );
@@ -189,15 +193,13 @@ const LastDivStyled = styled.div`
   flex-direction: column;
 `;
 
-const Button = styled.button`
+const ButtonBack = styled(Button)`
+  position: absolute;
+  left: 10px;
+  top: 10px;
+`;
+
+const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
-  background-color: #2e5bd8;
-  color: white;
-  width: 200px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-  font-size: 1.3rem;
 `;
