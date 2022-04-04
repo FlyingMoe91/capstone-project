@@ -1,3 +1,4 @@
+import { userEvent } from '@storybook/testing-library';
 import { render, screen } from '@testing-library/react';
 import DiveLog from './DiveLog';
 
@@ -22,6 +23,24 @@ describe('DiveLog', () => {
     expect(country).toBeInTheDocument();
     expect(location).toBeInTheDocument();
     expect(date).toBeInTheDocument();
+  });
+
+  it('renders the delete button and calls an onclick when clicking the delete button', () => {
+    const callback = jest.fn();
+    render(
+      <DiveLog
+        onDelete={callback}
+        divenumber="1"
+        city="Orlando"
+        country="USA"
+        location="DevilsDen"
+        date="01.01.2000"
+      />
+    );
+
+    const deleteButton = screen.getByRole('button', { name: /delete/i });
+
+    expect(deleteButton).toBeInTheDocument();
   });
 
   // it('in the document', () => {

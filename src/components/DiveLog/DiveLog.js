@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
+import ScreenReaderOnly from '../ScreenReaderOnly';
 
 export default function DiveLog({
   divenumber,
@@ -34,6 +35,7 @@ export default function DiveLog({
             <Date>{date}</Date>
             <ButtonDelete>
               <FaTrash onClick={() => onDelete(_id)} />
+              <ScreenReaderOnly>delete</ScreenReaderOnly>
             </ButtonDelete>
           </BoxDateDelete>
         </DiveLogCard>
@@ -48,9 +50,13 @@ export default function DiveLog({
               <p> {country}</p>
               <p>{location}</p>
             </div>
-            <div>
+            <BoxDateDelete>
               <Date>{date}</Date>
-            </div>
+              <ButtonDelete>
+                <FaTrash onClick={() => onDelete(_id)} />
+                <ScreenReaderOnly>delete</ScreenReaderOnly>
+              </ButtonDelete>
+            </BoxDateDelete>
           </DetailsCardHead>
           <CardDetails>
             <p>time in: </p>

@@ -18,14 +18,15 @@ describe('AddDive', () => {
     expect(buttonSubmit).toBeInTheDocument();
   });
 
-  it('does not call submit without required inputs filled out', () => {
-    const onCreateDive = jest.fn();
-    render(<AddDive onCreateDive={onCreateDive} />);
+  it('calls the submit function', () => {
+    const callback = jest.fn();
+    render(<AddDive onCreateDive={callback} />);
 
-    const button = screen.getByRole('button', { name: /log dive/i });
+    const button = screen.getByRole('button', { name: 'log dive' });
 
     userEvent.click(button);
 
-    expect(onCreateDive).toHaveBeenCalled();
+    expect(button).toBeInTheDocument();
+    expect(callback).toHaveBeenCalled();
   });
 });
