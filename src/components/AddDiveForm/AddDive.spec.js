@@ -8,8 +8,8 @@ describe('AddDive', () => {
     render(<AddDive onClick={mockCallback} />);
 
     const form = screen.getByRole('form', { text: 'log new dive' });
-    const locationInput = screen.getByLabelText('location');
-    const cityInput = screen.getByLabelText('city');
+    const locationInput = screen.getByLabelText('dive spot');
+    const cityInput = screen.getByLabelText('location');
     const buttonSubmit = screen.getByRole('button', { name: /log dive/i });
 
     expect(form).toBeInTheDocument();
@@ -18,14 +18,15 @@ describe('AddDive', () => {
     expect(buttonSubmit).toBeInTheDocument();
   });
 
-  it('does not call submit without required inputs filled out', () => {
-    const onCreateDive = jest.fn();
-    render(<AddDive onCreateDive={onCreateDive} />);
+  it('calls the submit function', () => {
+    const callback = jest.fn();
+    render(<AddDive onCreateDive={callback} />);
 
-    const button = screen.getByRole('button', { name: /log dive/i });
+    const button = screen.getByRole('button', { name: 'log dive' });
 
     userEvent.click(button);
 
-    expect(onCreateDive).toHaveBeenCalled();
+    expect(button).toBeInTheDocument();
+    expect(callback).toHaveBeenCalled();
   });
 });

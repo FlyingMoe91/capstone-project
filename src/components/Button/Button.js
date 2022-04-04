@@ -6,6 +6,7 @@ export default styled.button`
   border-radius: 10px;
   background-color: #2e5bd8;
   color: white;
+  cursor: pointer;
 
   ${props =>
     props.variant === 'round' &&
@@ -15,6 +16,7 @@ export default styled.button`
       border-radius: 50%;
       background-color: #2e5bd8;
       color: white;
+      cursor: pointer;
     `}
 
   ${props =>
@@ -28,5 +30,6 @@ export default styled.button`
       margin-right: auto;
       border-radius: 10px;
       font-size: 1.3rem;
+      cursor: pointer;
     `}
 `;

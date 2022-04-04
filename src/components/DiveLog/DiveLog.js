@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
+import ScreenReaderOnly from '../ScreenReaderOnly';
 
 export default function DiveLog({
   divenumber,
@@ -14,6 +16,8 @@ export default function DiveLog({
   maxDepth,
   buddy,
   notes,
+  onDelete,
+  _id,
 }) {
   const [active, setActive] = useState(true);
 
@@ -27,7 +31,13 @@ export default function DiveLog({
             <p>{country}</p>
             <p>{location}</p>
           </div>
-          <Date>{date}</Date>
+          <BoxDateDelete>
+            <Date>{date}</Date>
+            <ButtonDelete>
+              <FaTrash onClick={() => onDelete(_id)} />
+              <ScreenReaderOnly>delete</ScreenReaderOnly>
+            </ButtonDelete>
+          </BoxDateDelete>
         </DiveLogCard>
       )}
 
@@ -40,9 +50,13 @@ export default function DiveLog({
               <p> {country}</p>
               <p>{location}</p>
             </div>
-            <div>
+            <BoxDateDelete>
               <Date>{date}</Date>
-            </div>
+              <ButtonDelete>
+                <FaTrash onClick={() => onDelete(_id)} />
+                <ScreenReaderOnly>delete</ScreenReaderOnly>
+              </ButtonDelete>
+            </BoxDateDelete>
           </DetailsCardHead>
           <CardDetails>
             <p>time in: </p>
@@ -88,8 +102,23 @@ const DiveLogCard = styled.div`
   }
 `;
 
+const BoxDateDelete = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
 const Date = styled.p`
   font-size: 0.9rem;
+`;
+
+const ButtonDelete = styled.button`
+  border: none;
+  background-color: transparent;
+  color: #2e5bd8;
+  cursor: pointer;
+  font-size: 1rem;
 `;
 
 const DetailsCardHead = styled.div`

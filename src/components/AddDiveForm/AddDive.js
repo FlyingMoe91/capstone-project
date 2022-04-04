@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../Button/Button';
 
@@ -18,7 +19,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
         onSubmit={handleSubmit}
       >
         <DivStyled>
-          <label htmlFor="location">location</label>
+          <label htmlFor="location">dive spot</label>
           <input
             id="location"
             name="location"
@@ -29,7 +30,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
           ></input>
         </DivStyled>
         <DivStyled>
-          <label htmlFor="city">city</label>
+          <label htmlFor="city">location</label>
           <input
             id="city"
             name="city"
@@ -149,6 +150,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
   function handelOnChange(event) {
     const { name, value } = event.target;
     setDiveData({
+      _id: nanoid(),
       ...diveData,
       [name]: value.trim(),
     });
