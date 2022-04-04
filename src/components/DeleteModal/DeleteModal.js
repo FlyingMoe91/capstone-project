@@ -6,8 +6,8 @@ export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
     <Background>
       <ModalGrid>
         <p>Are you sure you want to delete this divelog?</p>
-        <Button onClick={onKeepConfirm}>No</Button>
-        <Button onClick={onDeleteConfirm}>Yes</Button>
+        <Button onClick={onKeepConfirm}>cancel</Button>
+        <Button onClick={onDeleteConfirm}>confirm</Button>
       </ModalGrid>
     </Background>
   );
