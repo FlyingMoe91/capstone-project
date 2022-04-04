@@ -87,7 +87,8 @@ export default function DiveLog({
     </>
   );
 
-  function handleCardToggle() {
+  function handleCardToggle(event) {
+    event.stopPropagation();
     setActive(!active);
   }
 }
