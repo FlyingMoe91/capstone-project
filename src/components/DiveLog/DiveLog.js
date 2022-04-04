@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import ScreenReaderOnly from '../ScreenReaderOnly';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 export default function DiveLog({
   divenumber,
@@ -18,6 +19,9 @@ export default function DiveLog({
   notes,
   onDelete,
   _id,
+
+  onDeleteConfirm,
+  onKeepConfirm,
 }) {
   const [active, setActive] = useState(true);
 
@@ -38,6 +42,10 @@ export default function DiveLog({
               <ScreenReaderOnly>delete</ScreenReaderOnly>
             </ButtonDelete>
           </BoxDateDelete>
+          <DeleteModal
+            onDeleteConfirm={onDeleteConfirm}
+            onKeepConfirm={onKeepConfirm}
+          />
         </DiveLogCard>
       )}
 
