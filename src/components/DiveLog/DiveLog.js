@@ -20,15 +20,15 @@ export default function DiveLog({
   onDelete,
   _id,
 
-  onDeleteConfirm,
   onKeepConfirm,
 }) {
   const [active, setActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <>
       {active && (
-        <DiveLogCard id="divelog" onClick={() => handleCardToggle()}>
+        <DiveLogCard id="divelog" onToggle={() => handleCardToggle()}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
             <p>{city}</p>
@@ -38,14 +38,10 @@ export default function DiveLog({
           <BoxDateDelete>
             <Date>{date}</Date>
             <ButtonDelete>
-              <FaTrash onClick={() => onDelete(_id)} />
+              <FaTrash onClick={() => setModalActive(!modalActive)} />
               <ScreenReaderOnly>delete</ScreenReaderOnly>
             </ButtonDelete>
           </BoxDateDelete>
-          <DeleteModal
-            onDeleteConfirm={onDeleteConfirm}
-            onKeepConfirm={onKeepConfirm}
-          />
         </DiveLogCard>
       )}
 
@@ -61,7 +57,7 @@ export default function DiveLog({
             <BoxDateDelete>
               <Date>{date}</Date>
               <ButtonDelete>
-                <FaTrash onClick={() => onDelete(_id)} />
+                <FaTrash onClick={() => setModalActive(!modalActive)} />
                 <ScreenReaderOnly>delete</ScreenReaderOnly>
               </ButtonDelete>
             </BoxDateDelete>
@@ -84,10 +80,17 @@ export default function DiveLog({
           </CardDetails>
         </DiveLogDetailsCard>
       )}
+      {modalActive && (
+        <DeleteModal
+          onDeleteConfirm={() => onDelete(_id)}
+          onKeepConfirm={() => setModalActive(!modalActive)}
+        />
+      )}
     </>
   );
 
-  function handleCardToggle() {
+  function handleCardToggle(event) {
+    event.stopPropagation();
     setActive(!active);
   }
 }

@@ -3,15 +3,30 @@ import Button from '../Button/Button';
 
 export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
   return (
-    <ModalGrid>
-      <p>Are you sure you want to delete this divelog?</p>
-      <Button onClick={onKeepConfirm}>No</Button>
-      <Button onClick={onDeleteConfirm}>Yes</Button>
-    </ModalGrid>
+    <Background>
+      <ModalGrid>
+        <p>Are you sure you want to delete this divelog?</p>
+        <Button onClick={onKeepConfirm}>No</Button>
+        <Button onClick={onDeleteConfirm}>Yes</Button>
+      </ModalGrid>
+    </Background>
   );
 }
 
+const Background = styled.div`
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+`;
+
 const ModalGrid = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 0.7fr;
@@ -21,11 +36,6 @@ const ModalGrid = styled.div`
   color: black;
   text-align: center;
   border-radius: 20px;
-  position: absolute;
-  top: auto;
-  bottom: auto;
-  left: auto;
-  right: auto;
 
   p {
     grid-column-start: 1;
