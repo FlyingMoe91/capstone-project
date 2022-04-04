@@ -19,8 +19,6 @@ export default function DiveLog({
   notes,
   onDelete,
   _id,
-
-  onKeepConfirm,
 }) {
   const [active, setActive] = useState(true);
   const [modalActive, setModalActive] = useState(false);
@@ -28,7 +26,7 @@ export default function DiveLog({
   return (
     <>
       {active && (
-        <DiveLogCard id="divelog" onToggle={() => handleCardToggle()}>
+        <DiveLogCard id="divelog" onClick={() => handleCardToggle()}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
             <p>{city}</p>
@@ -89,8 +87,7 @@ export default function DiveLog({
     </>
   );
 
-  function handleCardToggle(event) {
-    event.stopPropagation();
+  function handleCardToggle() {
     setActive(!active);
   }
 }

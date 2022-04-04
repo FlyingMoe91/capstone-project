@@ -10,8 +10,8 @@ describe('DeleteModal', () => {
     const text = screen.getByText(
       'Are you sure you want to delete this divelog?'
     );
-    const buttonCancel = screen.getByRole('button', { name: /cancel/i });
-    const buttonConfirm = screen.getByRole('button', { name: /confirm/i });
+    const buttonCancel = screen.getByRole('button', { name: /no/i });
+    const buttonConfirm = screen.getByRole('button', { name: /yes/i });
 
     expect(text).toBeInTheDocument();
     expect(buttonCancel).toBeInTheDocument();
