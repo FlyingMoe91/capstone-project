@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import ScreenReaderOnly from '../ScreenReaderOnly';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 export default function DiveLog({
   divenumber,
@@ -20,11 +21,12 @@ export default function DiveLog({
   _id,
 }) {
   const [active, setActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <>
-      {active && (
-        <DiveLogCard id="divelog" onClick={() => handleCardToggle()}>
+      <DiveLogDetailsCard onClick={handleCardToggle}>
+        <DiveLogCard onClick={() => handleCardToggle()}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
             <p>{city}</p>
@@ -33,31 +35,14 @@ export default function DiveLog({
           </div>
           <BoxDateDelete>
             <Date>{date}</Date>
-            <ButtonDelete>
-              <FaTrash onClick={() => onDelete(_id)} />
+            <ButtonDelete onClick={clickDelete}>
+              <FaTrash />
               <ScreenReaderOnly>delete</ScreenReaderOnly>
             </ButtonDelete>
           </BoxDateDelete>
         </DiveLogCard>
-      )}
 
-      {!active && (
-        <DiveLogDetailsCard onClick={handleCardToggle}>
-          <DiveNumberDetails>{divenumber}</DiveNumberDetails>
-          <DetailsCardHead>
-            <div>
-              <p>{city}</p>
-              <p> {country}</p>
-              <p>{location}</p>
-            </div>
-            <BoxDateDelete>
-              <Date>{date}</Date>
-              <ButtonDelete>
-                <FaTrash onClick={() => onDelete(_id)} />
-                <ScreenReaderOnly>delete</ScreenReaderOnly>
-              </ButtonDelete>
-            </BoxDateDelete>
-          </DetailsCardHead>
+        {!active && (
           <CardDetails>
             <p>time in: </p>
             <p>{timeIn}</p>
@@ -74,25 +59,42 @@ export default function DiveLog({
             <p>notes: </p>
             <p>{notes}</p>
           </CardDetails>
-        </DiveLogDetailsCard>
+        )}
+      </DiveLogDetailsCard>
+      {modalActive && (
+        <DeleteModal
+          onDelete={() => onDelete(_id)}
+          onCancel={() => setModalActive(!modalActive)}
+        />
       )}
     </>
   );
 
-  function handleCardToggle() {
+  function clickDelete(event) {
+    event.stopPropagation();
+    setModalActive(!modalActive);
+  }
+
+  function handleCardToggle(event) {
     setActive(!active);
   }
 }
+
+const DiveLogDetailsCard = styled.div`
+  position: relative;
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 90vw;
+  margin: 10px auto;
+  padding: 0 20px;
+  background-color: lightblue;
+`;
 
 const DiveLogCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   text-align: center;
-  border: 2px solid black;
-  border-radius: 10px;
   max-width: 90vw;
-  margin: 15px;
-  padding: 0 10px;
   background-color: lightblue;
 
   p {
@@ -121,29 +123,6 @@ const ButtonDelete = styled.button`
   font-size: 1rem;
 `;
 
-const DetailsCardHead = styled.div`
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  padding: 10px;
-  background-color: lightblue;
-
-  p {
-    margin: 5px;
-    max-width: 160px;
-    overflow-wrap: break-word;
-  }
-`;
-
-const DiveLogDetailsCard = styled.div`
-  position: relative;
-  border: 2px solid black;
-  border-radius: 10px;
-  max-width: 90vw;
-  margin: 30px;
-  padding: 10px 20px;
-  background-color: lightblue;
-`;
-
 const DiveNumber = styled.div`
   text-align: center;
   margin-top: auto;
@@ -156,23 +135,6 @@ const DiveNumber = styled.div`
   border-radius: 50%;
   background-color: #2d9ac2;
   color: white;
-`;
-
-const DiveNumberDetails = styled.div`
-  position: absolute;
-  left: -20px;
-  top: -20px;
-  background-color: #2d9ac2;
-  color: white;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  line-height: 50px;
-  font-size: 1.5rem;
-  border: 2px solid grey;
-  border-radius: 50%;
 `;
 
 const CardDetails = styled.div`
