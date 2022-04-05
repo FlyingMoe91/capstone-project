@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useLocalStorage } from 'usehooks-ts';
+import { NavLink } from 'react-router-dom';
 import BackgroundImage from '../images/Background.jpg';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../components/Button/Button';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
@@ -13,6 +15,11 @@ export default function Logbook() {
 
   return (
     <Wrapper>
+      {active && (
+        <NavLinkStyled to="/" name="menu">
+          <IoMdArrowRoundBack />
+        </NavLinkStyled>
+      )}
       {active && <Headline>Dive Logs</Headline>}
       {active && (
         <Grid role="list">
@@ -88,6 +95,14 @@ const Wrapper = styled.section`
   background: url(${BackgroundImage}) center no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
+`;
+
+const NavLinkStyled = styled(NavLink)`
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  left: 15px;
+  top: 15px;
 `;
 
 const Headline = styled.h1`
