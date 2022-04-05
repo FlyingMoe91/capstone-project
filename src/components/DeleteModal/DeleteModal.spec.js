@@ -18,13 +18,24 @@ describe('DeleteModal', () => {
     expect(buttonConfirm).toBeInTheDocument();
   });
 
-  it('calls a function when clicking on the buttons', () => {
+  it('calls a function when clicking on the "no" button', () => {
     const callback = jest.fn();
-    render(<DeleteModal onKeepConfirm={callback} />);
+    render(<DeleteModal onCancel={callback} />);
 
-    const buttonCancel = screen.getByRole('button', { name: /cancel/i });
+    const buttonCancel = screen.getByRole('button', { name: /no/i });
 
     userEvent.click(buttonCancel);
+
+    expect(callback).toHaveBeenCalled();
+  });
+
+  it('calls a function when clicking on the "yes" button', () => {
+    const callback = jest.fn();
+    render(<DeleteModal onDelete={callback} />);
+
+    const buttonDelete = screen.getByRole('button', { name: /yes/i });
+
+    userEvent.click(buttonDelete);
 
     expect(callback).toHaveBeenCalled();
   });

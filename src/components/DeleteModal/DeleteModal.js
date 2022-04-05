@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Button from '../Button/Button';
 
-export default function DeleteModal({ onKeepConfirm, onDeleteConfirm }) {
+export default function DeleteModal({ onCancel, onDelete }) {
   return (
     <Background>
       <ModalGrid>
         <p>Are you sure you want to delete this divelog?</p>
-        <Button onClick={onKeepConfirm}>no</Button>
-        <Button onClick={onDeleteConfirm}>yes</Button>
+        <Button onClick={onCancel}>no</Button>
+        <Button onClick={onDelete}>yes</Button>
       </ModalGrid>
     </Background>
   );

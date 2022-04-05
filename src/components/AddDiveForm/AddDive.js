@@ -26,7 +26,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="text"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -37,7 +37,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="text"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -48,7 +48,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="text"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -59,7 +59,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="date"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -70,7 +70,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="text"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -81,7 +81,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="text"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -92,7 +92,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="time"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -103,7 +103,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="time"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -114,7 +114,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             type="time"
             onChange={handelOnChange}
             maxLength="50"
-            // required
+            required
           ></input>
         </DivStyled>
         <DivStyled>
@@ -126,7 +126,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
             step=".1"
             onChange={handelOnChange}
             maxLength="10"
-            // required
+            required
           ></input>
         </DivStyled>
         <LastDivStyled>
