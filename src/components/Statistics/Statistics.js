@@ -13,7 +13,7 @@ export default function Statistics({ diveData }) {
   return (
     <>
       <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>
-      <Button>max. depth: {depth}</Button>
+      <Button>max. depth: {depth > 0 ? depth : '0'}</Button>
     </>
   );
 }
@@ -37,7 +37,7 @@ const Button = styled.button`
   height: 100px;
   background-color: #2d9ac2;
   color: white;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border: 0;
   border-radius: 15px;
   text-align: center;
