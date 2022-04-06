@@ -20,7 +20,7 @@ describe('AddDive', () => {
 
   it('calls the submit function', () => {
     const callback = jest.fn();
-    render(<AddDive onCreateDive={callback} />);
+    render(<AddDive onCreate={callback} />);
 
     const button = screen.getByRole('button', { name: 'log dive' });
 

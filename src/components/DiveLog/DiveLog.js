@@ -35,7 +35,7 @@ export default function DiveLog({
           </div>
           <BoxDateDelete>
             <Date>{date}</Date>
-            <ButtonDelete onClick={clickDelete}>
+            <ButtonDelete onClick={clickTrash}>
               <FaTrash />
               <ScreenReaderOnly>delete</ScreenReaderOnly>
             </ButtonDelete>
@@ -70,7 +70,7 @@ export default function DiveLog({
     </>
   );
 
-  function clickDelete(event) {
+  function clickTrash(event) {
     event.stopPropagation();
     setModalActive(!modalActive);
   }

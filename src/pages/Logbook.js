@@ -1,18 +1,23 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { useLocalStorage } from 'usehooks-ts';
+import { NavLink } from 'react-router-dom';
 import BackgroundImage from '../images/Background.jpg';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../components/Button/Button';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
 
-export default function Logbook() {
+export default function Logbook({ diveData, onDelete, onCreateDive }) {
   const [active, setActive] = useState(true);
-  const [diveData, setDiveData] = useLocalStorage('diveDate', []);
 
   return (
     <Wrapper>
+      {active && (
+        <NavLinkStyled to="/">
+          <IoMdArrowRoundBack />
+        </NavLinkStyled>
+      )}
       {active && <Headline>Dive Logs</Headline>}
       {active && (
         <Grid role="list">
@@ -49,7 +54,7 @@ export default function Logbook() {
                   notes={notes}
                   divenumber={index + 1}
                   _id={_id}
-                  onDelete={handleDeleteDive}
+                  onDelete={onDelete}
                 />
               </li>
             )
@@ -57,10 +62,7 @@ export default function Logbook() {
         </Grid>
       )}
       {!active && (
-        <AddDive
-          onClickBack={handleTogglePage}
-          onCreateDive={handleCreateDive}
-        />
+        <AddDive onClickBack={handleTogglePage} onCreate={handleCreate} />
       )}
       {active && (
         <TogglePage variant="round" onClick={handleTogglePage}>
@@ -74,13 +76,9 @@ export default function Logbook() {
     setActive(!active);
   }
 
-  function handleCreateDive(newData) {
-    setDiveData([...diveData, newData]);
+  function handleCreate(newData) {
+    onCreateDive(newData);
     setActive(!active);
-  }
-
-  function handleDeleteDive(Id) {
-    setDiveData(diveData.filter(dive => dive._id !== Id));
   }
 }
 
@@ -88,6 +86,14 @@ const Wrapper = styled.section`
   background: url(${BackgroundImage}) center no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
+`;
+
+const NavLinkStyled = styled(NavLink)`
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  color: white;
+  font-size: 1.8rem;
 `;
 
 const Headline = styled.h1`
