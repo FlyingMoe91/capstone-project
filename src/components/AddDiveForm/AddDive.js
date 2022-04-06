@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../Button/Button';
 
-export default function AddDive({ onClickBack, onCreateDive }) {
+export default function AddDive({ onClickBack, onCreate }) {
   const [diveData, setDiveData] = useState('');
 
   return (
@@ -158,7 +158,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onCreateDive(diveData);
+    onCreate(diveData);
   }
 }
 
