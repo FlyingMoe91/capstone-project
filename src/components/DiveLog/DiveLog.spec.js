@@ -1,4 +1,3 @@
-import { userEvent } from '@storybook/testing-library';
 import { render, screen } from '@testing-library/react';
 import DiveLog from './DiveLog';
 
@@ -42,28 +41,4 @@ describe('DiveLog', () => {
 
     expect(deleteButton).toBeInTheDocument();
   });
-
-  // it('in the document', () => {
-  //   render(
-  //     <DiveLog
-  //       timeIn="07:45"
-  //       timeOut="08:40"
-  //       bottomTime="55min"
-  //       maxDepth="21.4m"
-  //       buddy="JonDoe"
-  //     />
-  //   );
-
-  //   const buddy = screen.getByText('JonDoe', { exact: false });
-  //   const maxDepth = screen.getByText('21.4m', { exact: false });
-  //   const bottomTime = screen.getByText('55min', { exact: false });
-  //   const timeOut = screen.getByText('08:40', { exact: false });
-  //   const timeIn = screen.getByText('07:45', { exact: false });
-
-  //   expect(buddy).toBeInTheDocument();
-  //   expect(maxDepth).toBeInTheDocument();
-  //   expect(bottomTime).toBeInTheDocument();
-  //   expect(timeOut).toBeInTheDocument();
-  //   expect(timeIn).toBeInTheDocument();
-  // });
 });

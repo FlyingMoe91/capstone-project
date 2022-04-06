@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export default function Statistics(diveData) {
-  const dives = diveData.diveData.length;
+export default function Statistics({ diveData }) {
+  const dives = diveData.length;
   const depth = Math.max.apply(
     Math,
-    diveData.diveData.map(function (diveData) {
+    diveData.map(function (diveData) {
       return diveData.maxDepth;
     })
   );
-
+  console.log(diveData);
   return (
     <>
       <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>

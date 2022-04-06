@@ -3,6 +3,8 @@ import BackgroundImage from '../images/Background.jpg';
 import Statistics from '../components/Statistics/Statistics';
 
 export default function Home({ diveData }) {
+  console.log(diveData);
+
   return (
     <Wrapper>
       <Headline>logbuddy</Headline>
