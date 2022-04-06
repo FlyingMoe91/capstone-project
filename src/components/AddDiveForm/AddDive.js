@@ -150,7 +150,6 @@ export default function AddDive({ onClickBack, onCreate }) {
   function handelOnChange(event) {
     const { name, value } = event.target;
     setDiveData({
-      _id: nanoid(),
       ...diveData,
       [name]: value.trim(),
     });
@@ -158,7 +157,7 @@ export default function AddDive({ onClickBack, onCreate }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onCreate(diveData);
+    onCreate({ ...diveData, _id: nanoid() });
   }
 }
 
