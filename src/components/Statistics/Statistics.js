@@ -9,7 +9,6 @@ export default function Statistics({ diveData }) {
       return diveData.maxDepth;
     })
   );
-  console.log(diveData);
   return (
     <>
       <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>
