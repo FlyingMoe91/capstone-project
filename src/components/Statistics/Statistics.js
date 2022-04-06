@@ -5,8 +5,8 @@ export default function Statistics(diveData) {
   const dives = diveData.diveData.length;
   const depth = Math.max.apply(
     Math,
-    diveData.diveData.map(function (o) {
-      return o.maxDepth;
+    diveData.diveData.map(function (diveData) {
+      return diveData.maxDepth;
     })
   );
 
