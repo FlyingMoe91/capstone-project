@@ -16,7 +16,7 @@ export default function Logbook() {
   return (
     <Wrapper>
       {active && (
-        <NavLinkStyled to="/" name="menu">
+        <NavLinkStyled to="/">
           <IoMdArrowRoundBack />
         </NavLinkStyled>
       )}
@@ -98,11 +98,11 @@ const Wrapper = styled.section`
 `;
 
 const NavLinkStyled = styled(NavLink)`
-  font-size: 2rem;
-  color: white;
   position: absolute;
-  left: 15px;
-  top: 15px;
+  left: 10px;
+  top: 20px;
+  color: white;
+  font-size: 1.8rem;
 `;
 
 const Headline = styled.h1`

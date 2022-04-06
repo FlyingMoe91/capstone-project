@@ -165,6 +165,7 @@ export default function AddDive({ onClickBack, onCreateDive }) {
 const Headline = styled.h1`
   text-align: center;
   margin: 0;
+  padding-top: 20px;
   font-size: 2.5rem;
   color: white;
 `;
@@ -198,7 +199,7 @@ const LastDivStyled = styled.div`
 const ButtonBack = styled(Button)`
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 20px;
 `;
 
 const ButtonSubmit = styled(Button)`
