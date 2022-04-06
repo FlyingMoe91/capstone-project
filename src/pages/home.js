@@ -6,7 +6,7 @@ export default function Home({ diveData }) {
   return (
     <Wrapper>
       <Headline>logbuddy</Headline>
-      <Statistics diveData={diveData} />;
+      <Statistics diveData={diveData} />
     </Wrapper>
   );
 }
