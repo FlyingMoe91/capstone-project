@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export default function Statistics() {
+export default function Statistics(diveData) {
+  const dives = diveData.diveData.length;
+
   return (
     <>
-      <NavLinkStyled to="divelog">Dives: 2 </NavLinkStyled>
+      <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>
     </>
   );
 }

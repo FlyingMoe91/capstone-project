@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import BackgroundImage from '../images/Background.jpg';
 import Statistics from '../components/Statistics/Statistics';
 
-export default function Home() {
+export default function Home({ diveData }) {
   return (
     <Wrapper>
       <Headline>logbuddy</Headline>
-      <Statistics />;
+      <Statistics diveData={diveData} />;
     </Wrapper>
   );
 }
