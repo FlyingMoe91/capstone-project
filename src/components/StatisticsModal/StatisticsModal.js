@@ -3,7 +3,6 @@ import ScreenReaderOnly from '../ScreenReaderOnly';
 import { GrFormClose } from 'react-icons/gr';
 
 export default function StatisticsModal({
-  divenumber,
   location,
   city,
   country,
@@ -62,7 +61,6 @@ const Background = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 2;
 `;
 
 const Card = styled.div`
