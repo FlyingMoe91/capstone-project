@@ -86,7 +86,7 @@ const Card = styled.div`
   border-radius: 10px;
   max-width: 90vw;
   margin: 10px auto;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px;
   background-color: lightblue;
 `;
 
@@ -143,6 +143,7 @@ const CardDetails = styled.div`
   gap: 10px;
   padding: 5px;
   background-color: aliceblue;
+  margin-bottom: 20px;
 
   p {
     margin: 0;
