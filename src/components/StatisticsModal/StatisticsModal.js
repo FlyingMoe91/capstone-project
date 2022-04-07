@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import ScreenReaderOnly from '../ScreenReaderOnly';
+import { GrFormClose } from 'react-icons/gr';
 
 export default function StatisticsModal({
+  divenumber,
   location,
   city,
   country,
@@ -16,15 +19,21 @@ export default function StatisticsModal({
 }) {
   return (
     <Background>
-      <DiveLogDetailsCard>
-        <DiveLogCard onClick={onStatisticsToggle}>
+      <Card>
+        <CardHead>
           <div>
             <p>{city}</p>
             <p>{country}</p>
             <p>{location}</p>
           </div>
-          <p>{date}</p>
-        </DiveLogCard>
+          <BoxDateDelete>
+            <ButtonClose onClick={onStatisticsToggle}>
+              <GrFormClose />
+              <ScreenReaderOnly>close</ScreenReaderOnly>
+            </ButtonClose>
+            <p>{date}</p>
+          </BoxDateDelete>
+        </CardHead>
 
         <CardDetails>
           <p>time in: </p>
@@ -42,7 +51,7 @@ export default function StatisticsModal({
           <p>notes: </p>
           <p>{notes}</p>
         </CardDetails>
-      </DiveLogDetailsCard>
+      </Card>
     </Background>
   );
 }
@@ -54,6 +63,39 @@ const Background = styled.div`
   right: 0;
   left: 0;
   z-index: 2;
+`;
+
+const Card = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15vh;
+  position: relative;
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 90vw;
+  padding: 0 20px 20px 20px;
+  background-color: lightblue;
+`;
+
+const CardHead = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  text-align: center;
+  max-width: 90vw;
+  background-color: lightblue;
+
+  p {
+    margin: 5px;
+    max-width: 160px;
+    overflow-wrap: break-word;
+  }
+`;
+
+const BoxDateDelete = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 
 const CardDetails = styled.div`
@@ -70,26 +112,10 @@ const CardDetails = styled.div`
   }
 `;
 
-const DiveLogDetailsCard = styled.div`
-  position: relative;
-  border: 2px solid black;
-  border-radius: 10px;
-  max-width: 90vw;
-  margin: 10px auto;
-  padding: 0 20px 20px 20px;
-  background-color: lightblue;
-`;
-
-const DiveLogCard = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  text-align: center;
-  max-width: 90vw;
-  background-color: lightblue;
-
-  p {
-    margin: 5px;
-    max-width: 160px;
-    overflow-wrap: break-word;
-  }
+const ButtonClose = styled.button`
+  font-size: 2rem;
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: 0;
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
-import StatisticsModal from '../StatisticsModal';
+import StatisticsModal from '../StatisticsModal/StatisticsModal';
 
 export default function Statistics({ diveData }) {
   const [statisticsToggle, setStatisticsToggle] = useState(false);
@@ -27,6 +27,7 @@ export default function Statistics({ diveData }) {
         <>
           {deepestDive?.map(
             ({
+              divenumber,
               location,
               city,
               country,
@@ -41,6 +42,7 @@ export default function Statistics({ diveData }) {
             }) => (
               <StatisticsModal
                 onStatisticsToggle={handleStatisticsToggel}
+                divenumber={divenumber}
                 location={location}
                 city={city}
                 country={country}
