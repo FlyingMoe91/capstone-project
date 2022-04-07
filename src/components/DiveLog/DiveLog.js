@@ -25,8 +25,8 @@ export default function DiveLog({
 
   return (
     <>
-      <DiveLogDetailsCard onClick={handleCardToggle}>
-        <DiveLogCard onClick={() => handleCardToggle()}>
+      <Card>
+        <CardHead onClick={handleCardToggle}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
             <p>{city}</p>
@@ -40,7 +40,7 @@ export default function DiveLog({
               <ScreenReaderOnly>delete</ScreenReaderOnly>
             </ButtonDelete>
           </BoxDateDelete>
-        </DiveLogCard>
+        </CardHead>
 
         {!active && (
           <CardDetails>
@@ -60,7 +60,7 @@ export default function DiveLog({
             <p>{notes}</p>
           </CardDetails>
         )}
-      </DiveLogDetailsCard>
+      </Card>
       {modalActive && (
         <DeleteModal
           onDelete={() => onDelete(_id)}
@@ -75,12 +75,12 @@ export default function DiveLog({
     setModalActive(!modalActive);
   }
 
-  function handleCardToggle(event) {
+  function handleCardToggle() {
     setActive(!active);
   }
 }
 
-const DiveLogDetailsCard = styled.div`
+const Card = styled.div`
   position: relative;
   border: 2px solid black;
   border-radius: 10px;
@@ -90,7 +90,7 @@ const DiveLogDetailsCard = styled.div`
   background-color: lightblue;
 `;
 
-const DiveLogCard = styled.div`
+const CardHead = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   text-align: center;
@@ -143,6 +143,7 @@ const CardDetails = styled.div`
   gap: 10px;
   padding: 5px;
   background-color: aliceblue;
+  margin-bottom: 20px;
 
   p {
     margin: 0;

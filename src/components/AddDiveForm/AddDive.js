@@ -124,6 +124,7 @@ export default function AddDive({ onClickBack, onCreate }) {
             name="maxDepth"
             type="number"
             step=".1"
+            min="0"
             onChange={handelOnChange}
             maxLength="10"
             required

@@ -1,20 +1,70 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+
+import StatisticsModal from '../StatisticsModal/StatisticsModal';
 
 export default function Statistics({ diveData }) {
+  const [statisticsToggle, setStatisticsToggle] = useState(false);
   const dives = diveData.length;
   const depth = Math.max.apply(
     Math,
-    diveData.map(function (diveData) {
+    diveData.map(diveData => {
       return diveData.maxDepth;
     })
   );
+  const deepestDive = diveData.filter(attr => {
+    return attr.maxDepth > depth - 1;
+  });
+
   return (
     <>
       <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>
-      <Button>max. depth: {depth > 0 ? depth : '0'}</Button>
+      <Button onClick={handleStatisticsToggel}>
+        <p>max. depth: {depth > 0 ? depth : '0'}</p>
+      </Button>
+      {statisticsToggle && (
+        <>
+          {deepestDive?.map(
+            ({
+              divenumber,
+              location,
+              city,
+              country,
+              date,
+              buddy,
+              typeOfDive,
+              timeIn,
+              timeOut,
+              bottomTime,
+              maxDepth,
+              notes,
+            }) => (
+              <StatisticsModal
+                onStatisticsToggle={handleStatisticsToggel}
+                divenumber={divenumber}
+                location={location}
+                city={city}
+                country={country}
+                date={date}
+                buddy={buddy}
+                typeOfDive={typeOfDive}
+                timeIn={timeIn}
+                timeOut={timeOut}
+                bottomTime={bottomTime}
+                maxDepth={maxDepth}
+                notes={notes}
+              />
+            )
+          )}
+        </>
+      )}
     </>
   );
+
+  function handleStatisticsToggel() {
+    setStatisticsToggle(!statisticsToggle);
+  }
 }
 
 const NavLinkStyled = styled(NavLink)`
@@ -42,4 +92,8 @@ const Button = styled.button`
   text-align: center;
   text-decoration: none;
   line-height: 2rem;
+
+  p {
+    margin: 0;
+  }
 `;
