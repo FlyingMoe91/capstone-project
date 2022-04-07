@@ -25,7 +25,7 @@ export default function DiveLog({
 
   return (
     <>
-      <DiveLogDetailsCard onClick={handleCardToggle}>
+      <DiveLogDetailsCard>
         <DiveLogCard onClick={() => handleCardToggle()}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
@@ -86,7 +86,7 @@ const DiveLogDetailsCard = styled.div`
   border-radius: 10px;
   max-width: 90vw;
   margin: 10px auto;
-  padding: 0 20px;
+  padding: 0 20px 20px 20px;
   background-color: lightblue;
 `;
 

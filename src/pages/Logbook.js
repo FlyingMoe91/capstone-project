@@ -10,7 +10,6 @@ import DiveLog from '../components/DiveLog/DiveLog';
 
 export default function Logbook({ diveData, onDelete, onCreateDive }) {
   const [active, setActive] = useState(true);
-
   return (
     <Wrapper>
       {active && (
