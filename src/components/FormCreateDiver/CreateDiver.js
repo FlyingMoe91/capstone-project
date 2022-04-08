@@ -99,7 +99,8 @@ const SectionStyled = styled.section`
 
 const Headline = styled.h1`
   text-align: center;
-  margin: 0;
+  width: 80vw;
+  margin: 0 auto;
   font-size: 2.5rem;
   color: white;
 `;
@@ -127,6 +128,10 @@ const ButtonBack = styled(Button)`
   position: absolute;
   left: 10px;
   top: 20px;
+  color: white;
+  font-size: 1.8rem;
+  border: none;
+  background: transparent;
 `;
 
 const ButtonSubmit = styled(Button)`

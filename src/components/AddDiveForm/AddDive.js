@@ -200,6 +200,10 @@ const ButtonBack = styled(Button)`
   position: absolute;
   left: 10px;
   top: 20px;
+  color: white;
+  font-size: 1.8rem;
+  border: none;
+  background: transparent;
 `;
 
 const ButtonSubmit = styled(Button)`

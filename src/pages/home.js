@@ -25,7 +25,7 @@ export default function Home({ diveData }) {
             )
           )
         : !createDiverPageActive && (
-            <Header onClick={handleCreateDiverPage}>Create New diver +</Header>
+            <Header onClick={handleCreateDiverPage}>create cew diver +</Header>
           )}
       {createDiverPageActive && (
         <CreateDiver
@@ -64,4 +64,6 @@ const Header = styled.button`
   background: transparent;
   color: white;
   border-radius: 20px;
+  padding: 0 5px;
+  width: 80vw;
 `;
