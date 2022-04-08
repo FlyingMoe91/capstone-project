@@ -4,21 +4,30 @@ import CreateDiver from '../components/FormCreateDiver/CreateDiver';
 import { useState } from 'react';
 
 export default function Home({ diveData }) {
-  const [createDiverActive, setCreateDiverActive] = useState(false);
+  const [createDiverPageActive, setCreateDiverPageActive] = useState(false);
+  const [diverInfo, setDiverInfo] = useState([]);
+
   return (
     <Wrapper>
-      {!createDiverActive && (
-        <Header onClick={handleCreateDiverToggle}>Create New diver +</Header>
+      {!createDiverPageActive && (
+        <Header onClick={handleCreateDiverPage}>Create New diver +</Header>
       )}
-      {createDiverActive && (
-        <CreateDiver onCreateDiverToggle={handleCreateDiverToggle} />
+      {createDiverPageActive && (
+        <CreateDiver
+          onClickBack={handleCreateDiverPage}
+          onCreate={handleCreateDiver}
+        />
       )}
-      {!createDiverActive && <Statistics diveData={diveData} />}
+      {!createDiverPageActive && <Statistics diveData={diveData} />}
     </Wrapper>
   );
 
-  function handleCreateDiverToggle() {
-    setCreateDiverActive(!createDiverActive);
+  function handleCreateDiver(newdiverInfo) {
+    setDiverInfo([newdiverInfo]);
+  }
+
+  function handleCreateDiverPage() {
+    setCreateDiverPageActive(!createDiverPageActive);
   }
 }
 

@@ -4,16 +4,12 @@ import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../Button/Button';
 
-export default function AddDive({
-  onClickBack,
-  onCreate,
-  onCreateDiverToggle,
-}) {
-  const [diveData, setDiveData] = useState('');
+export default function AddDive({ onClickBack, onCreate }) {
+  const [diverInfo, setDiverInfo] = useState('');
 
   return (
     <SectionStyled>
-      <ButtonBack name="back" onClick={onCreateDiverToggle}>
+      <ButtonBack name="back" onClick={onClickBack}>
         <IoMdArrowRoundBack />
       </ButtonBack>
       <Headline>Enter your details</Headline>
@@ -73,7 +69,7 @@ export default function AddDive({
           ></input>
         </DivStyled>
 
-        <ButtonSubmit variant="submit" name="log dive">
+        <ButtonSubmit variant="submit" name="save details">
           save details
         </ButtonSubmit>
       </FormStyled>
@@ -82,15 +78,15 @@ export default function AddDive({
 
   function handelOnChange(event) {
     const { name, value } = event.target;
-    setDiveData({
-      ...diveData,
+    setDiverInfo({
+      ...diverInfo,
       [name]: value.trim(),
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    onCreate({ ...diveData, _id: nanoid() });
+    onCreate({ ...diverInfo, _id: nanoid() });
   }
 }
 
@@ -104,7 +100,6 @@ const SectionStyled = styled.section`
 const Headline = styled.h1`
   text-align: center;
   margin: 0;
-  padding-top: 20px;
   font-size: 2.5rem;
   color: white;
 `;
