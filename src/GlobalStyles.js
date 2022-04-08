@@ -7,8 +7,7 @@ export default createGlobalStyle`
 }
 body{
     max-width: 768px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     padding: 0;
     background: url(${BackgroundImage}) center no-repeat;
     background-attachment: fixed;

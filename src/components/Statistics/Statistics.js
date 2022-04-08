@@ -39,6 +39,7 @@ export default function Statistics({ diveData }) {
               bottomTime,
               maxDepth,
               notes,
+              _id,
             }) => (
               <StatisticsModal
                 onStatisticsToggle={handleStatisticsToggel}
@@ -54,6 +55,7 @@ export default function Statistics({ diveData }) {
                 bottomTime={bottomTime}
                 maxDepth={maxDepth}
                 notes={notes}
+                key={_id}
               />
             )
           )}
