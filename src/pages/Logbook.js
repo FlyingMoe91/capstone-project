@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { NavLink } from 'react-router-dom';
-import BackgroundImage from '../images/Background.jpg';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Button from '../components/Button/Button';
 import AddDive from '../components/AddDiveForm/AddDive';
@@ -82,8 +81,7 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
 }
 
 const Wrapper = styled.section`
-  background: url(${BackgroundImage}) center no-repeat;
-  background-attachment: fixed;
+  position: relative;
   min-height: 100vh;
 `;
 
@@ -96,7 +94,7 @@ const NavLinkStyled = styled(NavLink)`
 `;
 
 const Headline = styled.h1`
-  padding-top: 20px;
+  padding: 20px;
   margin: 0;
   text-align: center;
   font-size: 2.5rem;
@@ -112,7 +110,7 @@ const Grid = styled.ul`
 `;
 
 const TogglePage = styled(Button)`
-  position: fixed;
+  position: absolute;
   right: 10px;
   bottom: 20px;
 `;

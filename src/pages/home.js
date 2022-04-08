@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import BackgroundImage from '../images/Background.jpg';
 import Statistics from '../components/Statistics/Statistics';
 
 export default function Home({ diveData }) {
@@ -12,9 +11,6 @@ export default function Home({ diveData }) {
 }
 
 const Wrapper = styled.section`
-  background: url(${BackgroundImage}) center no-repeat;
-  background-attachment: fixed;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
