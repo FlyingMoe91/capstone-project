@@ -19,7 +19,7 @@ export default function AddDive({ onClickBack, onCreate }) {
         onSubmit={handleSubmit}
       >
         <DivStyled>
-          <label htmlFor="location">name</label>
+          <label htmlFor="name">name</label>
           <input
             id="name"
             name="name"
@@ -30,7 +30,7 @@ export default function AddDive({ onClickBack, onCreate }) {
           ></input>
         </DivStyled>
         <DivStyled>
-          <label htmlFor="city">certification</label>
+          <label htmlFor="certification">certification</label>
           <input
             id="certification"
             name="certification"
@@ -40,7 +40,7 @@ export default function AddDive({ onClickBack, onCreate }) {
           ></input>
         </DivStyled>
         <DivStyled>
-          <label htmlFor="country">cert #</label>
+          <label htmlFor="cert_nr">cert #</label>
           <input
             id="cert_nr"
             name="cert_nr"
@@ -50,7 +50,7 @@ export default function AddDive({ onClickBack, onCreate }) {
           ></input>
         </DivStyled>
         <DivStyled>
-          <label htmlFor="cert. date">date</label>
+          <label htmlFor="date">date</label>
           <input
             id="date"
             name="date"
@@ -59,7 +59,7 @@ export default function AddDive({ onClickBack, onCreate }) {
           ></input>
         </DivStyled>
         <DivStyled>
-          <label htmlFor="buddy">organization</label>
+          <label htmlFor="organization">organization</label>
           <input
             id="organization"
             name="organization"
