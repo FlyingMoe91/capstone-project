@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import DiverInfo from './DiverInfo';
 
 describe('DiverInfo', () => {
-  it('renders a city, county, location and date', () => {
+  it('renders a five inputs', () => {
     render(
       <DiverInfo
         name="Jon"

@@ -1,73 +1,68 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { IoMdArrowRoundBack } from 'react-icons/io';
+import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 
 export default function AddDive({ onClickBack, onCreate }) {
-  const [diverInfo, setDiverInfo] = useState('');
+  const [diverInfo, setDiverInfo] = useState({});
 
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>
-        <IoMdArrowRoundBack />
+        <ArrowBack />
       </ButtonBack>
       <Headline>Enter your details</Headline>
       <FormStyled
-        aria-label="log new dive"
+        aria-label="create new diver"
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <DivStyled>
+        <InputWrapper>
           <label htmlFor="name">name</label>
           <input
             id="name"
             name="name"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
-        </DivStyled>
-        <DivStyled>
+          />
+        </InputWrapper>
+        <InputWrapper>
           <label htmlFor="certification">certification</label>
           <input
             id="certification"
             name="certification"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
-          ></input>
-        </DivStyled>
-        <DivStyled>
+          />
+        </InputWrapper>
+        <InputWrapper>
           <label htmlFor="cert_nr">cert #</label>
           <input
             id="cert_nr"
             name="cert_nr"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
-          ></input>
-        </DivStyled>
-        <DivStyled>
+          />
+        </InputWrapper>
+        <InputWrapper>
           <label htmlFor="date">date</label>
-          <input
-            id="date"
-            name="date"
-            type="date"
-            onChange={handelOnChange}
-          ></input>
-        </DivStyled>
-        <DivStyled>
+          <input id="date" name="date" type="date" onChange={handleChange} />
+        </InputWrapper>
+        <InputWrapper>
           <label htmlFor="organization">organization</label>
           <input
             id="organization"
             name="organization"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
-          ></input>
-        </DivStyled>
+          />
+        </InputWrapper>
 
         <ButtonSubmit variant="submit" name="save details">
           save details
@@ -76,7 +71,7 @@ export default function AddDive({ onClickBack, onCreate }) {
     </SectionStyled>
   );
 
-  function handelOnChange(event) {
+  function handleChange(event) {
     const { name, value } = event.target;
     setDiverInfo({
       ...diverInfo,
@@ -119,7 +114,7 @@ const FormStyled = styled.form`
   }
 `;
 
-const DivStyled = styled.div`
+const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;

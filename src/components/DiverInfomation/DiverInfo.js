@@ -1,24 +1,18 @@
 import styled from 'styled-components';
 
-export default function DiverInfo({
-  name,
-  certification,
-  certnr,
-  date,
-  organization,
-}) {
+export default function DiverInfo({ diverInfo }) {
   return (
     <DiverGrid>
-      <Name>{name}</Name>
-      {organization ? <p>{organization}</p> : ''}
-      {certification ? <p>{certification}</p> : ''}
-      {date ? <p>{date}</p> : ''}
-      {certnr ? <p>{certnr}</p> : ''}
+      <Name>{diverInfo.name}</Name>
+      {diverInfo.organization ? <p>{diverInfo.organization}</p> : null}
+      {diverInfo.certification ? <p>{diverInfo.certification}</p> : null}
+      {diverInfo.date ? <p>{diverInfo.date}</p> : null}
+      {diverInfo.cert_nr ? <p>{diverInfo.cert_nr}</p> : null}
     </DiverGrid>
   );
 }
 
-const DiverGrid = styled.div`
+const DiverGrid = styled.section`
   grid-column-start: 1;
   grid-column-end: 3;
   display: grid;
@@ -30,14 +24,15 @@ const DiverGrid = styled.div`
   p {
     border: 1px solid white;
     border-radius: 5px;
-    width: 150px;
-    height: 30px;
+    width: 40vw;
+    height: 4vh;
     margin: 5px;
     justify-self: center;
     vertical-align: middle;
-    line-height: 30px;
+    line-height: 4vh;
+    font-size: 1.4rem;
     color: white;
-    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 `;
 

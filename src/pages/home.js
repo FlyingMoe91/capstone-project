@@ -11,22 +11,13 @@ export default function Home({ diveData }) {
 
   return (
     <Wrapper>
-      {diverInfo[0]
-        ? diverInfo?.map(
-            ({ name, organization, date, certification, cert_nr, _id }) => (
-              <DiverInfo
-                key={_id}
-                name={name}
-                organization={organization}
-                date={date}
-                certification={certification}
-                certnr={cert_nr}
-              />
-            )
-          )
-        : !createDiverPageActive && (
-            <Header onClick={handleCreateDiverPage}>create cew diver +</Header>
-          )}
+      {diverInfo[0] ? (
+        <DiverInfo diverInfo={diverInfo[0]} />
+      ) : (
+        !createDiverPageActive && (
+          <Header onClick={handleCreateDiverPage}>create cew diver +</Header>
+        )
+      )}
       {createDiverPageActive && (
         <CreateDiver
           onClickBack={handleCreateDiverPage}

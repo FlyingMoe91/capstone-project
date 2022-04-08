@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { NavLink } from 'react-router-dom';
-import { IoMdArrowRoundBack } from 'react-icons/io';
+import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../components/Button/Button';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
@@ -13,7 +13,7 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
     <Wrapper>
       {active && (
         <NavLinkStyled to="/">
-          <IoMdArrowRoundBack />
+          <ArrowBack />
         </NavLinkStyled>
       )}
       {active && <Headline>Dive Logs</Headline>}
