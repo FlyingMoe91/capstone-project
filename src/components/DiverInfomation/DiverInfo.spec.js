@@ -1,20 +1,29 @@
-import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
 import DiverInfo from './DiverInfo';
 
 describe('DiverInfo', () => {
   it('renders a city, county, location and date', () => {
-    render(<DiverInfo />);
+    render(
+      <DiverInfo
+        name="Jon"
+        certification="AOWD"
+        certnr="1234"
+        date="01.01.2000"
+        organization="Padi"
+      />
+    );
 
-    // const city = screen.getByText('Orlando', { exact: false });
-    // const country = screen.getByText('USA', { exact: false });
-    // const location = screen.getByText('DevilsDen');
-    // const date = screen.getByText('25.06.2013');
+    const name = screen.getByText('Jon');
+    const certification = screen.getByText('AOWD');
+    const certnr = screen.getByText('1234');
+    const date = screen.getByText('01.01.2000');
+    const organization = screen.getByText('Padi');
 
-    // expect(city).toBeInTheDocument();
-    // expect(country).toBeInTheDocument();
-    // expect(location).toBeInTheDocument();
-    // expect(date).toBeInTheDocument();
+    expect(name).toBeInTheDocument();
+    expect(certification).toBeInTheDocument();
+    expect(certnr).toBeInTheDocument();
+    expect(date).toBeInTheDocument();
+    expect(organization).toBeInTheDocument();
   });
 });
