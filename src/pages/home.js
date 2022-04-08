@@ -2,16 +2,31 @@ import styled from 'styled-components';
 import Statistics from '../components/Statistics/Statistics';
 import CreateDiver from '../components/FormCreateDiver/CreateDiver';
 import { useState } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
+import DiverInfo from '../components/DiverInfomation/DiverInfo';
 
 export default function Home({ diveData }) {
   const [createDiverPageActive, setCreateDiverPageActive] = useState(false);
-  const [diverInfo, setDiverInfo] = useState([]);
+  const [diverInfo, setDiverInfo] = useLocalStorage('diverInfo', []);
 
   return (
     <Wrapper>
-      {!createDiverPageActive && (
-        <Header onClick={handleCreateDiverPage}>Create New diver +</Header>
-      )}
+      {diverInfo[0]
+        ? diverInfo?.map(
+            ({ name, organization, date, certification, cert_nr, _id }) => (
+              <DiverInfo
+                key={_id}
+                name={name}
+                organization={organization}
+                date={date}
+                certification={certification}
+                certnr={cert_nr}
+              />
+            )
+          )
+        : !createDiverPageActive && (
+            <Header onClick={handleCreateDiverPage}>Create New diver +</Header>
+          )}
       {createDiverPageActive && (
         <CreateDiver
           onClickBack={handleCreateDiverPage}
@@ -24,6 +39,7 @@ export default function Home({ diveData }) {
 
   function handleCreateDiver(newdiverInfo) {
     setDiverInfo([newdiverInfo]);
+    setCreateDiverPageActive(!createDiverPageActive);
   }
 
   function handleCreateDiverPage() {
@@ -34,7 +50,7 @@ export default function Home({ diveData }) {
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   justify-items: center;
   padding: 20px;
 `;

@@ -42,8 +42,8 @@ export default function AddDive({ onClickBack, onCreate }) {
         <DivStyled>
           <label htmlFor="country">cert #</label>
           <input
-            id="cert #"
-            name="cert #"
+            id="cert_nr"
+            name="cert_nr"
             type="text"
             onChange={handelOnChange}
             maxLength="50"
