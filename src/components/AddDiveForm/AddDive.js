@@ -175,7 +175,7 @@ const FormStyled = styled.form`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   max-width: 500px;
-  margin: 20px;
+  margin: 20px auto;
   color: white;
 
   input {

@@ -86,15 +86,17 @@ export default function AddDive({ onClickBack, onCreate }) {
 }
 
 const SectionStyled = styled.section`
+  position: relative;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 5;
+  width: 100%;
 `;
 
 const Headline = styled.h1`
   text-align: center;
-  width: 80vw;
+  width: 80%;
   margin: 0 auto;
   font-size: 2.5rem;
   color: white;
@@ -105,7 +107,7 @@ const FormStyled = styled.form`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   max-width: 500px;
-  margin: 20px;
+  margin: 20px auto;
   color: white;
 
   input {
@@ -121,8 +123,8 @@ const InputWrapper = styled.div`
 
 const ButtonBack = styled(Button)`
   position: absolute;
-  left: 10px;
-  top: 20px;
+  left: 0px;
+  top: 0px;
   color: white;
   font-size: 1.8rem;
   border: none;

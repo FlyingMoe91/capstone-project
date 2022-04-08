@@ -56,5 +56,5 @@ const Header = styled.button`
   color: white;
   border-radius: 20px;
   padding: 0 5px;
-  width: 80vw;
+  width: 90%;
 `;
