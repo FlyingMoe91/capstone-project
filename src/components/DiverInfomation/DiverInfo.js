@@ -26,11 +26,12 @@ const DiverGrid = styled.section`
   grid-template-rows: 1fr 1fr 1fr;
   text-align: center;
   margin-bottom: 20px;
+  width: 100%;
 
   p {
     border: 1px solid white;
     border-radius: 8px;
-    width: 40vw;
+    width: 75%;
     height: 5vh;
     margin: 5px;
     justify-self: center;

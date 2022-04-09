@@ -23,7 +23,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             id="name"
             name="name"
             type="text"
-            maxLength="10"
+            maxLength="20"
             defaultValue={diverInfo.name ? diverInfo.name : undefined}
             required
           />
