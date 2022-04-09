@@ -23,13 +23,13 @@ const DiverGrid = styled.section`
 
   p {
     border: 1px solid white;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 40vw;
-    height: 4vh;
+    height: 5vh;
     margin: 5px;
     justify-self: center;
     vertical-align: middle;
-    line-height: 4vh;
+    line-height: 5vh;
     font-size: 1.4rem;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);

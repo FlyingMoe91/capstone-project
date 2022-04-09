@@ -25,7 +25,7 @@ export default function AddDive({ onClickBack, onCreate }) {
             name="name"
             type="text"
             onChange={handleChange}
-            maxLength="50"
+            maxLength="10"
             required
           />
         </InputWrapper>
@@ -36,7 +36,7 @@ export default function AddDive({ onClickBack, onCreate }) {
             name="certification"
             type="text"
             onChange={handleChange}
-            maxLength="50"
+            maxLength="10"
           />
         </InputWrapper>
         <InputWrapper>
@@ -46,7 +46,7 @@ export default function AddDive({ onClickBack, onCreate }) {
             name="cert_nr"
             type="text"
             onChange={handleChange}
-            maxLength="50"
+            maxLength="10"
           />
         </InputWrapper>
         <InputWrapper>
@@ -60,7 +60,7 @@ export default function AddDive({ onClickBack, onCreate }) {
             name="organization"
             type="text"
             onChange={handleChange}
-            maxLength="50"
+            maxLength="10"
           />
         </InputWrapper>
 
