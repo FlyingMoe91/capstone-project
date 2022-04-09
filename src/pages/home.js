@@ -7,20 +7,24 @@ import DiverInfo from '../components/DiverInfomation/DiverInfo';
 
 export default function Home({ diveData }) {
   const [createDiverPageActive, setCreateDiverPageActive] = useState(false);
-  const [diverInfo, setDiverInfo] = useLocalStorage('diverInfo', []);
+  const [diverInfo, setDiverInfo] = useLocalStorage('diverInfo', ['']);
 
   return (
     <Wrapper>
-      {diverInfo[0] ? (
-        <DiverInfo diverInfo={diverInfo[0]} />
-      ) : (
-        !createDiverPageActive && (
-          <Header onClick={handleCreateDiverPage}>create cew diver +</Header>
-        )
-      )}
+      {diverInfo[0]
+        ? !createDiverPageActive && (
+            <DiverInfo
+              diverInfo={diverInfo[0]}
+              onEditDiver={toggleCreateDiverPage}
+            />
+          )
+        : !createDiverPageActive && (
+            <Header onClick={toggleCreateDiverPage}>create new diver +</Header>
+          )}
       {createDiverPageActive && (
         <CreateDiver
-          onClickBack={handleCreateDiverPage}
+          diverInfo={diverInfo[0]}
+          onClickBack={toggleCreateDiverPage}
           onCreate={handleCreateDiver}
         />
       )}
@@ -33,7 +37,7 @@ export default function Home({ diveData }) {
     setCreateDiverPageActive(!createDiverPageActive);
   }
 
-  function handleCreateDiverPage() {
+  function toggleCreateDiverPage() {
     setCreateDiverPageActive(!createDiverPageActive);
   }
 }

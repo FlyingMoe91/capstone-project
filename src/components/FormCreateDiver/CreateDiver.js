@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
+import ScreenReaderOnly from '../ScreenReaderOnly';
 
-export default function AddDive({ onClickBack, onCreate }) {
-  const [diverInfo, setDiverInfo] = useState({});
-
+export default function AddDive({ diverInfo, onClickBack, onCreate }) {
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>
         <ArrowBack />
+        <ScreenReaderOnly>back to homepage</ScreenReaderOnly>
       </ButtonBack>
       <Headline>Enter your details</Headline>
       <FormStyled
@@ -24,8 +23,8 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="name"
             name="name"
             type="text"
-            onChange={handleChange}
             maxLength="10"
+            defaultValue={diverInfo.name ? diverInfo.name : undefined}
             required
           />
         </InputWrapper>
@@ -35,8 +34,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="certification"
             name="certification"
             type="text"
-            onChange={handleChange}
             maxLength="10"
+            defaultValue={
+              diverInfo.certification ? diverInfo.certification : undefined
+            }
           />
         </InputWrapper>
         <InputWrapper>
@@ -45,13 +46,18 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="cert_nr"
             name="cert_nr"
             type="text"
-            onChange={handleChange}
             maxLength="10"
+            defaultValue={diverInfo.cert_nr ? diverInfo.cert_nr : undefined}
           />
         </InputWrapper>
         <InputWrapper>
           <label htmlFor="date">date</label>
-          <input id="date" name="date" type="date" onChange={handleChange} />
+          <input
+            id="date"
+            name="date"
+            type="date"
+            defaultValue={diverInfo.date ? diverInfo.date : undefined}
+          />
         </InputWrapper>
         <InputWrapper>
           <label htmlFor="organization">organization</label>
@@ -59,8 +65,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="organization"
             name="organization"
             type="text"
-            onChange={handleChange}
             maxLength="10"
+            defaultValue={
+              diverInfo.organization ? diverInfo.organization : undefined
+            }
           />
         </InputWrapper>
 
@@ -71,17 +79,19 @@ export default function AddDive({ onClickBack, onCreate }) {
     </SectionStyled>
   );
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setDiverInfo({
-      ...diverInfo,
-      [name]: value.trim(),
-    });
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
-    onCreate({ ...diverInfo, _id: nanoid() });
+    const { name, certification, cert_nr, date, organization } =
+      event.target.elements;
+
+    onCreate({
+      name: name.value,
+      certification: certification.value,
+      cert_nr: cert_nr.value,
+      date: date.value,
+      organization: organization.value,
+      _id: nanoid(),
+    });
   }
 }
 

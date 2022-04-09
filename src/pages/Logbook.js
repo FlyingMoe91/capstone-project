@@ -6,6 +6,7 @@ import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../components/Button/Button';
 import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
 
 export default function Logbook({ diveData, onDelete, onCreateDive }) {
   const [active, setActive] = useState(true);
@@ -14,6 +15,7 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
       {active && (
         <NavLinkStyled to="/">
           <ArrowBack />
+          <ScreenReaderOnly>back to homepage</ScreenReaderOnly>
         </NavLinkStyled>
       )}
       {active && <Headline>Dive Logs</Headline>}
@@ -22,8 +24,8 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
           {diveData?.map(
             (
               {
+                divespot,
                 location,
-                city,
                 country,
                 date,
                 buddy,
@@ -39,8 +41,8 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
             ) => (
               <li key={nanoid()}>
                 <DiveLog
+                  divespot={divespot}
                   location={location}
-                  city={city}
                   country={country}
                   date={date}
                   buddy={buddy}

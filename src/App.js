@@ -6,7 +6,6 @@ import Logbook from './pages/Logbook';
 
 export default function App() {
   const [diveData, setDiveData] = useLocalStorage('diveData', []);
-
   return (
     <Routes>
       <Route path="/" element={<Home diveData={diveData} />} />
