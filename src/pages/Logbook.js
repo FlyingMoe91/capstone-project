@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { NavLink } from 'react-router-dom';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../components/Button/Button';
@@ -39,7 +38,7 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
               },
               index
             ) => (
-              <li key={nanoid()}>
+              <li key={_id()}>
                 <DiveLog
                   divespot={divespot}
                   location={location}

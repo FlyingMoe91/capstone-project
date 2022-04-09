@@ -1,4 +1,4 @@
-import { userEvent } from '@storybook/testing-library';
+import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import DiverInfo from './DiverInfo';
 
@@ -26,11 +26,13 @@ describe('DiverInfo', () => {
     expect(organization).toBeInTheDocument();
   });
 
-  it('renders a a button and calls a callback', () => {
+  it('renders a button and calls a callback', () => {
     const callback = jest.fn();
     render(<DiverInfo diverInfo={diverInfo} onEditDiver={callback} />);
 
-    const editButton = screen.getByRole('button');
+    const editButton = screen.getByRole('button', {
+      name: /edit diver information/i,
+    });
 
     userEvent.click(editButton);
 

@@ -11,7 +11,9 @@ export default function AddDive({ onClickBack, onCreate }) {
         <ArrowBack />
         <ScreenReaderOnly>back to divelogs</ScreenReaderOnly>
       </ButtonBack>
-      <Headline>log new dive</Headline>
+      <Headline aria-labelledby="form-title" id="form-title">
+        log new dive
+      </Headline>
       <FormStyled
         aria-label="log new dive"
         autoComplete="off"
