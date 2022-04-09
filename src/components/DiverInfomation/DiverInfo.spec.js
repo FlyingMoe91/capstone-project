@@ -1,18 +1,17 @@
+import { userEvent } from '@storybook/testing-library';
 import { render, screen } from '@testing-library/react';
-
 import DiverInfo from './DiverInfo';
 
+const diverInfo = {
+  name: 'Jon',
+  certification: 'AOWD',
+  cert_nr: '1234',
+  date: '01.01.2000',
+  organization: 'Padi',
+};
 describe('DiverInfo', () => {
-  it('renders a five inputs', () => {
-    render(
-      <DiverInfo
-        name="Jon"
-        certification="AOWD"
-        certnr="1234"
-        date="01.01.2000"
-        organization="Padi"
-      />
-    );
+  it('renders five inputs', () => {
+    render(<DiverInfo diverInfo={diverInfo} />);
 
     const name = screen.getByText('Jon');
     const certification = screen.getByText('AOWD');
@@ -25,5 +24,17 @@ describe('DiverInfo', () => {
     expect(certnr).toBeInTheDocument();
     expect(date).toBeInTheDocument();
     expect(organization).toBeInTheDocument();
+  });
+
+  it('renders a a button and calls a callback', () => {
+    const callback = jest.fn();
+    render(<DiverInfo diverInfo={diverInfo} onEditDiver={callback} />);
+
+    const editButton = screen.getByRole('button');
+
+    userEvent.click(editButton);
+
+    expect(editButton).toBeInTheDocument();
+    expect(callback).toHaveBeenCalled();
   });
 });
