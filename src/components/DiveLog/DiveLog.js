@@ -84,7 +84,7 @@ const Card = styled.div`
   position: relative;
   border: 2px solid black;
   border-radius: 10px;
-  max-width: 90vw;
+  max-width: 85vw;
   margin: 10px auto;
   padding: 0 20px;
   background-color: lightblue;

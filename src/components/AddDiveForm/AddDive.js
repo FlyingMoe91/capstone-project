@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { IoMdArrowRoundBack } from 'react-icons/io';
+import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 
 export default function AddDive({ onClickBack, onCreate }) {
@@ -10,7 +10,7 @@ export default function AddDive({ onClickBack, onCreate }) {
   return (
     <>
       <ButtonBack name="back" onClick={onClickBack}>
-        <IoMdArrowRoundBack />
+        <ArrowBack />
       </ButtonBack>
       <Headline>log new dive</Headline>
       <FormStyled
@@ -24,10 +24,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="location"
             name="location"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="city">location</label>
@@ -35,10 +35,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="city"
             name="city"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="country">country</label>
@@ -46,10 +46,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="country"
             name="country"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="date">date</label>
@@ -57,10 +57,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="date"
             name="date"
             type="date"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="buddy">buddy</label>
@@ -68,10 +68,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="buddy"
             name="buddy"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="typeOfDive">type of dive</label>
@@ -79,10 +79,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="typeOfDive"
             name="typeOfDive"
             type="text"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="timeIn">time in</label>
@@ -90,10 +90,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="timeIn"
             name="timeIn"
             type="time"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="timeOut">time out</label>
@@ -101,10 +101,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="timeOut"
             name="timeOut"
             type="time"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="bottomTime">bottom time</label>
@@ -112,10 +112,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="bottomTime"
             name="bottomTime"
             type="time"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="50"
             required
-          ></input>
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="maxDepth">max. depth(meter)</label>
@@ -125,10 +125,10 @@ export default function AddDive({ onClickBack, onCreate }) {
             type="number"
             step=".1"
             min="0"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="10"
             required
-          ></input>
+          />
         </DivStyled>
         <LastDivStyled>
           <label htmlFor="notes">notes</label>
@@ -137,9 +137,9 @@ export default function AddDive({ onClickBack, onCreate }) {
             name="notes"
             type="text"
             rows="8"
-            onChange={handelOnChange}
+            onChange={handleChange}
             maxLength="500"
-          ></textarea>
+          />
         </LastDivStyled>
         <ButtonSubmit variant="submit" name="log dive">
           log dive
@@ -148,7 +148,7 @@ export default function AddDive({ onClickBack, onCreate }) {
     </>
   );
 
-  function handelOnChange(event) {
+  function handleChange(event) {
     const { name, value } = event.target;
     setDiveData({
       ...diveData,
@@ -175,7 +175,7 @@ const FormStyled = styled.form`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   max-width: 500px;
-  margin: 20px;
+  margin: 20px auto;
   color: white;
 
   input {
@@ -200,6 +200,10 @@ const ButtonBack = styled(Button)`
   position: absolute;
   left: 10px;
   top: 20px;
+  color: white;
+  font-size: 1.8rem;
+  border: none;
+  background: transparent;
 `;
 
 const ButtonSubmit = styled(Button)`

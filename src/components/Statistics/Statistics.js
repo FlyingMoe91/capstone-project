@@ -21,7 +21,7 @@ export default function Statistics({ diveData }) {
     <>
       <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>
       <Button onClick={handleStatisticsToggel}>
-        <p>max. depth: {depth > 0 ? depth : '0'}</p>
+        max. depth: {depth > 0 ? depth : '0'}
       </Button>
       {statisticsToggle && (
         <>
@@ -39,6 +39,7 @@ export default function Statistics({ diveData }) {
               bottomTime,
               maxDepth,
               notes,
+              _id,
             }) => (
               <StatisticsModal
                 onStatisticsToggle={handleStatisticsToggel}
@@ -54,6 +55,7 @@ export default function Statistics({ diveData }) {
                 bottomTime={bottomTime}
                 maxDepth={maxDepth}
                 notes={notes}
+                key={_id}
               />
             )
           )}
@@ -72,11 +74,11 @@ const NavLinkStyled = styled(NavLink)`
   height: 100px;
   background-color: #2e5bd8;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   border: 0;
   border-radius: 15px;
   text-align: center;
-  padding: 20px 10px 0 10px;
+  padding: 20px 20px 0 20px;
   text-decoration: none;
   line-height: 2rem;
 `;
@@ -86,14 +88,12 @@ const Button = styled.button`
   height: 100px;
   background-color: #2d9ac2;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   border: 0;
   border-radius: 15px;
   text-align: center;
   text-decoration: none;
   line-height: 2rem;
-
-  p {
-    margin: 0;
-  }
+  vertical-align: middle;
+  padding: 0 5px;
 `;
