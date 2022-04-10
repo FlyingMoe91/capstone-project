@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
+import { GiCancel as Remove } from 'react-icons/gi';
 import axios from 'axios';
+import { useState } from 'react';
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
@@ -79,21 +80,25 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
         </InputWrapper>
         <ImageUpload>
           {image ? (
-            <img
-              src={image}
-              alt=""
-              style={{
-                width: '90%',
-                margin: '5%',
-              }}
-            />
+            <>
+              <img
+                src={image}
+                alt={diverInfo.image ? diverInfo.image : undefined}
+              />
+              <button onClick={handleRemovePic}>
+                <Remove />
+              </button>
+            </>
           ) : (
-            <input
-              type="file"
-              name="file"
-              aria-label="upload-your-picture"
-              onChange={upload}
-            />
+            <>
+              <label>upload picture</label>
+              <input
+                type="file"
+                name="file"
+                aria-label="picture-upload"
+                onChange={upload}
+              />
+            </>
           )}
         </ImageUpload>
         <ButtonSubmit variant="submit" name="save details">
@@ -137,6 +142,10 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
       _id: nanoid(),
       image: image,
     });
+  }
+
+  function handleRemovePic() {
+    setImage('');
   }
 }
 
@@ -192,15 +201,21 @@ const ButtonSubmit = styled(Button)`
 `;
 
 const ImageUpload = styled.div`
-  border: #012e40 2px solid;
-  border-radius: 20px;
-  margin: 10px;
-  padding: 10px;
-  input {
-    border: #012e40 2px solid;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  border-radius: 50%;
+  width: 50%;
+  img {
     border-radius: 10px;
     width: 100%;
-    background-color: #d5e5f2;
-    color: #012e40;
+  }
+
+  button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
   }
 `;

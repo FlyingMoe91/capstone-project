@@ -8,13 +8,14 @@ import DiverInfo from '../components/DiverInfomation/DiverInfo';
 export default function Home({ diveData }) {
   const [createDiverPageActive, setCreateDiverPageActive] = useState(false);
   const [diverInfo, setDiverInfo] = useLocalStorage('diverInfo', ['']);
-
+  const [image, setImage] = useLocalStorage('');
   return (
-    <Wrapper>
+    <>
       {diverInfo[0]
         ? !createDiverPageActive && (
             <DiverInfo
               diverInfo={diverInfo[0]}
+              image={image}
               onEditDiver={toggleCreateDiverPage}
             />
           )
@@ -29,11 +30,12 @@ export default function Home({ diveData }) {
         />
       )}
       {!createDiverPageActive && <Statistics diveData={diveData} />}
-    </Wrapper>
+    </>
   );
 
   function handleCreateDiver(newdiverInfo) {
     setDiverInfo([newdiverInfo]);
+    setImage(diverInfo[0].image ? diverInfo[0].image : image);
     setCreateDiverPageActive(!createDiverPageActive);
   }
 
@@ -41,14 +43,6 @@ export default function Home({ diveData }) {
     setCreateDiverPageActive(!createDiverPageActive);
   }
 }
-
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  justify-items: center;
-  padding: 20px;
-`;
 
 const Header = styled.button`
   grid-column-start: 1;

@@ -18,7 +18,7 @@ export default function Statistics({ diveData }) {
   });
 
   return (
-    <>
+    <Wrapper>
       <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>
       <Button onClick={handleStatisticsToggel}>
         max. depth: {depth > 0 ? depth : '0'}
@@ -61,13 +61,21 @@ export default function Statistics({ diveData }) {
           )}
         </>
       )}
-    </>
+    </Wrapper>
   );
 
   function handleStatisticsToggel() {
     setStatisticsToggle(!statisticsToggle);
   }
 }
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  padding: 20px;
+`;
 
 const NavLinkStyled = styled(NavLink)`
   width: 100px;
