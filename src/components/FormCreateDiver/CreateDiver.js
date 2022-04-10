@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
+import { useState } from 'react';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
+import axios from 'axios';
+
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddDive({ diverInfo, onClickBack, onCreate }) {
+  const [image, setImage] = useState('');
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -71,13 +77,51 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             }
           />
         </InputWrapper>
-
+        <ImageUpload>
+          {image ? (
+            <img
+              src={image}
+              alt=""
+              style={{
+                width: '90%',
+                margin: '5%',
+              }}
+            />
+          ) : (
+            <input
+              type="file"
+              name="file"
+              aria-label="upload-your-picture"
+              onChange={upload}
+            />
+          )}
+        </ImageUpload>
         <ButtonSubmit variant="submit" name="save details">
           save details
         </ButtonSubmit>
       </FormStyled>
     </SectionStyled>
   );
+
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`;
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+    formData.append('upload_preset', PRESET);
+
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+      })
+      .then(onImageSave)
+      .catch(err => console.error(err));
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -91,6 +135,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
       date: date.value,
       organization: organization.value,
       _id: nanoid(),
+      image: image,
     });
   }
 }
@@ -144,4 +189,18 @@ const ButtonBack = styled(Button)`
 const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
+`;
+
+const ImageUpload = styled.div`
+  border: #012e40 2px solid;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 10px;
+  input {
+    border: #012e40 2px solid;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #d5e5f2;
+    color: #012e40;
+  }
 `;

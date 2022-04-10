@@ -38,7 +38,7 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
               },
               index
             ) => (
-              <li key={_id()}>
+              <li key={_id}>
                 <DiveLog
                   divespot={divespot}
                   location={location}

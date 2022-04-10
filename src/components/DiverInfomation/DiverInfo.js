@@ -9,6 +9,7 @@ export default function DiverInfo({ diverInfo, onEditDiver }) {
       {diverInfo.certification ? <p>{diverInfo.certification}</p> : null}
       {diverInfo.date ? <p>{diverInfo.date}</p> : null}
       {diverInfo.cert_nr ? <p>{diverInfo.cert_nr}</p> : null}
+      <UploadedImage src={diverInfo.image} alt=""></UploadedImage>
       <ButtonEdit onClick={onEditDiver}>
         <EditIcon />
         <ScreenReaderOnly>edit diver information</ScreenReaderOnly>
@@ -58,4 +59,11 @@ const ButtonEdit = styled.button`
   background: transparent;
   color: white;
   font-size: 1.3rem;
+`;
+
+const UploadedImage = styled.img`
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px;
+  margin-left: -1px;
 `;
