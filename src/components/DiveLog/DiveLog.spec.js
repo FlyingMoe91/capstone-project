@@ -6,9 +6,9 @@ describe('DiveLog', () => {
     render(
       <DiveLog
         divenumber="1"
-        city="Orlando"
+        location="Orlando"
         country="USA"
-        location="DevilsDen"
+        divespot="DevilsDen"
         date="25.06.2013"
       />
     );

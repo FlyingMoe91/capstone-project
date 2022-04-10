@@ -6,7 +6,7 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 
 export default function DiveLog({
   divenumber,
-  city,
+  divespot,
   country,
   location,
   date,
@@ -22,14 +22,13 @@ export default function DiveLog({
 }) {
   const [active, setActive] = useState(true);
   const [modalActive, setModalActive] = useState(false);
-
   return (
     <>
       <Card>
         <CardHead onClick={handleCardToggle}>
           <DiveNumber>{divenumber}</DiveNumber>
           <div>
-            <p>{city}</p>
+            <p>{divespot}</p>
             <p>{country}</p>
             <p>{location}</p>
           </div>
