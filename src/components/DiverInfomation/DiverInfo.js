@@ -37,15 +37,14 @@ const DiverGrid = styled.section`
   p {
     border: 1px solid white;
     border-radius: 8px;
-    width: 100%;
-    height: 5vh;
+    max-width: 80%;
     margin: 5px;
     justify-self: center;
-    vertical-align: middle;
     line-height: 5vh;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
+    overflow-wrap: break-word;
   }
 
   div {

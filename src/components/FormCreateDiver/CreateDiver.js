@@ -41,7 +41,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             id="certification"
             name="certification"
             type="text"
-            maxLength="10"
+            maxLength="20"
             defaultValue={
               diverInfo.certification ? diverInfo.certification : undefined
             }
@@ -72,7 +72,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             id="organization"
             name="organization"
             type="text"
-            maxLength="10"
+            maxLength="20"
             defaultValue={
               diverInfo.organization ? diverInfo.organization : undefined
             }
