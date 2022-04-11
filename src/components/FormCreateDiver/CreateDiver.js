@@ -155,6 +155,7 @@ const SectionStyled = styled.section`
   grid-row-start: 1;
   grid-row-end: 5;
   width: 100%;
+  text-align: left;
 `;
 
 const Headline = styled.h1`

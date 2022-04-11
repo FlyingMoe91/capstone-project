@@ -19,7 +19,8 @@ export default function Statistics({ diveData }) {
 
   return (
     <Wrapper>
-      <NavLinkStyled to="divelog">Dives: {dives} </NavLinkStyled>
+      <NavLinkStyled to="/certifications">Certification</NavLinkStyled>
+      <NavLinkStyled to="/divelog">Dives: {dives} </NavLinkStyled>
       <Button onClick={handleStatisticsToggel}>
         max. depth: {depth > 0 ? depth : '0'}
       </Button>
@@ -74,6 +75,7 @@ const Wrapper = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   justify-items: center;
+  gap: 40px;
   padding: 20px;
 `;
 
@@ -89,6 +91,7 @@ const NavLinkStyled = styled(NavLink)`
   padding: 20px 20px 0 20px;
   text-decoration: none;
   line-height: 2rem;
+  overflow-wrap: break-word;
 `;
 
 const Button = styled.button`
