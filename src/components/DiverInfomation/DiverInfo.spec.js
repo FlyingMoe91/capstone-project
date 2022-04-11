@@ -14,15 +14,13 @@ describe('DiverInfo', () => {
     render(<DiverInfo diverInfo={diverInfo} />);
 
     const name = screen.getByText('Jon');
-    const certification = screen.getByText('AOWD');
+    const certification = screen.getByText(/AOWD/i);
     const certnr = screen.getByText('1234');
-    const date = screen.getByText('01.01.2000');
-    const organization = screen.getByText('Padi');
+    const organization = screen.getByText(/Padi/i);
 
     expect(name).toBeInTheDocument();
     expect(certification).toBeInTheDocument();
     expect(certnr).toBeInTheDocument();
-    expect(date).toBeInTheDocument();
     expect(organization).toBeInTheDocument();
   });
 

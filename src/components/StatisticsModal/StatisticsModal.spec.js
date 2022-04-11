@@ -7,9 +7,9 @@ describe('StatisticsModal', () => {
   it('renders a city, county, location and date', () => {
     render(
       <StatisticsModal
-        city="Orlando"
+        location="Orlando"
         country="USA"
-        location="DevilsDen"
+        divespot="DevilsDen"
         date="25.06.2013"
       />
     );
