@@ -29,10 +29,10 @@ export default function DiverInfo({ diverInfo, onEditDiver, image }) {
 
 const DiverGrid = styled.section`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  margin-bottom: 20px;
+  position: relative;
 
   p {
     border: 1px solid white;
@@ -69,7 +69,7 @@ const ButtonEdit = styled.button`
 
 const UploadedImage = styled.img`
   border-radius: 50%;
-  width: 40%;
-  height: 40%;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
 `;
