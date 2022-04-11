@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-import Button from '../Button/Button';
 
 export default function DeleteModal({ onCancel, onDelete }) {
   return (
     <Background>
       <ModalGrid>
         <p>Are you sure you want to delete this divelog?</p>
-        <Button onClick={onCancel}>no</Button>
-        <Button onClick={onDelete}>yes</Button>
+        <ButtonNo onClick={onCancel}>no</ButtonNo>
+        <ButtonYes onClick={onDelete}>yes</ButtonYes>
       </ModalGrid>
     </Background>
   );
@@ -42,9 +41,18 @@ const ModalGrid = styled.div`
     grid-column-end: 3;
     margin: 16px 30px;
   }
+`;
 
-  Button {
-    width: 40px;
-    height: 40px;
-  }
+const ButtonYes = styled.button`
+  background-color: lightgreen;
+  width: 80px;
+  margin: 10px;
+  border-radius: 15px;
+`;
+
+const ButtonNo = styled.button`
+  background-color: lightcoral;
+  width: 80px;
+  margin: 10px;
+  border-radius: 15px;
 `;

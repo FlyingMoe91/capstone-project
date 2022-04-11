@@ -9,7 +9,7 @@ import { useLocalStorage } from 'usehooks-ts';
 
 export default function Certifications() {
   const [certModalActive, setCertModalActive] = useState(false);
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useLocalStorage('images', []);
 
   return (
     <Wrapper>
@@ -43,6 +43,7 @@ export default function Certifications() {
   }
 
   function handleCreateCert(newImages) {
+    console.log(newImages);
     setImages([...images, { ...newImages, _id: nanoid() }]);
     setCertModalActive(!certModalActive);
   }
@@ -77,8 +78,10 @@ const StyledList = styled.ul`
     overflow: hidden;
     overflow-x: scroll;
     display: flex;
+    justify-content: space-between;
     border: 2px solid white;
     border-radius: 10px;
+    margin-bottom: 30px;
   }
 `;
 

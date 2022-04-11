@@ -11,8 +11,8 @@ export default function ModalCertification({ onCertModal, onCreate }) {
 
   return (
     <Background>
-      <Wrapper>
-        <p>Choose a front picture</p>
+      <Modal>
+        <p>Cardfront</p>
         <ImageUpload>
           {image[0] ? (
             <>
@@ -30,7 +30,7 @@ export default function ModalCertification({ onCertModal, onCreate }) {
             />
           )}
         </ImageUpload>
-        <p>Choose a back picture</p>
+        <p>Cardback</p>
         <ImageUpload>
           {image[1] ? (
             <>
@@ -49,11 +49,10 @@ export default function ModalCertification({ onCertModal, onCreate }) {
           )}
         </ImageUpload>
         <div>
-          <button onClick={onCertModal}>cancel</button>
-
-          <button onClick={handleSaveCert}>safe</button>
+          <ButtonCancel onClick={onCertModal}>cancel</ButtonCancel>
+          <ButtonSafe onClick={handleSaveCert}>safe</ButtonSafe>
         </div>
-      </Wrapper>
+      </Modal>
     </Background>
   );
 
@@ -96,41 +95,66 @@ const Background = styled.div`
   z-index: 2;
 `;
 
-const Wrapper = styled.div`
+const Modal = styled.div`
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20vh;
+  margin-top: 10vh;
   padding: 10px;
-  max-width: 250px;
-  background-color: lightgrey;
-  color: black;
-  text-align: center;
+  max-width: 300px;
+  background-color: darkcyan;
+  color: white;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   div {
     display: flex;
     justify-content: space-evenly;
+    padding: 5px;
   }
 `;
 
 const ImageUpload = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 3;
   border-radius: 50%;
-  width: 50%;
+  width: 90%;
 
   img {
     border-radius: 10px;
-    width: 100%;
+    width: 50%;
+    margin: 0 auto;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+
+  input {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
   }
 
   button {
     position: absolute;
-    left: 50vw;
     background: transparent;
     border: none;
     font-size: 1.5rem;
     color: white;
     background-color: transparent;
   }
+`;
+
+const ButtonSafe = styled.button`
+  background-color: lightgreen;
+  width: 80px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 15px;
+`;
+
+const ButtonCancel = styled.button`
+  background-color: lightcoral;
+  width: 80px;
+  margin: 10px;
+  border-radius: 15px;
 `;

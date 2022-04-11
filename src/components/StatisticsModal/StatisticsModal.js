@@ -4,7 +4,7 @@ import { GrFormClose } from 'react-icons/gr';
 
 export default function StatisticsModal({
   location,
-  city,
+  divespot,
   country,
   date,
   buddy,
@@ -21,7 +21,7 @@ export default function StatisticsModal({
       <Card>
         <CardHead>
           <div>
-            <p>{city}</p>
+            <p>{divespot}</p>
             <p>{country}</p>
             <p>{location}</p>
           </div>

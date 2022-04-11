@@ -30,7 +30,7 @@ export default function Statistics({ diveData }) {
             ({
               divenumber,
               location,
-              city,
+              divespot,
               country,
               date,
               buddy,
@@ -46,7 +46,7 @@ export default function Statistics({ diveData }) {
                 onStatisticsToggle={handleStatisticsToggel}
                 divenumber={divenumber}
                 location={location}
-                city={city}
+                divespot={divespot}
                 country={country}
                 date={date}
                 buddy={buddy}
