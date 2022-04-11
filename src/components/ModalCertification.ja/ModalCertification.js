@@ -8,10 +8,13 @@ const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function ModalCertification({ onCertModal, onCreate }) {
   const [image, setImage] = useState('');
+  const [process, setProcess] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   return (
     <Background>
       <Modal>
+        {loading && <div>Uploading Image...{process}%</div>}
         <p>Cardfront</p>
         <ImageUpload>
           {image[0] ? (
@@ -71,6 +74,13 @@ export default function ModalCertification({ onCertModal, onCreate }) {
         headers: {
           'Content-type': 'multipart/form-data',
         },
+        onUploadProgress: progressEvent => {
+          setLoading(true);
+          let percent = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setProcess(percent);
+        },
       })
       .then(onImageSave)
       .catch(err => console.error(err));
@@ -78,10 +88,13 @@ export default function ModalCertification({ onCertModal, onCreate }) {
 
   function onImageSave(response) {
     setImage([...image, response.data.url]);
+    setLoading(false);
   }
 
   function handleRemovePic() {
     setImage('');
+    setProcess(0);
+    setLoading(false);
   }
 }
 
