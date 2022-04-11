@@ -38,7 +38,7 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
               },
               index
             ) => (
-              <li key={_id()}>
+              <li key={_id}>
                 <DiveLog
                   divespot={divespot}
                   location={location}
@@ -81,21 +81,17 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
   }
 }
 
-const Wrapper = styled.section`
-  position: relative;
-  min-height: 100vh;
-`;
+const Wrapper = styled.section``;
 
 const NavLinkStyled = styled(NavLink)`
   position: absolute;
   left: 10px;
-  top: 20px;
+  top: 10px;
   color: white;
   font-size: 1.8rem;
 `;
 
 const Headline = styled.h1`
-  padding: 20px;
   margin: 0;
   text-align: center;
   font-size: 2.5rem;

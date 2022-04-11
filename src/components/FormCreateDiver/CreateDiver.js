@@ -3,8 +3,15 @@ import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
+import { GiCancel as Remove } from 'react-icons/gi';
+import axios from 'axios';
+import { useState } from 'react';
+
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddDive({ diverInfo, onClickBack, onCreate }) {
+  const [image, setImage] = useState('');
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -34,7 +41,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             id="certification"
             name="certification"
             type="text"
-            maxLength="10"
+            maxLength="20"
             defaultValue={
               diverInfo.certification ? diverInfo.certification : undefined
             }
@@ -65,19 +72,61 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             id="organization"
             name="organization"
             type="text"
-            maxLength="10"
+            maxLength="20"
             defaultValue={
               diverInfo.organization ? diverInfo.organization : undefined
             }
           />
         </InputWrapper>
-
+        <ImageUpload>
+          {image ? (
+            <>
+              <img
+                src={image}
+                alt={diverInfo.image ? diverInfo.image : undefined}
+              />
+              <button onClick={handleRemovePic}>
+                <Remove />
+              </button>
+            </>
+          ) : (
+            <>
+              <label>upload picture</label>
+              <input
+                type="file"
+                name="file"
+                aria-label="picture-upload"
+                onChange={upload}
+              />
+            </>
+          )}
+        </ImageUpload>
         <ButtonSubmit variant="submit" name="save details">
           save details
         </ButtonSubmit>
       </FormStyled>
     </SectionStyled>
   );
+
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`;
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+    formData.append('upload_preset', PRESET);
+
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+      })
+      .then(onImageSave)
+      .catch(err => console.error(err));
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -91,12 +140,16 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
       date: date.value,
       organization: organization.value,
       _id: nanoid(),
+      image: image,
     });
+  }
+
+  function handleRemovePic() {
+    setImage('');
   }
 }
 
 const SectionStyled = styled.section`
-  position: relative;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -133,8 +186,8 @@ const InputWrapper = styled.div`
 
 const ButtonBack = styled(Button)`
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 10px;
+  top: 10px;
   color: white;
   font-size: 1.8rem;
   border: none;
@@ -144,4 +197,24 @@ const ButtonBack = styled(Button)`
 const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
+`;
+
+const ImageUpload = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  border-radius: 50%;
+  width: 50%;
+  img {
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
+  }
 `;
