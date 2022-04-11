@@ -162,7 +162,7 @@ const Wrapper = styled.section`
   margin: 0 20px;
 `;
 
-const Headline = styled.h1`
+const Headline = styled.h2`
   text-align: center;
   margin: 0;
   font-size: 2.5rem;

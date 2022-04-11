@@ -91,7 +91,7 @@ const NavLinkStyled = styled(NavLink)`
   font-size: 1.8rem;
 `;
 
-const Headline = styled.h1`
+const Headline = styled.h2`
   margin: 0;
   text-align: center;
   font-size: 2.5rem;
