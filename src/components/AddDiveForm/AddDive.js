@@ -98,7 +98,7 @@ export default function AddDive({ onClickBack, onCreate }) {
           />
         </DivStyled>
         <DivStyled>
-          <label htmlFor="maxDepth">max. depth(meter)</label>
+          <label htmlFor="maxDepth">max. depth(m)</label>
           <input
             id="maxDepth"
             name="maxDepth"
@@ -115,7 +115,7 @@ export default function AddDive({ onClickBack, onCreate }) {
             id="notes"
             name="notes"
             type="text"
-            rows="8"
+            rows="7"
             maxLength="500"
           />
         </LastDivStyled>
@@ -165,7 +165,6 @@ const Wrapper = styled.section`
 const Headline = styled.h1`
   text-align: center;
   margin: 0;
-  padding-top: 20px;
   font-size: 2.5rem;
   color: white;
 `;
@@ -175,7 +174,7 @@ const FormStyled = styled.form`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   max-width: 500px;
-  margin: 20px auto;
+  margin: 20px auto 0 auto;
   color: white;
 
   input {
@@ -198,8 +197,8 @@ const LastDivStyled = styled.div`
 
 const ButtonBack = styled(Button)`
   position: absolute;
-  left: 10px;
-  top: 20px;
+  left: 5px;
+  top: 10px;
   color: white;
   font-size: 1.8rem;
   border: none;

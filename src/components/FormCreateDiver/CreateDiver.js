@@ -150,7 +150,6 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
 }
 
 const SectionStyled = styled.section`
-  position: relative;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -187,8 +186,8 @@ const InputWrapper = styled.div`
 
 const ButtonBack = styled(Button)`
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 10px;
+  top: 10px;
   color: white;
   font-size: 1.8rem;
   border: none;

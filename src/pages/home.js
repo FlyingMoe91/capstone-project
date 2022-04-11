@@ -33,9 +33,9 @@ export default function Home({ diveData }) {
     </>
   );
 
-  function handleCreateDiver(newdiverInfo) {
-    setDiverInfo([newdiverInfo]);
-    setImage(diverInfo[0].image ? diverInfo[0].image : image);
+  function handleCreateDiver(newDiverInfo) {
+    setDiverInfo([newDiverInfo]);
+    setImage(newDiverInfo.image ? newDiverInfo.image : image);
     setCreateDiverPageActive(!createDiverPageActive);
   }
 
@@ -45,11 +45,8 @@ export default function Home({ diveData }) {
 }
 
 const Header = styled.button`
-  grid-column-start: 1;
-  grid-column-end: 3;
-  text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
   background: transparent;
   color: white;
   border-radius: 20px;
