@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import { GiCancel as Remove } from 'react-icons/gi';
 import axios from 'axios';
 import { useState } from 'react';
+import ScreenReaderOnly from '../ScreenReaderOnly';
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function ModalCertification({ onCertModal, onCreate }) {
-  const [image, setImage] = useState('');
+  const [certificateImages, setCertificateImages] = useState([]);
   const [process, setProcess] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -17,36 +18,38 @@ export default function ModalCertification({ onCertModal, onCreate }) {
         {loading && <div>Uploading Image...{process}%</div>}
         <p>Cardfront</p>
         <ImageUpload>
-          {image[0] ? (
+          {certificateImages[0] ? (
             <>
-              <img src={image[0]} alt={''} />
+              <img src={certificateImages[0]} alt={''} />
               <button onClick={handleRemovePic}>
                 <Remove />
+                <ScreenReaderOnly>remove front picture</ScreenReaderOnly>
               </button>
             </>
           ) : (
             <input
               type="file"
               name="file"
-              aria-label="picture-upload"
+              label="front-picture-upload"
               onChange={upload}
             />
           )}
         </ImageUpload>
         <p>Cardback</p>
         <ImageUpload>
-          {image[1] ? (
+          {certificateImages[1] ? (
             <>
-              <img src={image[1]} alt={''} />
+              <img src={certificateImages[1]} alt={''} />
               <button onClick={handleRemovePic}>
                 <Remove />
+                <ScreenReaderOnly>remove front picture</ScreenReaderOnly>
               </button>
             </>
           ) : (
             <input
               type="file"
               name="file"
-              aria-label="picture-upload"
+              label="back-picture-upload"
               onChange={upload}
             />
           )}
@@ -60,7 +63,7 @@ export default function ModalCertification({ onCertModal, onCreate }) {
   );
 
   function handleSaveCert() {
-    onCreate(image);
+    onCreate(certificateImages);
   }
 
   function upload(event) {
@@ -76,7 +79,7 @@ export default function ModalCertification({ onCertModal, onCreate }) {
         },
         onUploadProgress: progressEvent => {
           setLoading(true);
-          let percent = Math.round(
+          const percent = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total
           );
           setProcess(percent);
@@ -87,12 +90,12 @@ export default function ModalCertification({ onCertModal, onCreate }) {
   }
 
   function onImageSave(response) {
-    setImage([...image, response.data.url]);
+    setCertificateImages([...certificateImages, response.data.url]);
     setLoading(false);
   }
 
   function handleRemovePic() {
-    setImage('');
+    setCertificateImages('');
     setProcess(0);
     setLoading(false);
   }

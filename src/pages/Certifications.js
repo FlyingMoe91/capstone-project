@@ -4,12 +4,12 @@ import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import ModalCertification from '../components/ModalCertification.ja/ModalCertification';
+import ModalCertification from '../components/ModalCertification/ModalCertification';
 import { useLocalStorage } from 'usehooks-ts';
 
 export default function Certifications() {
   const [certModalActive, setCertModalActive] = useState(false);
-  const [images, setImages] = useLocalStorage('images', []);
+  const [certificates, setCertificates] = useLocalStorage('certificates', []);
 
   return (
     <Wrapper>
@@ -19,10 +19,10 @@ export default function Certifications() {
       </NavLinkStyled>
       <Header>Certification</Header>
       <StyledList role="list">
-        {images?.map(image => (
-          <li key={image._id}>
-            <UploadedImage src={image[0]} alt=""></UploadedImage>
-            <UploadedImage src={image[1]} alt=""></UploadedImage>
+        {certificates?.map(certificateImages => (
+          <li key={certificateImages._id}>
+            <UploadedImage src={certificateImages[0]} alt="" />
+            <UploadedImage src={certificateImages[1]} alt="" />
           </li>
         ))}
       </StyledList>
@@ -42,8 +42,8 @@ export default function Certifications() {
     setCertModalActive(!certModalActive);
   }
 
-  function handleCreateCert(newImages) {
-    setImages([...images, { ...newImages, _id: nanoid() }]);
+  function handleCreateCert(newCertificates) {
+    setCertificates([...certificates, { ...newCertificates, _id: nanoid() }]);
     setCertModalActive(!certModalActive);
   }
 }

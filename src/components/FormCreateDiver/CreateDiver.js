@@ -11,7 +11,7 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddDive({ diverInfo, onClickBack, onCreate }) {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
   return (
@@ -124,7 +124,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
         },
         onUploadProgress: progressEvent => {
           setLoading(true);
-          let percent = Math.round(
+          const percent = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total
           );
           setProcess(percent);
