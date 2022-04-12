@@ -10,7 +10,7 @@ export default function Home({ diveData }) {
   const [diverInfo, setDiverInfo] = useLocalStorage('diverInfo', ['']);
   const [image, setImage] = useLocalStorage('');
   return (
-    <>
+    <Wrapper>
       {diverInfo[0]
         ? !createDiverPageActive && (
             <DiverInfo
@@ -30,7 +30,7 @@ export default function Home({ diveData }) {
         />
       )}
       {!createDiverPageActive && <Statistics diveData={diveData} />}
-    </>
+    </Wrapper>
   );
 
   function handleCreateDiver(newDiverInfo) {
@@ -44,9 +44,14 @@ export default function Home({ diveData }) {
   }
 }
 
+const Wrapper = styled.section`
+  text-align: center;
+`;
+
 const Header = styled.button`
   font-size: 2.5rem;
-  margin: 0 auto 20px auto;
+  margin-left: auto;
+  margin-right: auto;
   background: transparent;
   color: white;
   border-radius: 20px;

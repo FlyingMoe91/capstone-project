@@ -11,7 +11,9 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddDive({ diverInfo, onClickBack, onCreate }) {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [process, setProcess] = useState(0);
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -98,6 +100,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
                 aria-label="picture-upload"
                 onChange={upload}
               />
+              {loading && <div>Uploading Image...{process}%</div>}
             </>
           )}
         </ImageUpload>
@@ -119,6 +122,13 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
         headers: {
           'Content-type': 'multipart/form-data',
         },
+        onUploadProgress: progressEvent => {
+          setLoading(true);
+          const percent = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setProcess(percent);
+        },
       })
       .then(onImageSave)
       .catch(err => console.error(err));
@@ -132,7 +142,6 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
     event.preventDefault();
     const { name, certification, cert_nr, date, organization } =
       event.target.elements;
-
     onCreate({
       name: name.value,
       certification: certification.value,
@@ -142,10 +151,13 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
       _id: nanoid(),
       image: image,
     });
+    setLoading(false);
   }
 
   function handleRemovePic() {
     setImage('');
+    setProcess(0);
+    setLoading(false);
   }
 }
 
@@ -155,6 +167,7 @@ const SectionStyled = styled.section`
   grid-row-start: 1;
   grid-row-end: 5;
   width: 100%;
+  text-align: left;
 `;
 
 const Headline = styled.h1`

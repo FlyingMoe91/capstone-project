@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { useLocalStorage } from 'usehooks-ts';
+import Certifications from './pages/Certifications';
 
-import Home from './pages/home';
+import Home from './pages/Home';
 import Logbook from './pages/Logbook';
 
 export default function App() {
@@ -11,7 +12,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home diveData={diveData} />} />
       <Route
-        path="divelog"
+        path="/divelog"
         element={
           <Logbook
             diveData={diveData}
@@ -20,6 +21,7 @@ export default function App() {
           />
         }
       />
+      <Route path="/certifications" element={<Certifications />} />
     </Routes>
   );
 
