@@ -43,7 +43,6 @@ export default function Certifications() {
   }
 
   function handleCreateCert(newImages) {
-    console.log(newImages);
     setImages([...images, { ...newImages, _id: nanoid() }]);
     setCertModalActive(!certModalActive);
   }
