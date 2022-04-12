@@ -30,13 +30,15 @@ export default function Certifications() {
               <UploadedImage src={certificateImages[0]} alt="" />
               <UploadedImage src={certificateImages[1]} alt="" />
             </CertBox>
-            <ButtonDelete onClick={() => clickTrash(certificateImages._id)}>
+            <ButtonDelete
+              onClick={() => toggleDeleteModal(certificateImages._id)}
+            >
               <FaTrash />
               <ScreenReaderOnly>delete</ScreenReaderOnly>
             </ButtonDelete>
             {deleteModalActive && (
               <DeleteModal
-                onCancel={clickTrash}
+                onCancel={toggleDeleteModal}
                 onDelete={() => handleDeleteCertificate(certId)}
               />
             )}
@@ -64,13 +66,13 @@ export default function Certifications() {
     setCertModalActive(!certModalActive);
   }
 
-  function clickTrash(id) {
+  function toggleDeleteModal(id) {
     setDeleteModalActive(!deleteModalActive);
     setCertId(id);
   }
 
   function handleDeleteCertificate(Id) {
-    setCertificates(certificates.filter(cartificate => cartificate._id !== Id));
+    setCertificates(certificates.filter(certificate => certificate._id !== Id));
     setDeleteModalActive(!deleteModalActive);
   }
 }
