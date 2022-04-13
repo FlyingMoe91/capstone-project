@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { useLocalStorage } from 'usehooks-ts';
-import Certifications from './pages/Certifications';
 
+import Certifications from './pages/Certifications';
+import Map from './pages/Map';
 import Home from './pages/Home';
 import Logbook from './pages/Logbook';
 
@@ -22,6 +23,7 @@ export default function App() {
         }
       />
       <Route path="/certifications" element={<Certifications />} />
+      <Route path="/map" element={<Map />} />
     </Routes>
   );
 
