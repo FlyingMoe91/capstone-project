@@ -1,45 +1,38 @@
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import { useState, useRef, useReducer } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import 'leaflet/dist/leaflet.css';
+import './CurrentPosition.css';
 import L from 'leaflet';
 import GeoLocation from './GeoLocation';
 import osm from './osm-provider';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import mapboxgl from 'mapbox-gl';
 import { useEffect } from 'react';
-
-const markerIcon = new L.Icon({
-  iconUrl: require('./icon.png'),
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-});
+import { useLocalStorage } from 'usehooks-ts';
 
 export default function BasicMap() {
-  mapboxgl.accessToken =
-    'pk.eyJ1IjoiZmx5aW5nbW9lOTEiLCJhIjoiY2wxeGIya3B3MDEwZzNjbWt2OGNmangxMSJ9.Uduf_6dSBMiXMepGrRqhOw';
+  mapboxgl.accessToken = process.env.REACT_APP_ACCESSTOKEN;
 
-  const [destinationMapbox, setDestinationMapbox] = useState([
-    53.551086, 9.993682,
-  ]);
-  const position = [destinationMapbox[0], destinationMapbox[1]];
-  const [center, setCenter] = useState({
-    lat: destinationMapbox[0],
+  const markerIcon = new L.Icon({
+    iconUrl: require('./icon.png'),
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+  });
+  const [center, setCenter] = useLocalStorage('center', {
+    lat: 53.551086,
     lng: 9.993682,
   });
+  const [destinationMapbox, setDestinationMapbox] = useLocalStorage(
+    'destinationMapBox',
+    [53.551086, 9.993682]
+  );
   const ZOOM_LEVEL = 11;
   const mapRef = useRef();
-
+  const position = [destinationMapbox[0], destinationMapbox[1]];
   const location = GeoLocation();
-  const [destinationError, setDestinationError] = useState(false);
 
-  console.log(destinationMapbox[0], destinationMapbox[1]);
-
-  function handleMapboxInput(e) {
-    e.target.value === ''
-      ? setDestinationError(true)
-      : setDestinationError(false);
-  }
+  console.log(destinationMapbox);
 
   useEffect(() => {
     const geocoderDestination = new MapboxGeocoder({
@@ -48,17 +41,22 @@ export default function BasicMap() {
       limit: 5,
       placeholder: 'e.g. Lissabon',
       minLength: 2,
+      setView: true,
     });
     geocoderDestination.on('result', e => {
-      setDestinationMapbox([e.result.center[1], e.result.center[0]]);
-      setCenter({ lat: destinationMapbox[0], lng: destinationMapbox[1] });
+      return setDestinationMapbox([
+        e.result.center[1],
+        e.result.center[0],
+        e.result.text,
+        e.result,
+      ]);
     });
     geocoderDestination.addTo('#geocoderdestination');
-  }, [destinationMapbox]);
+  }, []);
 
   return (
     <>
-      <StyledMap center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
+      <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef} id="map">
         <TileLayer
           url={osm.maptiler.url}
           attribution={osm.maptiler.attribution}
@@ -70,63 +68,75 @@ export default function BasicMap() {
             position={[location.coordinates.lat, location.coordinates.lng]}
           ></Marker>
         )}
-      </StyledMap>
-      <Wrapper>
-        <LabelHeader htmlFor="destinationresult">Destination:</LabelHeader>
-
-        <InputField id="destinationresult" readOnly disabled />
-
+      </MapContainer>
+      <SearchWrapper>
         <GeoCoderDestination
           id={'geocoderdestination'}
-          onInput={e => handleMapboxInput(e)}
+          onKeyDown={handleEnterClick}
         ></GeoCoderDestination>
-        {destinationError ? (
-          <ErrorMessage>
-            The name of your next destination must be filled!
-          </ErrorMessage>
-        ) : (
-          ''
-        )}
-      </Wrapper>
+        <SearchButton type="submit" onClick={handleSearch}>
+          search
+        </SearchButton>
+      </SearchWrapper>
     </>
   );
+
+  function handleSearch() {
+    setCenter({ lat: destinationMapbox[0], lng: destinationMapbox[1] });
+    window.location.reload();
+  }
+
+  function handleEnterClick(event) {
+    let code = 0;
+    code = event.keyCode;
+    if (code === 13) {
+      console.log('hello');
+      setCenter({ lat: destinationMapbox[0], lng: destinationMapbox[1] });
+      window.location.reload();
+    }
+  }
 }
 
-const LabelHeader = styled.label`
-  text-decoration: underline;
-  font-weight: bold;
-  font-size: 1.5rem;
+// const StyledMap = styled(MapContainer)`
+//   height: 100vh;
+//   width: 100vw;
+//   margin-left: -20px;
+//   margin-top: -20px;
+// `;
+
+const SearchWrapper = styled.form`
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 90vw;
+  color: white;
+  display: flex;
+  z-index: 400;
 `;
 
-const InputField = styled.input`
-  padding: 6px 12px;
+const SearchButton = styled.button`
+  height: 28px;
+  width: 55px;
   margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 14px;
-  border: none;
-  background-color: var(--bg-color-content);
-  width: 100%;
-  max-width: 400px;
-`;
-
-const StyledMap = styled(MapContainer)`
-  height: 60vh;
-  width: 100vw;
-  margin-left: -20px;
-  margin-top: -20px;
-`;
-
-const Wrapper = styled.div`
-  max-width: 400px;
-  position: relative;
-`;
-
-const ErrorMessage = styled.p`
-  margin: 0;
-  color: var(--bg-color-action);
-  font-size: 0.8em;
 `;
 
 const GeoCoderDestination = styled.div`
   margin-top: 10px;
   display: ${props => (props.display === 'none' ? 'none' : '')};
+  height: 28px;
+
+  //   ul {
+  //     list-style: none;
+  //     padding: 0 20px;
+  //     margin: 0;
+  //     max-width: 70vw;
+  //   }
+  //   li {
+  //     margin: 5px 0;
+  //     border: 1px solid white;
+  //     background-color: white;
+  //     color: black;
+  //   }
 `;
