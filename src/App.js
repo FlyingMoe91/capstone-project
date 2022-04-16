@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useLocalStorage } from 'usehooks-ts';
+import { useState } from 'react';
 
 import Certifications from './pages/Certifications';
 import Map from './pages/Map/Map';
@@ -9,6 +10,7 @@ import CurrentPosition from './pages/Map/CurrentPosition';
 
 export default function App() {
   const [diveData, setDiveData] = useLocalStorage('diveData', []);
+  const [locationInfos, setLocationInfos] = useState('');
 
   return (
     <Routes>
@@ -20,6 +22,7 @@ export default function App() {
             diveData={diveData}
             onDelete={handleDeleteDive}
             onCreateDive={handleCreateDive}
+            locationInfos={locationInfos}
           />
         }
       />
@@ -27,10 +30,19 @@ export default function App() {
       <Route path="/map" element={<Map />} />
       <Route
         path="/src/pages/Map/CurrentPosition"
-        element={<CurrentPosition />}
+        element={
+          <CurrentPosition
+            onNewDiveClick={handleNewDiveClick}
+            diveData={diveData}
+          />
+        }
       />
     </Routes>
   );
+
+  function handleNewDiveClick(locationInfos) {
+    setLocationInfos(locationInfos);
+  }
 
   function handleCreateDive(newData) {
     setDiveData([...diveData, newData]);

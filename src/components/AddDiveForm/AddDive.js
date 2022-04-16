@@ -4,7 +4,7 @@ import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 
-export default function AddDive({ onClickBack, onCreate }) {
+export default function AddDive({ onClickBack, onCreate, locationInfos }) {
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -32,6 +32,7 @@ export default function AddDive({ onClickBack, onCreate }) {
         <DivStyled>
           <label htmlFor="location">location</label>
           <input
+            defaultValue={locationInfos[2] ? locationInfos[2] : undefined}
             id="location"
             name="location"
             type="text"
@@ -153,6 +154,7 @@ export default function AddDive({ onClickBack, onCreate }) {
       bottomTime: bottomTime.value,
       maxDepth: maxDepth.value,
       notes: notes.value,
+      coordinates: [locationInfos[0], locationInfos[1]],
       _id: nanoid(),
     });
   }

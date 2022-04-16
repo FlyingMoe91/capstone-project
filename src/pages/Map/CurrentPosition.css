@@ -195,3 +195,8 @@
 .mapboxgl-ctrl-geocoder--powered-by a:not(:hover) {
   text-decoration: none;
 }
+
+.leaflet-popup-content p {
+  text-align: center;
+  margin: 5px;
+}
