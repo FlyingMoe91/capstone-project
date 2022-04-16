@@ -5,7 +5,6 @@ import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 
 export default function AddDive({ onClickBack, onCreate, locationInfos }) {
-  console.log(locationInfos);
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>

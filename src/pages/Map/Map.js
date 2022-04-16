@@ -2,8 +2,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { FaCheck as Create } from 'react-icons/fa';
+import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
+import ScreenReaderOnly from '../../components/ScreenReaderOnly';
 import L from 'leaflet';
 import osm from './osm-provider';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
@@ -48,7 +50,7 @@ export default function BasicMap({ onNewDiveClick, diveData }) {
       ]);
     });
     geocoderDestination.addTo('#geocoderdestination');
-  }, []);
+  }, [setDestinationMapbox]);
 
   return (
     <>
@@ -76,9 +78,9 @@ export default function BasicMap({ onNewDiveClick, diveData }) {
             icon={markerIcon}
           >
             <Popup>
-              <p>{dive.divespot}</p>
-              <p>{dive.location}</p>
-              <p>{dive.country}</p>
+              <p>divespot: {dive.divespot}</p>
+              <p>location: {dive.location}</p>
+              <p>country:{dive.country}</p>
               <p>{dive.date}</p>
             </Popup>
           </Marker>
@@ -91,6 +93,10 @@ export default function BasicMap({ onNewDiveClick, diveData }) {
         ></GeoCoderDestination>
         <SearchButton type="submit">search</SearchButton>
       </SearchWrapper>
+      <LinkBack to="/" name="back">
+        <ArrowBack />
+        <ScreenReaderOnly>back to divelogs</ScreenReaderOnly>
+      </LinkBack>
     </>
   );
 
@@ -133,4 +139,17 @@ const StyledLink = styled(Link)`
   align-items: center;
   background-color: inherit;
   color: darkslategray;
+`;
+
+const LinkBack = styled(Link)`
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  height: 30px;
+  color: white;
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 900;
 `;
