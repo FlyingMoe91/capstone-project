@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 
 export default function AddDive({ onClickBack, onCreate, locationInfos }) {
+  console.log(locationInfos);
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -32,7 +33,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <DivStyled>
           <label htmlFor="location">location</label>
           <input
-            defaultValue={locationInfos[2] ? locationInfos[2] : undefined}
+            defaultValue={locationInfos ? locationInfos[2].text : undefined}
             id="location"
             name="location"
             type="text"

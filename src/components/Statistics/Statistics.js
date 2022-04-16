@@ -21,10 +21,7 @@ export default function Statistics({ diveData }) {
     <Wrapper>
       <NavLinkStyled to="/certifications">Certification</NavLinkStyled>
       <NavLinkStyled to="/divelog">Dives: {dives} </NavLinkStyled>
-      <NavLinkStyled to="/src/pages/Map/CurrentPosition">
-        CurrentPos
-      </NavLinkStyled>
-      <NavLinkStyled to="/map">Map</NavLinkStyled>
+      <NavLinkStyled to="/src/pages/Map/Map">Map</NavLinkStyled>
       <Button onClick={handleStatisticsToggel}>
         max. depth: {depth > 0 ? depth : '0'}
       </Button>

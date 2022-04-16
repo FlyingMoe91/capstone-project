@@ -1,78 +1,136 @@
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvents,
-} from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useRef } from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { FaCheck as Create } from 'react-icons/fa';
+import 'leaflet/dist/leaflet.css';
+import './Map.css';
 import L from 'leaflet';
+import osm from './osm-provider';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import mapboxgl from 'mapbox-gl';
+import { useEffect } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
+import { Link } from 'react-router-dom';
 
-const position = [51.505, -0.09];
+export default function BasicMap({ onNewDiveClick, diveData }) {
+  mapboxgl.accessToken = process.env.REACT_APP_ACCESSTOKEN;
 
-const icon = new L.icon({
-  iconUrl: require('./icon.png'),
-
-  iconSize: [38, 50], // size of the icon
-});
-
-function LocationMarker({ content }) {
-  const [position, setPosition] = useState(null);
-  const map = useMapEvents({
-    click() {
-      map.locate();
-    },
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    },
+  const markerIcon = new L.Icon({
+    iconUrl: require('./icon.png'),
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
   });
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
+  const [destinationMapbox, setDestinationMapbox] = useLocalStorage(
+    'destinationMapBox',
+    [52.51667, 13.38333]
   );
-}
+  const ZOOM_LEVEL = 8;
+  const mapRef = useRef();
+  const center = { lat: destinationMapbox[0], lng: destinationMapbox[1] };
+  const position = [destinationMapbox[0], destinationMapbox[1]];
+  const divesWithCoordinates = diveData.filter(
+    dive => dive.coordinates[0] !== null
+  );
 
-function MapPage({ content }) {
+  useEffect(() => {
+    const geocoderDestination = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      types: 'country, region, place, poi',
+      limit: 5,
+      placeholder: 'e.g. Lissabon',
+      minLength: 2,
+    });
+    geocoderDestination.on('result', e => {
+      return setDestinationMapbox([
+        e.result.center[1],
+        e.result.center[0],
+        e.result,
+      ]);
+    });
+    geocoderDestination.addTo('#geocoderdestination');
+  }, []);
+
   return (
     <>
-      <Map center={position} zoom={13} id="map">
+      <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef} id="map">
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url={osm.maptiler.url}
+          attribution={osm.maptiler.attribution}
         />
-        <Wrapper>
-          <StyledMarker position={position} icon={icon}>
+        <Marker position={position} icon={markerIcon}>
+          <Popup>
+            Add new Dive
+            <StyledLink
+              to="/divelog"
+              aria-label="searchTags"
+              onClick={() => onNewDiveClick(destinationMapbox)}
+            >
+              <Create size={20} alt="create" />
+            </StyledLink>
+          </Popup>
+        </Marker>
+        {divesWithCoordinates.map(dive => (
+          <Marker
+            key={dive.coordinates}
+            position={dive.coordinates}
+            icon={markerIcon}
+          >
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              <p>{dive.divespot}</p>
+              <p>{dive.location}</p>
+              <p>{dive.country}</p>
+              <p>{dive.date}</p>
             </Popup>
-          </StyledMarker>
-        </Wrapper>
-        <LocationMarker content={content} />
-      </Map>
+          </Marker>
+        ))}
+      </MapContainer>
+      <SearchWrapper>
+        <GeoCoderDestination
+          id={'geocoderdestination'}
+          onKeyDown={handleEnterClick}
+        ></GeoCoderDestination>
+        <SearchButton type="submit">search</SearchButton>
+      </SearchWrapper>
     </>
   );
+
+  function handleEnterClick(event) {
+    let code = 0;
+    code = event.keyCode;
+    if (code === 13) {
+      window.location.reload();
+    }
+  }
 }
 
-const Map = styled(MapContainer)`
-  height: 90vh;
-  width: 100vw;
-  margin-left: -20px;
-  margin-top: -20px;
+const SearchWrapper = styled.form`
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 90vw;
+  color: white;
+  display: flex;
+  z-index: 400;
 `;
 
-const Wrapper = styled.div`
-  width: 0;
-  padding-bottom: 10px;
+const SearchButton = styled.button`
+  height: 28px;
+  width: 55px;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
 `;
 
-const StyledMarker = styled(Marker)`
-  img {
-    margin: 0;
-  }
+const GeoCoderDestination = styled.div`
+  margin-top: 10px;
+  display: ${props => (props.display === 'none' ? 'none' : '')};
+  height: 28px;
 `;
 
-export default MapPage;
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  color: darkslategray;
+`;

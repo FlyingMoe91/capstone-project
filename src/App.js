@@ -3,10 +3,9 @@ import { useLocalStorage } from 'usehooks-ts';
 import { useState } from 'react';
 
 import Certifications from './pages/Certifications';
-import Map from './pages/Map/Map';
 import Home from './pages/Home';
 import Logbook from './pages/Logbook';
-import CurrentPosition from './pages/Map/CurrentPosition';
+import Map from './pages/Map/Map';
 
 export default function App() {
   const [diveData, setDiveData] = useLocalStorage('diveData', []);
@@ -27,14 +26,10 @@ export default function App() {
         }
       />
       <Route path="/certifications" element={<Certifications />} />
-      <Route path="/map" element={<Map />} />
       <Route
-        path="/src/pages/Map/CurrentPosition"
+        path="/src/pages/Map/Map"
         element={
-          <CurrentPosition
-            onNewDiveClick={handleNewDiveClick}
-            diveData={diveData}
-          />
+          <Map onNewDiveClick={handleNewDiveClick} diveData={diveData} />
         }
       />
     </Routes>
