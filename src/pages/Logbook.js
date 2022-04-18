@@ -12,9 +12,9 @@ export default function Logbook({
   onDelete,
   onCreateDive,
   locationInfos,
+  setView,
 }) {
   const [active, setActive] = useState(true);
-
   return (
     <Wrapper>
       {active && (
@@ -41,6 +41,7 @@ export default function Logbook({
                 maxDepth,
                 notes,
                 _id,
+                coordinates,
               },
               index
             ) => (
@@ -60,6 +61,8 @@ export default function Logbook({
                   divenumber={index + 1}
                   _id={_id}
                   onDelete={onDelete}
+                  coordinates={coordinates}
+                  setView={setView}
                 />
               </li>
             )

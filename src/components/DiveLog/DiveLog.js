@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { FaTrash } from 'react-icons/fa';
+import { FaStreetView, FaTrash } from 'react-icons/fa';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 import DeleteModal from '../DeleteModal/DeleteModal';
+import { Link } from 'react-router-dom';
 
 export default function DiveLog({
   divenumber,
@@ -19,6 +20,8 @@ export default function DiveLog({
   notes,
   onDelete,
   _id,
+  coordinates,
+  setView,
 }) {
   const [active, setActive] = useState(true);
   const [modalActive, setModalActive] = useState(false);
@@ -57,6 +60,12 @@ export default function DiveLog({
             <p>{typeOfDive}</p>
             <p>notes: </p>
             <p>{notes}</p>
+            <StyledMapLink
+              onClick={() => setView(coordinates)}
+              to="/src/pages/Map/Map"
+            >
+              show on Map
+            </StyledMapLink>
           </CardDetails>
         )}
       </Card>
@@ -149,4 +158,17 @@ const CardDetails = styled.div`
     max-width: 160px;
     overflow-wrap: break-word;
   }
+`;
+
+const StyledMapLink = styled(Link)`
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  color: black;
+  padding: 5px;
+  margin: 10px auto;
+  width: 140px;
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 5px;
 `;

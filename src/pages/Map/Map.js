@@ -14,9 +14,8 @@ import { useEffect } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import { Link } from 'react-router-dom';
 
-export default function BasicMap({ onNewDiveClick, diveData }) {
+export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
   mapboxgl.accessToken = process.env.REACT_APP_ACCESSTOKEN;
-
   const markerIcon = new L.Icon({
     iconUrl: require('./icon.png'),
     iconSize: [32, 32],
@@ -28,11 +27,25 @@ export default function BasicMap({ onNewDiveClick, diveData }) {
   );
   const ZOOM_LEVEL = 8;
   const mapRef = useRef();
-  const center = { lat: destinationMapbox[0], lng: destinationMapbox[1] };
+  const [center, setCenter] = useLocalStorage('center', {
+    lat: destinationMapbox[0],
+    lng: destinationMapbox[1],
+  });
   const position = [destinationMapbox[0], destinationMapbox[1]];
   const divesWithCoordinates = diveData.filter(
     dive => dive.coordinates[0] !== null
   );
+
+  function handleDiveViewPort(viewPort) {
+    if (viewPort !== '') {
+      return (
+        setCenter({ lat: viewPort[0], lng: viewPort[1] }),
+        window.location.reload()
+      );
+    } else {
+      return;
+    }
+  }
 
   useEffect(() => {
     const geocoderDestination = new MapboxGeocoder({
@@ -42,6 +55,7 @@ export default function BasicMap({ onNewDiveClick, diveData }) {
       placeholder: 'e.g. Lissabon',
       minLength: 2,
     });
+    handleDiveViewPort(viewPort);
     geocoderDestination.on('result', e => {
       return setDestinationMapbox([
         e.result.center[1],
@@ -50,7 +64,7 @@ export default function BasicMap({ onNewDiveClick, diveData }) {
       ]);
     });
     geocoderDestination.addTo('#geocoderdestination');
-  }, [setDestinationMapbox]);
+  }, []);
 
   return (
     <>
@@ -79,8 +93,9 @@ export default function BasicMap({ onNewDiveClick, diveData }) {
           >
             <Popup>
               <p>divespot: {dive.divespot}</p>
-              <p>location: {dive.location}</p>
-              <p>country:{dive.country}</p>
+              <p>
+                location: {dive.location}, {dive.country}
+              </p>
               <p>{dive.date}</p>
             </Popup>
           </Marker>
@@ -143,8 +158,8 @@ const StyledLink = styled(Link)`
 
 const LinkBack = styled(Link)`
   position: absolute;
-  left: 5px;
-  bottom: 5px;
+  left: 12px;
+  top: 80px;
   height: 30px;
   color: white;
   font-size: 1.8rem;

@@ -10,6 +10,7 @@ import Map from './pages/Map/Map';
 export default function App() {
   const [diveData, setDiveData] = useLocalStorage('diveData', []);
   const [locationInfos, setLocationInfos] = useState('');
+  const [viewPort, setViewPort] = useState('');
 
   return (
     <Routes>
@@ -22,6 +23,7 @@ export default function App() {
             onDelete={handleDeleteDive}
             onCreateDive={handleCreateDive}
             locationInfos={locationInfos}
+            setView={handleSetView}
           />
         }
       />
@@ -29,11 +31,19 @@ export default function App() {
       <Route
         path="/src/pages/Map/Map"
         element={
-          <Map onNewDiveClick={handleNewDiveClick} diveData={diveData} />
+          <Map
+            onNewDiveClick={handleNewDiveClick}
+            diveData={diveData}
+            viewPort={viewPort}
+          />
         }
       />
     </Routes>
   );
+
+  function handleSetView(coordinates) {
+    setViewPort(coordinates);
+  }
 
   function handleNewDiveClick(locationInfos) {
     setLocationInfos(locationInfos);
