@@ -11,9 +11,11 @@ const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddDive({ diverInfo, onClickBack, onCreate }) {
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
+
+  console.log(image);
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>

@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
+import { GiPositionMarker } from 'react-icons/gi';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
+import { Link } from 'react-router-dom';
 
-export default function AddDive({ onClickBack, onCreate }) {
+export default function AddDive({ onClickBack, onCreate, locationInfos }) {
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -29,16 +31,21 @@ export default function AddDive({ onClickBack, onCreate }) {
             required
           />
         </DivStyled>
-        <DivStyled>
+        <div>
           <label htmlFor="location">location</label>
           <input
+            defaultValue={locationInfos ? locationInfos[2].text : undefined}
+            placeholder="click to map"
             id="location"
             name="location"
             type="text"
             maxLength="50"
             required
           />
-        </DivStyled>
+          <MapButton to="/src/pages/Map/Map">
+            <GiPositionMarker />
+          </MapButton>
+        </div>
         <DivStyled>
           <label htmlFor="country">country</label>
           <input
@@ -94,6 +101,7 @@ export default function AddDive({ onClickBack, onCreate }) {
             name="bottomTime"
             type="time"
             maxLength="50"
+            display
             required
           />
         </DivStyled>
@@ -153,6 +161,7 @@ export default function AddDive({ onClickBack, onCreate }) {
       bottomTime: bottomTime.value,
       maxDepth: maxDepth.value,
       notes: notes.value,
+      coordinates: [locationInfos[0], locationInfos[1]],
       _id: nanoid(),
     });
   }
@@ -208,4 +217,11 @@ const ButtonBack = styled(Button)`
 const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
+`;
+
+const MapButton = styled(Link)`
+  background-color: transparent;
+  position: absolute;
+  font-size: 1.5rem;
+  color: orange;
 `;

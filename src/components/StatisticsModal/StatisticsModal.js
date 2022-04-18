@@ -3,54 +3,66 @@ import ScreenReaderOnly from '../ScreenReaderOnly';
 import { GrFormClose } from 'react-icons/gr';
 
 export default function StatisticsModal({
-  location,
-  divespot,
-  country,
-  date,
-  buddy,
-  typeOfDive,
-  timeIn,
-  timeOut,
-  bottomTime,
-  maxDepth,
-  notes,
+  deepestDive,
+
   onStatisticsToggle,
 }) {
   return (
     <Background>
-      <Card>
-        <CardHead>
-          <div>
-            <p>{divespot}</p>
-            <p>{country}</p>
-            <p>{location}</p>
-          </div>
-          <BoxDateDelete>
-            <ButtonClose onClick={onStatisticsToggle}>
-              <GrFormClose />
-              <ScreenReaderOnly>close</ScreenReaderOnly>
-            </ButtonClose>
-            <p>{date}</p>
-          </BoxDateDelete>
-        </CardHead>
+      <StyledList>
+        {deepestDive?.map(
+          ({
+            location,
+            divespot,
+            country,
+            date,
+            buddy,
+            typeOfDive,
+            timeIn,
+            timeOut,
+            bottomTime,
+            maxDepth,
+            notes,
+            _id,
+          }) => (
+            <li key={_id}>
+              <Card>
+                <CardHead>
+                  <div>
+                    <p>{divespot}</p>
+                    <p>{country}</p>
+                    <p>{location}</p>
+                  </div>
+                  <BoxDateDelete>
+                    <ButtonClose onClick={onStatisticsToggle}>
+                      <GrFormClose />
+                      <ScreenReaderOnly>close</ScreenReaderOnly>
+                    </ButtonClose>
+                    <p>{date}</p>
+                  </BoxDateDelete>
+                </CardHead>
 
-        <CardDetails>
-          <p>time in: </p>
-          <p>{timeIn}</p>
-          <p>time out: </p>
-          <p>{timeOut}</p>
-          <p>bottom time: </p>
-          <p>{bottomTime}</p>
-          <p>max. depth: </p>
-          <p>{maxDepth}m</p>
-          <p>buddy: </p>
-          <p>{buddy}</p>
-          <p>type of dive</p>
-          <p>{typeOfDive}</p>
-          <p>notes: </p>
-          <p>{notes}</p>
-        </CardDetails>
-      </Card>
+                <CardDetails>
+                  <p>time in: </p>
+                  <p>{timeIn}</p>
+                  <p>time out: </p>
+                  <p>{timeOut}</p>
+                  <p>bottom time: </p>
+                  <p>{bottomTime}</p>
+                  <p>max. depth: </p>
+                  <p>{maxDepth}m</p>
+                  <p>buddy: </p>
+                  <p>{buddy}</p>
+                  <p>type of dive</p>
+                  <p>{typeOfDive}</p>
+                  <p>notes: </p>
+                  <p>{notes}</p>
+                </CardDetails>
+              </Card>
+            </li>
+          )
+        )}
+      </StyledList>
     </Background>
   );
 }
@@ -64,9 +76,7 @@ const Background = styled.div`
 `;
 
 const Card = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15vh;
+  margin: 20px auto;
   position: relative;
   border: 2px solid black;
   border-radius: 10px;
@@ -116,4 +126,12 @@ const ButtonClose = styled.button`
   height: 35px;
   background: transparent;
   border: 0;
+`;
+
+const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  height: 100vh;
 `;

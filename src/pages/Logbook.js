@@ -7,7 +7,13 @@ import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 
-export default function Logbook({ diveData, onDelete, onCreateDive }) {
+export default function Logbook({
+  diveData,
+  onDelete,
+  onCreateDive,
+  locationInfos,
+  setView,
+}) {
   const [active, setActive] = useState(true);
   return (
     <Wrapper>
@@ -35,6 +41,7 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
                 maxDepth,
                 notes,
                 _id,
+                coordinates,
               },
               index
             ) => (
@@ -54,19 +61,25 @@ export default function Logbook({ diveData, onDelete, onCreateDive }) {
                   divenumber={index + 1}
                   _id={_id}
                   onDelete={onDelete}
+                  coordinates={coordinates}
+                  setView={setView}
                 />
               </li>
             )
           )}
         </Grid>
       )}
-      {!active && (
-        <AddDive onClickBack={handleTogglePage} onCreate={handleCreate} />
-      )}
       {active && (
         <TogglePage variant="round" onClick={handleTogglePage}>
           add dive
         </TogglePage>
+      )}
+      {!active && (
+        <AddDive
+          onClickBack={handleTogglePage}
+          onCreate={handleCreate}
+          locationInfos={locationInfos}
+        />
       )}
     </Wrapper>
   );
