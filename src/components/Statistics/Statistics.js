@@ -19,7 +19,7 @@ export default function Statistics({ diveData }) {
 
   return (
     <Wrapper>
-      <NavLinkStyled to="/certifications">Certification</NavLinkStyled>
+      <NavLinkStyled to="/certifications">Certfi-cation</NavLinkStyled>
       <NavLinkStyled to="/divelog">Dives: {dives} </NavLinkStyled>
       <NavLinkStyled to="/src/pages/Map/Map">Map</NavLinkStyled>
       <Button onClick={handleStatisticsToggel}>
@@ -43,22 +43,23 @@ export default function Statistics({ diveData }) {
               notes,
               _id,
             }) => (
-              <StatisticsModal
-                onStatisticsToggle={handleStatisticsToggel}
-                divenumber={divenumber}
-                location={location}
-                divespot={divespot}
-                country={country}
-                date={date}
-                buddy={buddy}
-                typeOfDive={typeOfDive}
-                timeIn={timeIn}
-                timeOut={timeOut}
-                bottomTime={bottomTime}
-                maxDepth={maxDepth}
-                notes={notes}
-                key={_id}
-              />
+              <li key={_id}>
+                <StatisticsModal
+                  onStatisticsToggle={handleStatisticsToggel}
+                  divenumber={divenumber}
+                  location={location}
+                  divespot={divespot}
+                  country={country}
+                  date={date}
+                  buddy={buddy}
+                  typeOfDive={typeOfDive}
+                  timeIn={timeIn}
+                  timeOut={timeOut}
+                  bottomTime={bottomTime}
+                  maxDepth={maxDepth}
+                  notes={notes}
+                />
+              </li>
             )
           )}
         </>
@@ -88,11 +89,13 @@ const NavLinkStyled = styled(NavLink)`
   font-size: 1.3rem;
   border: 0;
   border-radius: 15px;
-  text-align: center;
-  padding: 20px 20px 0 20px;
   text-decoration: none;
   line-height: 2rem;
   overflow-wrap: break-word;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
 `;
 
 const Button = styled.button`

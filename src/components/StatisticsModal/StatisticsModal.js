@@ -66,7 +66,6 @@ const Background = styled.div`
 const Card = styled.div`
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15vh;
   position: relative;
   border: 2px solid black;
   border-radius: 10px;

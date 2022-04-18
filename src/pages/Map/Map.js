@@ -21,6 +21,11 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
+  const markerIconRed = new L.Icon({
+    iconUrl: require('./iconRed.png'),
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+  });
   const [destinationMapbox, setDestinationMapbox] = useLocalStorage(
     'destinationMapBox',
     [52.51667, 13.38333]
@@ -73,7 +78,7 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
           url={osm.maptiler.url}
           attribution={osm.maptiler.attribution}
         />
-        <Marker position={position} icon={markerIcon}>
+        <Marker position={position} icon={markerIconRed}>
           <Popup>
             Add new Dive
             <StyledLink
@@ -106,7 +111,7 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
           id={'geocoderdestination'}
           onKeyDown={handleEnterClick}
         ></GeoCoderDestination>
-        <SearchButton type="submit">search</SearchButton>
+        <SearchButton onClick={handleSubmit}>search</SearchButton>
       </SearchWrapper>
       <LinkBack to="/" name="back">
         <ArrowBack />
@@ -115,10 +120,15 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
     </>
   );
 
+  function handleSubmit() {
+    setCenter({ lat: destinationMapbox[0], lng: destinationMapbox[1] });
+  }
+
   function handleEnterClick(event) {
     let code = 0;
     code = event.keyCode;
     if (code === 13) {
+      setCenter({ lat: destinationMapbox[0], lng: destinationMapbox[1] });
       window.location.reload();
     }
   }
