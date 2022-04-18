@@ -86,7 +86,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         </DivStyled>
         <DivStyled>
           <label htmlFor="timeOut">time out</label>
-          <Input
+          <input
             id="timeOut"
             name="timeOut"
             type="time"
@@ -224,8 +224,4 @@ const MapButton = styled(Link)`
   position: absolute;
   font-size: 1.5rem;
   color: orange;
-`;
-
-const Input = styled.input`
-  appearance: none;
 `;

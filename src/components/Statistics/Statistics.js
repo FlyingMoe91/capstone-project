@@ -26,43 +26,10 @@ export default function Statistics({ diveData }) {
         max. depth: {depth > 0 ? depth : '0'}
       </Button>
       {statisticsToggle && (
-        <>
-          {deepestDive?.map(
-            ({
-              divenumber,
-              location,
-              divespot,
-              country,
-              date,
-              buddy,
-              typeOfDive,
-              timeIn,
-              timeOut,
-              bottomTime,
-              maxDepth,
-              notes,
-              _id,
-            }) => (
-              <li key={_id}>
-                <StatisticsModal
-                  onStatisticsToggle={handleStatisticsToggel}
-                  divenumber={divenumber}
-                  location={location}
-                  divespot={divespot}
-                  country={country}
-                  date={date}
-                  buddy={buddy}
-                  typeOfDive={typeOfDive}
-                  timeIn={timeIn}
-                  timeOut={timeOut}
-                  bottomTime={bottomTime}
-                  maxDepth={maxDepth}
-                  notes={notes}
-                />
-              </li>
-            )
-          )}
-        </>
+        <StatisticsModal
+          onStatisticsToggle={handleStatisticsToggel}
+          deepestDive={deepestDive}
+        />
       )}
     </Wrapper>
   );
@@ -111,4 +78,9 @@ const Button = styled.button`
   line-height: 2rem;
   vertical-align: middle;
   padding: 0 5px;
+`;
+
+const Ul = styled.ul`
+  overflow: hidden;
+  overflow-y: scroll;
 `;

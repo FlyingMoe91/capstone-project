@@ -83,7 +83,7 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
             Add new Dive
             <StyledLink
               to="/divelog"
-              aria-label="searchTags"
+              aria-label="go-to-divelogs"
               onClick={() => onNewDiveClick(destinationMapbox)}
             >
               <Create size={20} alt="create" />

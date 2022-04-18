@@ -63,6 +63,7 @@ export default function DiveLog({
             <StyledMapLink
               onClick={() => setView(coordinates)}
               to="/src/pages/Map/Map"
+              aria-label="show-on-map"
             >
               show on Map
             </StyledMapLink>
