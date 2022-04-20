@@ -79,8 +79,3 @@ const Button = styled.button`
   vertical-align: middle;
   padding: 0 5px;
 `;
-
-const Ul = styled.ul`
-  overflow: hidden;
-  overflow-y: scroll;
-`;

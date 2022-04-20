@@ -64,9 +64,6 @@ export default function App() {
   }
 
   function handleEditDive(newData) {
-    console.log('FUUUUCK!!!!');
-    console.log(newData._id);
-    console.log(diveData[3]._id);
     const updatedArray = diveData.map(dive => {
       if (dive._id === newData._id) {
         return newData;
