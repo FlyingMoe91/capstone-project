@@ -13,7 +13,6 @@ export default function Logbook({
   locationInfos,
   setView,
 }) {
-  const [newFormActive, setNewFormActive] = useState(true);
   const [editFormActive, setEditFormActive] = useState(false);
   const [editDiverInfos, setEditDiverInfos] = useState([]);
   return (
@@ -99,7 +98,10 @@ export default function Logbook({
   }
 }
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
 
 const NavLinkStyled = styled(NavLink)`
   position: absolute;
@@ -122,8 +124,11 @@ const AddDiveLink = styled(NavLink)`
   background: transparent;
   color: white;
   border: 2px solid white;
-  border-radius: 10px;
+  border-radius: 20px;
+  width: 280px;
   padding: 10px;
+  margin: 10px auto;
+  text-align: center;
 `;
 
 const Grid = styled.ul`
