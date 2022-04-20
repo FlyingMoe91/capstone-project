@@ -8,6 +8,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 export default function AddDive({ onCreate, locationInfos }) {
   const navigate = useNavigate();
+  console.log(locationInfos);
   return (
     <Wrapper>
       <ButtonBack to="/divelog" name="back">
@@ -29,19 +30,18 @@ export default function AddDive({ onCreate, locationInfos }) {
             name="divespot"
             type="text"
             maxLength="50"
-            // required
+            required
           />
         </DivStyled>
         <div>
           <label htmlFor="location">location</label>
           <input
             defaultValue={locationInfos ? locationInfos[2].text : undefined}
-            placeholder="click to map"
             id="location"
             name="location"
             type="text"
             maxLength="50"
-            // required
+            required
           />
           <MapButton to="/src/pages/Map/Map">
             <GiPositionMarker />
@@ -54,16 +54,16 @@ export default function AddDive({ onCreate, locationInfos }) {
             name="country"
             type="text"
             maxLength="50"
-            // required
+            required
           />
         </DivStyled>
         <DivStyled>
           <label htmlFor="date">date</label>
-          <input id="date" name="date" type="date" maxLength="50" />
+          <input id="date" name="date" type="date" maxLength="50" required />
         </DivStyled>
         <DivStyled>
           <label htmlFor="buddy">buddy</label>
-          <input id="buddy" name="buddy" type="text" maxLength="50" />
+          <input id="buddy" name="buddy" type="text" maxLength="50" required />
         </DivStyled>
         <DivStyled>
           <label htmlFor="typeOfDive">type of dive</label>
@@ -72,7 +72,7 @@ export default function AddDive({ onCreate, locationInfos }) {
             name="typeOfDive"
             type="text"
             maxLength="50"
-            // required
+            required
           />
         </DivStyled>
         <DivStyled>
@@ -82,7 +82,7 @@ export default function AddDive({ onCreate, locationInfos }) {
             name="timeIn"
             type="time"
             maxLength="50"
-            // required
+            required
           />
         </DivStyled>
         <DivStyled>
@@ -92,7 +92,7 @@ export default function AddDive({ onCreate, locationInfos }) {
             name="timeOut"
             type="time"
             maxLength="50"
-            // required
+            required
           />
         </DivStyled>
         <DivStyled>
@@ -103,7 +103,7 @@ export default function AddDive({ onCreate, locationInfos }) {
             type="time"
             maxLength="50"
             display
-            // required
+            required
           />
         </DivStyled>
         <DivStyled>
@@ -115,7 +115,7 @@ export default function AddDive({ onCreate, locationInfos }) {
             step=".1"
             min="0"
             maxLength="10"
-            // required
+            required
           />
         </DivStyled>
         <LastDivStyled>

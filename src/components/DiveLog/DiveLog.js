@@ -27,6 +27,7 @@ export default function DiveLog({
 }) {
   const [active, setActive] = useState(true);
   const [modalActive, setModalActive] = useState(false);
+  console.log(coordinates);
   return (
     <>
       <Card>
@@ -86,13 +87,17 @@ export default function DiveLog({
             <p>{typeOfDive}</p>
             <p>notes: </p>
             <p>{notes}</p>
-            <StyledMapLink
-              onClick={() => setView(coordinates)}
-              to="/src/pages/Map/Map"
-              aria-label="show-on-map"
-            >
-              show on Map
-            </StyledMapLink>
+            {coordinates[0] !== null ? (
+              <StyledMapLink
+                onClick={() => setView(coordinates)}
+                to="/src/pages/Map/Map"
+                aria-label="show-on-map"
+              >
+                show on Map
+              </StyledMapLink>
+            ) : (
+              ''
+            )}
           </CardDetails>
         )}
       </Card>

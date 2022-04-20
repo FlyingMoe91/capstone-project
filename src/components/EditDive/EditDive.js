@@ -41,7 +41,6 @@ export default function EditDive({
           <label htmlFor="location">location</label>
           <input
             defaultValue={editDiveInfos ? editDiveInfos.location : undefined}
-            placeholder="click to map"
             id="location"
             name="location"
             type="text"
