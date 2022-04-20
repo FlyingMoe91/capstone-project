@@ -14,8 +14,6 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
-
-  console.log(image);
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>

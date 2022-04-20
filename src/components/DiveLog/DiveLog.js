@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { FaStreetView, FaTrash } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
+import { FaRegEdit as EditIcon } from 'react-icons/fa';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { Link } from 'react-router-dom';
@@ -18,29 +19,54 @@ export default function DiveLog({
   maxDepth,
   buddy,
   notes,
-  onDelete,
   _id,
   coordinates,
+  onDelete,
   setView,
+  onEditDiverInfo,
 }) {
   const [active, setActive] = useState(true);
   const [modalActive, setModalActive] = useState(false);
   return (
     <>
       <Card>
-        <CardHead onClick={handleCardToggle}>
+        <CardHead>
           <DiveNumber>{divenumber}</DiveNumber>
-          <div>
+          <div onClick={handleCardToggle}>
             <p>{divespot}</p>
             <p>{country}</p>
             <p>{location}</p>
           </div>
           <BoxDateDelete>
             <Date>{date}</Date>
-            <ButtonDelete onClick={clickTrash}>
-              <FaTrash />
-              <ScreenReaderOnly>delete</ScreenReaderOnly>
-            </ButtonDelete>
+            <div>
+              <ButtonEdit>
+                <EditIcon
+                  onClick={() =>
+                    onEditDiverInfo({
+                      divespot,
+                      country,
+                      location,
+                      date,
+                      typeOfDive,
+                      timeIn,
+                      timeOut,
+                      bottomTime,
+                      maxDepth,
+                      buddy,
+                      notes,
+                      coordinates,
+                      _id,
+                    })
+                  }
+                />
+                <ScreenReaderOnly>edit dive</ScreenReaderOnly>
+              </ButtonEdit>
+              <ButtonDelete onClick={clickTrash}>
+                <FaTrash />
+                <ScreenReaderOnly>delete dive</ScreenReaderOnly>
+              </ButtonDelete>
+            </div>
           </BoxDateDelete>
         </CardHead>
 
@@ -130,6 +156,15 @@ const ButtonDelete = styled.button`
   color: #2e5bd8;
   cursor: pointer;
   font-size: 1rem;
+`;
+
+const ButtonEdit = styled.button`
+  border: none;
+  background-color: transparent;
+  color: #2e5bd8;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 10px;
 `;
 
 const DiveNumber = styled.div`

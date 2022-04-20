@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Certifications from './pages/Certifications';
 import Home from './pages/Home';
 import Logbook from './pages/Logbook';
+import NewDiveForm from './pages/NewDiveForm';
 import Map from './pages/Map/Map';
 
 export default function App() {
@@ -21,9 +22,18 @@ export default function App() {
           <Logbook
             diveData={diveData}
             onDelete={handleDeleteDive}
-            onCreateDive={handleCreateDive}
+            onHandleEditDive={handleEditDive}
             locationInfos={locationInfos}
             setView={handleSetView}
+          />
+        }
+      />
+      <Route
+        path="/NewDiveForm"
+        element={
+          <NewDiveForm
+            onCreate={handleCreateDive}
+            locationInfos={locationInfos}
           />
         }
       />
@@ -51,6 +61,19 @@ export default function App() {
 
   function handleCreateDive(newData) {
     setDiveData([...diveData, newData]);
+  }
+
+  function handleEditDive(newData) {
+    console.log('FUUUUCK!!!!');
+    console.log(newData._id);
+    console.log(diveData[3]._id);
+    const updatedArray = diveData.map(dive => {
+      if (dive._id === newData._id) {
+        return newData;
+      }
+      return dive;
+    });
+    setDiveData(updatedArray);
   }
 
   function handleDeleteDive(Id) {

@@ -23,7 +23,7 @@ export default function Statistics({ diveData }) {
       <NavLinkStyled to="/divelog">Dives: {dives} </NavLinkStyled>
       <NavLinkStyled to="/src/pages/Map/Map">Map</NavLinkStyled>
       <Button onClick={handleStatisticsToggel}>
-        max. depth: {depth > 0 ? depth : '0'}
+        deepest dive: {depth > 0 ? depth : '0'}
       </Button>
       {statisticsToggle && (
         <StatisticsModal
