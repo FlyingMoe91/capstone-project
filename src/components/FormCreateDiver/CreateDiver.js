@@ -4,6 +4,7 @@ import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 import { GiCancel as Remove } from 'react-icons/gi';
+import { FaCloudUploadAlt as Upload } from 'react-icons/fa';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -96,13 +97,16 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             </>
           ) : (
             <>
-              <label>upload picture</label>
               <input
                 type="file"
                 name="file"
                 aria-label="picture-upload"
                 onChange={upload}
               />
+              <label>
+                upload profile picture <UploadIcon />
+              </label>
+
               {loading && <div>Uploading Image...{process}%</div>}
             </>
           )}
@@ -219,7 +223,7 @@ const ImageUpload = styled.div`
   grid-column-start: 1;
   grid-column-end: 3;
   border-radius: 50%;
-  width: 50%;
+  width: 100%;
   img {
     border-radius: 10px;
     width: 100%;
@@ -234,3 +238,5 @@ const ImageUpload = styled.div`
     background-color: transparent;
   }
 `;
+
+const UploadIcon = styled(Upload)``;

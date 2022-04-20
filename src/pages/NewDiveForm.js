@@ -296,7 +296,7 @@ const ImageUpload = styled.div`
   grid-column-start: 1;
   grid-column-end: 3;
   border-radius: 50%;
-  width: 50%;
+  width: 100%;
   img {
     border-radius: 10px;
     width: 100%;

@@ -148,7 +148,9 @@ const SearchButton = styled.button`
   height: 28px;
   width: 55px;
   margin-top: 10px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: white;
+  opacity: 0.7;
+
   border-radius: 14px;
 `;
 
@@ -171,10 +173,11 @@ const LinkBack = styled(Link)`
   left: 12px;
   top: 80px;
   height: 30px;
-  color: white;
+  color: grey;
   font-size: 1.8rem;
   border: none;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: white;
+  opacity: 0.7;
   z-index: 900;
 `;
