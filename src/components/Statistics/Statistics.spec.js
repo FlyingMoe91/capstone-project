@@ -12,7 +12,7 @@ describe('Statistics', () => {
       </MemoryRouter>
     );
 
-    const maxDepthButton = screen.getByRole('button', { name: /depth/i });
+    const maxDepthButton = screen.getByRole('button', { name: /deepest/i });
 
     expect(maxDepthButton).toBeInTheDocument();
   });

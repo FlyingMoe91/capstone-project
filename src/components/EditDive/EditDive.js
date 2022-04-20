@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
-import { GiPositionMarker } from 'react-icons/gi';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 import { Link } from 'react-router-dom';
+import { edit } from '@cloudinary/url-gen/actions/animated';
 
-export default function AddDive({ onClickBack, onCreate, locationInfos }) {
+export default function EditDive({
+  onClickBack,
+  onEditDive,
+  locationInfos,
+  editDiveInfos,
+}) {
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -14,7 +19,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <ScreenReaderOnly>back to divelogs</ScreenReaderOnly>
       </ButtonBack>
       <Headline aria-labelledby="form-title" id="form-title">
-        log new dive
+        edit dive
       </Headline>
       <FormStyled
         aria-label="log new dive"
@@ -24,6 +29,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <DivStyled>
           <label htmlFor="divespot">dive spot</label>
           <input
+            defaultValue={editDiveInfos ? editDiveInfos.divespot : undefined}
             id="divespot"
             name="divespot"
             type="text"
@@ -34,21 +40,18 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <div>
           <label htmlFor="location">location</label>
           <input
-            defaultValue={locationInfos ? locationInfos[2].text : undefined}
-            placeholder="click to map"
+            defaultValue={editDiveInfos ? editDiveInfos.location : undefined}
             id="location"
             name="location"
             type="text"
             maxLength="50"
             required
           />
-          <MapButton to="/src/pages/Map/Map">
-            <GiPositionMarker />
-          </MapButton>
         </div>
         <DivStyled>
           <label htmlFor="country">country</label>
           <input
+            defaultValue={editDiveInfos ? editDiveInfos.country : undefined}
             id="country"
             name="country"
             type="text"
@@ -58,15 +61,30 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         </DivStyled>
         <DivStyled>
           <label htmlFor="date">date</label>
-          <input id="date" name="date" type="date" maxLength="50" required />
+          <input
+            defaultValue={editDiveInfos ? editDiveInfos.date : undefined}
+            id="date"
+            name="date"
+            type="date"
+            maxLength="50"
+            required
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="buddy">buddy</label>
-          <input id="buddy" name="buddy" type="text" maxLength="50" required />
+          <input
+            defaultValue={editDiveInfos ? editDiveInfos.buddy : undefined}
+            id="buddy"
+            name="buddy"
+            type="text"
+            maxLength="50"
+            required
+          />
         </DivStyled>
         <DivStyled>
           <label htmlFor="typeOfDive">type of dive</label>
           <input
+            defaultValue={editDiveInfos ? editDiveInfos.typeOfDive : undefined}
             id="typeOfDive"
             name="typeOfDive"
             type="text"
@@ -77,6 +95,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <DivStyled>
           <label htmlFor="timeIn">time in</label>
           <input
+            defaultValue={editDiveInfos ? editDiveInfos.timeIn : undefined}
             id="timeIn"
             name="timeIn"
             type="time"
@@ -87,6 +106,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <DivStyled>
           <label htmlFor="timeOut">time out</label>
           <input
+            defaultValue={editDiveInfos ? editDiveInfos.timeOut : undefined}
             id="timeOut"
             name="timeOut"
             type="time"
@@ -97,6 +117,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <DivStyled>
           <label htmlFor="bottomTime">bottom time</label>
           <input
+            defaultValue={editDiveInfos ? editDiveInfos.bottomTime : undefined}
             id="bottomTime"
             name="bottomTime"
             type="time"
@@ -108,6 +129,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <DivStyled>
           <label htmlFor="maxDepth">max. depth(m)</label>
           <input
+            defaultValue={editDiveInfos ? editDiveInfos.maxDepth : undefined}
             id="maxDepth"
             name="maxDepth"
             type="number"
@@ -120,6 +142,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
         <LastDivStyled>
           <label htmlFor="notes">notes</label>
           <textarea
+            defaultValue={editDiveInfos ? editDiveInfos.notes : undefined}
             id="notes"
             name="notes"
             type="text"
@@ -128,7 +151,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
           />
         </LastDivStyled>
         <ButtonSubmit variant="submit" name="log dive">
-          log dive
+          edit dive
         </ButtonSubmit>
       </FormStyled>
     </Wrapper>
@@ -149,7 +172,7 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
       maxDepth,
       notes,
     } = event.target.elements;
-    onCreate({
+    onEditDive({
       divespot: divespot.value,
       location: location.value,
       country: country.value,
@@ -161,8 +184,8 @@ export default function AddDive({ onClickBack, onCreate, locationInfos }) {
       bottomTime: bottomTime.value,
       maxDepth: maxDepth.value,
       notes: notes.value,
-      coordinates: [locationInfos[0], locationInfos[1]],
-      _id: nanoid(),
+      coordinates: editDiveInfos.coordinates,
+      _id: editDiveInfos._id,
     });
   }
 }
@@ -217,11 +240,4 @@ const ButtonBack = styled(Button)`
 const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
-`;
-
-const MapButton = styled(Link)`
-  background-color: transparent;
-  position: absolute;
-  font-size: 1.5rem;
-  color: orange;
 `;

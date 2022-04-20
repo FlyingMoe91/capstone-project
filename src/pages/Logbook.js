@@ -2,99 +2,106 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
-import Button from '../components/Button/Button';
-import AddDive from '../components/AddDiveForm/AddDive';
 import DiveLog from '../components/DiveLog/DiveLog';
+import EditDive from '../components/EditDive/EditDive';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 
 export default function Logbook({
   diveData,
   onDelete,
-  onCreateDive,
+  onHandleEditDive,
   locationInfos,
   setView,
 }) {
-  const [active, setActive] = useState(true);
+  const [editFormActive, setEditFormActive] = useState(false);
+  const [editDiverInfos, setEditDiverInfos] = useState([]);
   return (
     <Wrapper>
-      {active && (
-        <NavLinkStyled to="/">
-          <ArrowBack />
-          <ScreenReaderOnly>back to homepage</ScreenReaderOnly>
-        </NavLinkStyled>
+      {!editFormActive && (
+        <>
+          <NavLinkStyled to="/">
+            <ArrowBack />
+            <ScreenReaderOnly>back to homepage</ScreenReaderOnly>
+          </NavLinkStyled>
+          <Headline>Dive Logs</Headline>
+          <AddDiveLink to="/NewDiveForm">add new dive +</AddDiveLink>
+
+          <Grid role="list">
+            {diveData?.map(
+              (
+                {
+                  divespot,
+                  location,
+                  country,
+                  date,
+                  buddy,
+                  typeOfDive,
+                  timeIn,
+                  timeOut,
+                  bottomTime,
+                  maxDepth,
+                  notes,
+                  _id,
+                  coordinates,
+                },
+                index
+              ) => (
+                <li key={_id}>
+                  <DiveLog
+                    divespot={divespot}
+                    location={location}
+                    country={country}
+                    date={date}
+                    buddy={buddy}
+                    typeOfDive={typeOfDive}
+                    timeIn={timeIn}
+                    timeOut={timeOut}
+                    bottomTime={bottomTime}
+                    maxDepth={maxDepth}
+                    notes={notes}
+                    divenumber={index + 1}
+                    _id={_id}
+                    onDelete={onDelete}
+                    coordinates={coordinates}
+                    setView={setView}
+                    onEditDiverInfo={handleEditDiverInfo}
+                  />
+                </li>
+              )
+            )}
+          </Grid>
+        </>
       )}
-      {active && <Headline>Dive Logs</Headline>}
-      {active && (
-        <Grid role="list">
-          {diveData?.map(
-            (
-              {
-                divespot,
-                location,
-                country,
-                date,
-                buddy,
-                typeOfDive,
-                timeIn,
-                timeOut,
-                bottomTime,
-                maxDepth,
-                notes,
-                _id,
-                coordinates,
-              },
-              index
-            ) => (
-              <li key={_id}>
-                <DiveLog
-                  divespot={divespot}
-                  location={location}
-                  country={country}
-                  date={date}
-                  buddy={buddy}
-                  typeOfDive={typeOfDive}
-                  timeIn={timeIn}
-                  timeOut={timeOut}
-                  bottomTime={bottomTime}
-                  maxDepth={maxDepth}
-                  notes={notes}
-                  divenumber={index + 1}
-                  _id={_id}
-                  onDelete={onDelete}
-                  coordinates={coordinates}
-                  setView={setView}
-                />
-              </li>
-            )
-          )}
-        </Grid>
-      )}
-      {active && (
-        <TogglePage variant="round" onClick={handleTogglePage}>
-          add dive
-        </TogglePage>
-      )}
-      {!active && (
-        <AddDive
-          onClickBack={handleTogglePage}
-          onCreate={handleCreate}
+      {editFormActive && (
+        <EditDive
+          onClickBack={handleToggleEditForm}
+          onEditDive={handleEditDive}
           locationInfos={locationInfos}
+          editDiveInfos={editDiverInfos}
         />
       )}
     </Wrapper>
   );
 
-  function handleTogglePage() {
-    setActive(!active);
+  function handleEditDiverInfo(infos) {
+    setEditDiverInfos(infos);
+    setEditFormActive(!editFormActive);
   }
 
-  function handleCreate(newData) {
-    onCreateDive(newData);
-    setActive(!active);
+  function handleToggleEditForm() {
+    setEditFormActive(!editFormActive);
+  }
+
+  function handleEditDive(newData) {
+    onHandleEditDive(newData);
+    setEditFormActive(!editFormActive);
   }
 }
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
 
 const NavLinkStyled = styled(NavLink)`
   position: absolute;
@@ -111,16 +118,23 @@ const Headline = styled.h2`
   color: white;
 `;
 
+const AddDiveLink = styled(NavLink)`
+  text-decoration: none;
+  font-size: 2.5rem;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 20px;
+  width: 280px;
+  padding: 10px;
+  margin: 10px auto;
+  text-align: center;
+`;
+
 const Grid = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column-reverse;
-`;
-
-const TogglePage = styled(Button)`
-  position: absolute;
-  right: 10px;
-  bottom: 20px;
 `;

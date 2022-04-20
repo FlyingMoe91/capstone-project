@@ -14,8 +14,6 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
-
-  console.log(image);
   return (
     <SectionStyled>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -46,6 +44,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             name="certification"
             type="text"
             maxLength="20"
+            placeholder="owd, aowd..."
             defaultValue={
               diverInfo.certification ? diverInfo.certification : undefined
             }
@@ -58,6 +57,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             name="cert_nr"
             type="text"
             maxLength="10"
+            placeholder="123456"
             defaultValue={diverInfo.cert_nr ? diverInfo.cert_nr : undefined}
           />
         </InputWrapper>
@@ -77,6 +77,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             name="organization"
             type="text"
             maxLength="20"
+            placeholder="e.g. Padi, SSI..."
             defaultValue={
               diverInfo.organization ? diverInfo.organization : undefined
             }

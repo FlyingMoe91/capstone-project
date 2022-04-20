@@ -80,9 +80,9 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
         />
         <Marker position={position} icon={markerIconRed}>
           <Popup>
-            Add new Dive
+            Want to add a dive here?
             <StyledLink
-              to="/divelog"
+              to="/NewDiveForm"
               aria-label="go-to-divelogs"
               onClick={() => onNewDiveClick(destinationMapbox)}
             >

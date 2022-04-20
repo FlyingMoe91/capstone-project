@@ -1,11 +1,11 @@
 import { userEvent } from '@storybook/testing-library';
 import { render, screen } from '@testing-library/react';
-import AddDive from './AddDive';
+import EditDive from './EditDive';
 
-describe('AddDive', () => {
+describe('EditDive', () => {
   it('renders a form, two inputs and a button', () => {
     const mockCallback = jest.fn();
-    render(<AddDive onClick={mockCallback} />);
+    render(<EditDive onClick={mockCallback} />);
 
     const form = screen.getByRole('form', { text: 'log new dive' });
     const locationInput = screen.getByLabelText('dive spot');
@@ -20,7 +20,7 @@ describe('AddDive', () => {
 
   it('calls the submit function', () => {
     const callback = jest.fn();
-    render(<AddDive onCreate={callback} />);
+    render(<EditDive onCreate={callback} />);
 
     const button = screen.getByRole('button', { name: 'log dive' });
 

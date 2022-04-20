@@ -20,10 +20,12 @@ export default function Statistics({ diveData }) {
   return (
     <Wrapper>
       <NavLinkStyled to="/certifications">Certfi-cation</NavLinkStyled>
-      <NavLinkStyled to="/divelog">Dives: {dives} </NavLinkStyled>
+      <NavLinkStyled to="/divelog">
+        logbook: {dives} {dives === 1 ? 'dive' : 'dives'}
+      </NavLinkStyled>
       <NavLinkStyled to="/src/pages/Map/Map">Map</NavLinkStyled>
-      <Button onClick={handleStatisticsToggel}>
-        max. depth: {depth > 0 ? depth : '0'}
+      <Button onClick={handleStatisticsToggel} disabled={diveData.length === 0}>
+        deepest dive: {depth > 0 ? depth : '0'}
       </Button>
       {statisticsToggle && (
         <StatisticsModal
@@ -78,9 +80,4 @@ const Button = styled.button`
   line-height: 2rem;
   vertical-align: middle;
   padding: 0 5px;
-`;
-
-const Ul = styled.ul`
-  overflow: hidden;
-  overflow-y: scroll;
 `;

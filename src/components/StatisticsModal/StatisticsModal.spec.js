@@ -14,14 +14,14 @@ describe('StatisticsModal', () => {
       />
     );
 
-    const city = screen.getByText('Orlando', { exact: false });
-    const country = screen.getByText('USA', { exact: false });
-    const location = screen.getByText('DevilsDen');
+    const location = screen.getByText('Orlando');
+    const country = screen.getByText('USA');
+    const divespot = screen.getByText('DevilsDen');
     const date = screen.getByText('25.06.2013');
 
-    expect(city).toBeInTheDocument();
-    expect(country).toBeInTheDocument();
     expect(location).toBeInTheDocument();
+    expect(country).toBeInTheDocument();
+    expect(divespot).toBeInTheDocument();
     expect(date).toBeInTheDocument();
   });
 
