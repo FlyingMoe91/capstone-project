@@ -1,17 +1,19 @@
 import styled from 'styled-components';
-import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
+import { GiCancel as Remove } from 'react-icons/gi';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
-import { Link } from 'react-router-dom';
-import { edit } from '@cloudinary/url-gen/actions/animated';
+import axios from 'axios';
+import { useState } from 'react';
 
-export default function EditDive({
-  onClickBack,
-  onEditDive,
-  locationInfos,
-  editDiveInfos,
-}) {
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
+
+export default function EditDive({ onClickBack, onEditDive, editDiveInfos }) {
+  const [image, setImage] = useState(editDiveInfos.image);
+  const [loading, setLoading] = useState(false);
+  const [process, setProcess] = useState(0);
+  console.log(editDiveInfos);
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -150,12 +152,66 @@ export default function EditDive({
             maxLength="500"
           />
         </LastDivStyled>
+        <ImageUpload>
+          {image ? (
+            <>
+              <img src={image} alt="undefined" />
+              <button onClick={handleRemovePic}>
+                <Remove />
+              </button>
+            </>
+          ) : (
+            <>
+              <label>upload picture</label>
+              <input
+                type="file"
+                name="file"
+                aria-label="picture-upload"
+                onChange={upload}
+              />
+              {loading && <div>Uploading Image...{process}%</div>}
+            </>
+          )}
+        </ImageUpload>
         <ButtonSubmit variant="submit" name="log dive">
           edit dive
         </ButtonSubmit>
       </FormStyled>
     </Wrapper>
   );
+
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`;
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+    formData.append('upload_preset', PRESET);
+
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+        onUploadProgress: progressEvent => {
+          setLoading(true);
+          const percent = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setProcess(percent);
+        },
+      })
+      .then(onImageSave)
+      .catch(err => console.error(err));
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url);
+  }
+
+  function handleRemovePic() {
+    setImage('');
+    setProcess(0);
+    setLoading(false);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -185,6 +241,7 @@ export default function EditDive({
       maxDepth: maxDepth.value,
       notes: notes.value,
       coordinates: editDiveInfos.coordinates,
+      image: image,
       _id: editDiveInfos._id,
     });
   }
@@ -240,4 +297,24 @@ const ButtonBack = styled(Button)`
 const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
+`;
+
+const ImageUpload = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  border-radius: 50%;
+  width: 50%;
+  img {
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
+  }
 `;

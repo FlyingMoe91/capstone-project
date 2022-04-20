@@ -21,13 +21,13 @@ export default function DiveLog({
   notes,
   _id,
   coordinates,
+  image,
   onDelete,
   setView,
   onEditDiverInfo,
 }) {
   const [active, setActive] = useState(true);
   const [modalActive, setModalActive] = useState(false);
-  console.log(coordinates);
   return (
     <>
       <Card>
@@ -57,6 +57,7 @@ export default function DiveLog({
                       buddy,
                       notes,
                       coordinates,
+                      image,
                       _id,
                     })
                   }
@@ -98,6 +99,7 @@ export default function DiveLog({
             ) : (
               ''
             )}
+            <StyledImage src={image} alt={image} />
           </CardDetails>
         )}
       </Card>
@@ -212,4 +214,11 @@ const StyledMapLink = styled(Link)`
   text-decoration: none;
   border: 2px solid black;
   border-radius: 5px;
+`;
+
+const StyledImage = styled.img`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: 0 auto;
+  width: 80%;
 `;

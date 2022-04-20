@@ -57,7 +57,7 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
       accessToken: mapboxgl.accessToken,
       types: 'country, region, place, poi',
       limit: 5,
-      placeholder: 'e.g. Lissabon',
+      placeholder: 'e.g. Great Barrier Reef',
       minLength: 2,
     });
     handleDiveViewPort(viewPort);
