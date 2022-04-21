@@ -123,12 +123,12 @@ const Headline = styled.h2`
 const AddDiveLink = styled(NavLink)`
   text-decoration: none;
   font-size: 2.5rem;
-  background: transparent;
+  background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border: 2px solid white;
   border-radius: 20px;
-  width: 280px;
-  padding: 10px;
+  width: 80%;
+  padding: 5px 10px;
   margin: 10px auto;
   text-align: center;
 `;

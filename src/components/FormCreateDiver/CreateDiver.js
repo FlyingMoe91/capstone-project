@@ -84,7 +84,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             }
           />
         </InputWrapper>
-        <ImageUpload>
+        <div>
           {image ? (
             <>
               <img
@@ -110,7 +110,7 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
               {loading && <div>Uploading Image...{process}%</div>}
             </>
           )}
-        </ImageUpload>
+        </div>
         <ButtonSubmit variant="submit" name="save details">
           save details
         </ButtonSubmit>
@@ -217,26 +217,6 @@ const ButtonBack = styled(Button)`
 const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
+  background-color: rgba(0, 0, 0, 0.3);
 `;
-
-const ImageUpload = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 3;
-  border-radius: 50%;
-  width: 100%;
-  img {
-    border-radius: 10px;
-    width: 100%;
-  }
-
-  button {
-    position: absolute;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: white;
-    background-color: transparent;
-  }
-`;
-
 const UploadIcon = styled(Upload)``;

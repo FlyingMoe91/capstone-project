@@ -4,13 +4,16 @@ import CreateDiver from '../components/FormCreateDiver/CreateDiver';
 import { useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import DiverInfo from '../components/DiverInfomation/DiverInfo';
+import { FaRegEdit as EditIcon } from 'react-icons/fa';
+import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import DefaultProfilePc from '../images/DefaultProfilePic.jpg';
 
 export default function Home({ diveData }) {
   const [createDiverPageActive, setCreateDiverPageActive] = useState(false);
   const [diverInfo, setDiverInfo] = useLocalStorage('diverInfo', ['']);
   const [image, setImage] = useLocalStorage('');
   return (
-    <Wrapper>
+    <>
       {diverInfo[0]
         ? !createDiverPageActive && (
             <DiverInfo
@@ -20,7 +23,17 @@ export default function Home({ diveData }) {
             />
           )
         : !createDiverPageActive && (
-            <Header onClick={toggleCreateDiverPage}>create new diver +</Header>
+            <Header>
+              <p>Your Profile</p>
+              <DefaultPic
+                alt="default profile pic"
+                src={DefaultProfilePc}
+              ></DefaultPic>
+              <ButtonEdit onClick={toggleCreateDiverPage}>
+                <EditIcon />
+                <ScreenReaderOnly>edit diver information</ScreenReaderOnly>
+              </ButtonEdit>
+            </Header>
           )}
       {createDiverPageActive && (
         <CreateDiver
@@ -30,7 +43,7 @@ export default function Home({ diveData }) {
         />
       )}
       {!createDiverPageActive && <Statistics diveData={diveData} />}
-    </Wrapper>
+    </>
   );
 
   function handleCreateDiver(newDiverInfo) {
@@ -44,17 +57,38 @@ export default function Home({ diveData }) {
   }
 }
 
-const Wrapper = styled.section`
-  text-align: center;
-`;
-
-const Header = styled.button`
-  font-size: 2.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  background: transparent;
+const Header = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  background: teal;
   color: white;
   border-radius: 20px;
   padding: 0 5px;
   width: 90%;
+  height: 25vh;
+  font-size: 1.8rem;
+  font-weight: bold;
+`;
+
+const ButtonEdit = styled.button`
+  width: 30px;
+  padding: 0;
+  position: absolute;
+  top: 20px;
+  right: 110px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+`;
+
+const DefaultPic = styled.img`
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin-right: -40px;
 `;

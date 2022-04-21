@@ -21,7 +21,7 @@ export default function ModalCertification({ onCertModal, onCreate }) {
           {certificateImages[0] ? (
             <>
               <img src={certificateImages[0]} alt={''} />
-              <button onClick={handleRemovePic}>
+              <button onClick={handleRemovePic} required>
                 <Remove />
                 <ScreenReaderOnly>remove front picture</ScreenReaderOnly>
               </button>

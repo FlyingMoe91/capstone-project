@@ -6,7 +6,7 @@ export default function DiverInfo({ diverInfo, onEditDiver, image }) {
   return (
     <DiverGrid>
       <div>
-        <p>{diverInfo.name}</p>
+        <Name>{diverInfo.name}</Name>
         {diverInfo.organization ? (
           <p>
             {diverInfo.organization} -{' '}
@@ -16,7 +16,7 @@ export default function DiverInfo({ diverInfo, onEditDiver, image }) {
           </p>
         ) : null}
 
-        {diverInfo.cert_nr ? <p>{diverInfo.cert_nr}</p> : null}
+        {diverInfo.cert_nr ? <p> cert.#: {diverInfo.cert_nr}</p> : null}
       </div>
       <UploadedImage src={image} alt=""></UploadedImage>
       <ButtonEdit onClick={onEditDiver}>
@@ -33,33 +33,29 @@ const DiverGrid = styled.section`
   align-items: center;
   text-align: center;
   position: relative;
+  margin: 20px auto;
+  background: teal;
+  color: white;
+  border-radius: 20px;
+  padding: 0 5px;
+  width: 90%;
+  height: 25vh;
 
   p {
-    border: 1px solid white;
-    border-radius: 8px;
-    max-width: 80%;
-    margin: 5px;
-    justify-self: center;
-    line-height: 5vh;
-    font-size: 1.4rem;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.3);
-    overflow-wrap: break-word;
+    margin: 20px 0;
   }
+`;
 
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+const Name = styled.p`
+  font-size: 1.5rem;
 `;
 
 const ButtonEdit = styled.button`
   width: 30px;
   padding: 0;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5%;
+  right: 33%;
   border: none;
   background: transparent;
   color: white;
@@ -67,8 +63,9 @@ const ButtonEdit = styled.button`
 `;
 
 const UploadedImage = styled.img`
-  border-radius: 50%;
   width: 150px;
   height: 150px;
+  border-radius: 50%;
+  margin-right: -40px;
   object-fit: cover;
 `;

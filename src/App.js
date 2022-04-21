@@ -61,6 +61,7 @@ export default function App() {
 
   function handleCreateDive(newData) {
     setDiveData([...diveData, newData]);
+    setLocationInfos('');
   }
 
   function handleEditDive(newData) {

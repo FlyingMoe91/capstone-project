@@ -46,7 +46,7 @@ export default function Certifications() {
         ))}
       </StyledList>
       <ButtonAddCert onClick={handleCertModal}>
-        + add new certificate
+        add new certificate +
       </ButtonAddCert>
       {certModalActive && (
         <ModalCertification
@@ -119,7 +119,7 @@ const CertBox = styled.div`
 
 const ButtonAddCert = styled.button`
   font-size: 2.5rem;
-  background: transparent;
+  background-color: rgba(255, 255, 255, 0.3);
   color: white;
   border-radius: 20px;
   padding: 0 5px;
