@@ -1,14 +1,23 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
+import { GiCancel as Remove } from 'react-icons/gi';
 import { GiPositionMarker } from 'react-icons/gi';
 import Button from '../components/Button/Button';
 import ScreenReaderOnly from '../components/ScreenReaderOnly';
 import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+
+const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
+const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
 export default function AddDive({ onCreate, locationInfos }) {
   const navigate = useNavigate();
-  console.log(locationInfos);
+  const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [process, setProcess] = useState(0);
+
   return (
     <Wrapper>
       <ButtonBack to="/divelog" name="back">
@@ -128,12 +137,66 @@ export default function AddDive({ onCreate, locationInfos }) {
             maxLength="500"
           />
         </LastDivStyled>
+        <ImageUpload>
+          {image ? (
+            <>
+              <img src={image} alt="undefined" />
+              <button onClick={handleRemovePic}>
+                <Remove />
+              </button>
+            </>
+          ) : (
+            <>
+              <label>upload picture</label>
+              <input
+                type="file"
+                name="file"
+                aria-label="picture-upload"
+                onChange={upload}
+              />
+              {loading && <div>Uploading Image...{process}%</div>}
+            </>
+          )}
+        </ImageUpload>
         <ButtonSubmit variant="submit" name="log dive">
           log dive
         </ButtonSubmit>
       </FormStyled>
     </Wrapper>
   );
+
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`;
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+    formData.append('upload_preset', PRESET);
+
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+        onUploadProgress: progressEvent => {
+          setLoading(true);
+          const percent = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setProcess(percent);
+        },
+      })
+      .then(onImageSave)
+      .catch(err => console.error(err));
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url);
+  }
+
+  function handleRemovePic() {
+    setImage('');
+    setProcess(0);
+    setLoading(false);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -163,6 +226,7 @@ export default function AddDive({ onCreate, locationInfos }) {
       maxDepth: maxDepth.value,
       notes: notes.value,
       coordinates: [locationInfos[0], locationInfos[1]],
+      image: image,
       _id: nanoid(),
     });
     navigate('/divelog');
@@ -226,4 +290,24 @@ const MapButton = styled(NavLink)`
   position: absolute;
   font-size: 1.5rem;
   color: orange;
+`;
+
+const ImageUpload = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  border-radius: 50%;
+  width: 100%;
+  img {
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  button {
+    position: absolute;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
+  }
 `;

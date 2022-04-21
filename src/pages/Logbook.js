@@ -43,6 +43,7 @@ export default function Logbook({
                   notes,
                   _id,
                   coordinates,
+                  image,
                 },
                 index
               ) => (
@@ -60,6 +61,7 @@ export default function Logbook({
                     maxDepth={maxDepth}
                     notes={notes}
                     divenumber={index + 1}
+                    image={image}
                     _id={_id}
                     onDelete={onDelete}
                     coordinates={coordinates}
