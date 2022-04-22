@@ -68,7 +68,7 @@ const NavLinkStyled = styled(NavLink)`
 `;
 
 const Button = styled.button`
-  width: 65%;
+  width: 70%;
   height: 7vh;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;

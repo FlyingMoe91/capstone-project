@@ -112,7 +112,6 @@ export default function AddDive({ onCreate, locationInfos }) {
             name="bottomTime"
             type="time"
             maxLength="50"
-            display
             required
           />
         </DivStyled>
