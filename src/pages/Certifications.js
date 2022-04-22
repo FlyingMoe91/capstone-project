@@ -99,15 +99,17 @@ const NavLinkStyled = styled(NavLink)`
 `;
 
 const StyledList = styled.ul`
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
   list-style: none;
   padding: 0;
-  margin: 0 auto 20px auto;
+  margin: 30px auto 20px auto;
 
   li {
     position: relative;
     border: 2px solid white;
     border-radius: 10px;
-    margin: 30px 0;
   }
 `;
 
