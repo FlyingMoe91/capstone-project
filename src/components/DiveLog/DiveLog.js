@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { FaRegEdit as EditIcon } from 'react-icons/fa';
+import { GoChevronDown, GoChevronUp } from 'react-icons/go';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { Link } from 'react-router-dom';
@@ -40,7 +41,10 @@ export default function DiveLog({
           </div>
           <BoxDateDelete>
             <Date>{date}</Date>
-            <div>
+            <IconBox>
+              <ButtonUnfold onClick={handleCardToggle}>
+                {active ? <GoChevronDown /> : <GoChevronUp />}
+              </ButtonUnfold>
               <ButtonEdit>
                 <EditIcon
                   onClick={() =>
@@ -68,7 +72,7 @@ export default function DiveLog({
                 <FaTrash />
                 <ScreenReaderOnly>delete dive</ScreenReaderOnly>
               </ButtonDelete>
-            </div>
+            </IconBox>
           </BoxDateDelete>
         </CardHead>
 
@@ -107,6 +111,7 @@ export default function DiveLog({
         <DeleteModal
           onDelete={() => onDelete(_id)}
           onCancel={() => setModalActive(!modalActive)}
+          message="Are you sure you want to delete this dive?"
         />
       )}
     </>
@@ -124,12 +129,12 @@ export default function DiveLog({
 
 const Card = styled.div`
   position: relative;
-  border: 2px solid black;
   border-radius: 10px;
   max-width: 85vw;
   margin: 10px auto;
-  padding: 0 20px;
-  background-color: lightblue;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
 `;
 
 const CardHead = styled.div`
@@ -137,7 +142,7 @@ const CardHead = styled.div`
   grid-template-columns: 1fr 3fr 1fr;
   text-align: center;
   max-width: 90vw;
-  background-color: lightblue;
+  background-color: transparent;
 
   p {
     margin: 5px;
@@ -157,10 +162,23 @@ const Date = styled.p`
   font-size: 0.9rem;
 `;
 
+const IconBox = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+const ButtonUnfold = styled.button`
+  border: none;
+  background: transparent;
+  color: white;
+  padding: 5px 0 0 0;
+  font-size: 1.3rem;
+`;
+
 const ButtonDelete = styled.button`
   border: none;
   background-color: transparent;
-  color: #2e5bd8;
+  color: white;
   cursor: pointer;
   font-size: 1rem;
 `;
@@ -168,10 +186,9 @@ const ButtonDelete = styled.button`
 const ButtonEdit = styled.button`
   border: none;
   background-color: transparent;
-  color: #2e5bd8;
+  color: white;
   cursor: pointer;
   font-size: 1rem;
-  margin: 0 10px;
 `;
 
 const DiveNumber = styled.div`
@@ -184,7 +201,7 @@ const DiveNumber = styled.div`
   font-size: 1.5rem;
   border: 2px solid grey;
   border-radius: 50%;
-  background-color: #2d9ac2;
+  background-color: rgba(255, 255, 255, 0.4);
   color: white;
 `;
 
@@ -192,9 +209,9 @@ const CardDetails = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 10px;
-  padding: 5px;
-  background-color: aliceblue;
-  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
 
   p {
     margin: 0;
@@ -207,12 +224,12 @@ const StyledMapLink = styled(Link)`
   text-align: center;
   grid-column-start: 1;
   grid-column-end: 3;
-  color: black;
+  color: white;
   padding: 5px;
   margin: 10px auto;
   width: 140px;
   text-decoration: none;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 5px;
 `;
 

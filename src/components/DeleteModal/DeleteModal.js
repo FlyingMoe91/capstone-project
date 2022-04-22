@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export default function DeleteModal({ onCancel, onDelete }) {
+export default function DeleteModal({ onCancel, onDelete, message }) {
   return (
     <Background>
       <ModalGrid>
-        <p>Are you sure you want to delete this divelog?</p>
+        <p>{message}</p>
         <ButtonNo onClick={onCancel}>no</ButtonNo>
         <ButtonYes onClick={onDelete}>yes</ButtonYes>
       </ModalGrid>
@@ -30,9 +30,10 @@ const ModalGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 0.7fr;
   justify-items: center;
-  max-width: 250px;
-  background-color: lightgrey;
-  color: black;
+  width: 300px;
+  height: 150px;
+  background-color: darkcyan;
+  color: white;
   text-align: center;
   border-radius: 20px;
 
@@ -44,15 +45,19 @@ const ModalGrid = styled.div`
 `;
 
 const ButtonYes = styled.button`
-  background-color: lightgreen;
+  background-color: #00687e;
   width: 80px;
   margin: 10px;
   border-radius: 15px;
+  border: none;
+  color: white;
 `;
 
 const ButtonNo = styled.button`
-  background-color: lightcoral;
+  background-color: #e0cdbf;
+  color: #00687e;
   width: 80px;
   margin: 10px;
   border-radius: 15px;
+  border: none;
 `;

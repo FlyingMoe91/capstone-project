@@ -19,13 +19,13 @@ export default function Statistics({ diveData }) {
 
   return (
     <Wrapper>
-      <NavLinkStyled to="/certifications">Certfi-cation</NavLinkStyled>
       <NavLinkStyled to="/divelog">
-        logbook: {dives} {dives === 1 ? 'dive' : 'dives'}
+        Logbook: {dives} {dives === 1 ? 'dive' : 'dives'}
       </NavLinkStyled>
+      <NavLinkStyled to="/certifications">Certfications</NavLinkStyled>
       <NavLinkStyled to="/src/pages/Map/Map">Map</NavLinkStyled>
       <Button onClick={handleStatisticsToggel} disabled={diveData.length === 0}>
-        deepest dive: {depth > 0 ? depth : '0'}
+        deepest dive: {depth > 0 ? depth : '0'}m
       </Button>
       {statisticsToggle && (
         <StatisticsModal
@@ -42,20 +42,20 @@ export default function Statistics({ diveData }) {
 }
 
 const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  justify-items: center;
-  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
   padding: 20px;
 `;
 
 const NavLinkStyled = styled(NavLink)`
-  width: 100px;
-  height: 100px;
-  background-color: #2e5bd8;
-  color: white;
+  width: 90%;
+  height: 10vh;
+  background-color: white;
+  color: #00687e;
   font-size: 1.3rem;
+  font-weight: bold;
   border: 0;
   border-radius: 15px;
   text-decoration: none;
@@ -68,9 +68,9 @@ const NavLinkStyled = styled(NavLink)`
 `;
 
 const Button = styled.button`
-  width: 100px;
-  height: 100px;
-  background-color: #2d9ac2;
+  width: 70%;
+  height: 7vh;
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
   font-size: 1.3rem;
   border: 0;
@@ -80,4 +80,5 @@ const Button = styled.button`
   line-height: 2rem;
   vertical-align: middle;
   padding: 0 5px;
+  cursor: pointer;
 `;

@@ -23,6 +23,15 @@ export default function Certifications() {
         <ScreenReaderOnly>back to homepage</ScreenReaderOnly>
       </NavLinkStyled>
       <Header>Certification</Header>
+      <ButtonAddCert onClick={handleCertModal}>
+        add new certificate +
+      </ButtonAddCert>
+      {certModalActive && (
+        <ModalCertification
+          onCertModal={handleCertModal}
+          onCreate={handleCreateCert}
+        />
+      )}
       <StyledList role="list">
         {certificates?.map(certificateImages => (
           <li key={certificateImages._id}>
@@ -40,20 +49,12 @@ export default function Certifications() {
               <DeleteModal
                 onCancel={toggleDeleteModal}
                 onDelete={() => handleDeleteCertificate(certId)}
+                message="Are your sure you want to delete this certificate?"
               />
             )}
           </li>
         ))}
       </StyledList>
-      <ButtonAddCert onClick={handleCertModal}>
-        + add new certificate
-      </ButtonAddCert>
-      {certModalActive && (
-        <ModalCertification
-          onCertModal={handleCertModal}
-          onCreate={handleCreateCert}
-        />
-      )}
     </Wrapper>
   );
 
@@ -86,7 +87,7 @@ const Header = styled.h2`
   text-align: center;
   font-size: 2.5rem;
   color: white;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 `;
 
 const NavLinkStyled = styled(NavLink)`
@@ -98,15 +99,17 @@ const NavLinkStyled = styled(NavLink)`
 `;
 
 const StyledList = styled.ul`
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
   list-style: none;
   padding: 0;
-  margin: 0 auto 20px auto;
+  margin: 30px auto 20px auto;
 
   li {
     position: relative;
     border: 2px solid white;
     border-radius: 10px;
-    margin-bottom: 30px;
   }
 `;
 
@@ -119,8 +122,9 @@ const CertBox = styled.div`
 
 const ButtonAddCert = styled.button`
   font-size: 2.5rem;
-  background: transparent;
+  background-color: rgba(255, 255, 255, 0.3);
   color: white;
+  border: 2px solid white;
   border-radius: 20px;
   padding: 0 5px;
   width: 90%;

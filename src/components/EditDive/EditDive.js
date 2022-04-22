@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import { GiCancel as Remove } from 'react-icons/gi';
+import { MdOutlineCloudUpload as UploadIcon } from 'react-icons/md';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 import axios from 'axios';
@@ -13,7 +14,6 @@ export default function EditDive({ onClickBack, onEditDive, editDiveInfos }) {
   const [image, setImage] = useState(editDiveInfos.image);
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
-  console.log(editDiveInfos);
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>
@@ -154,21 +154,26 @@ export default function EditDive({ onClickBack, onEditDive, editDiveInfos }) {
         </LastDivStyled>
         <ImageUpload>
           {image ? (
-            <>
-              <img src={image} alt="undefined" />
-              <button onClick={handleRemovePic}>
+            <ImageWrapper>
+              <Image src={image} alt="undefined" />
+              <ButtonRemoveImage onClick={handleRemovePic}>
                 <Remove />
-              </button>
-            </>
+              </ButtonRemoveImage>
+            </ImageWrapper>
           ) : (
             <>
-              <label>upload picture</label>
               <input
                 type="file"
                 name="file"
                 aria-label="picture-upload"
                 onChange={upload}
+                id="files"
               />
+              <label htmlFor="files">
+                image upload
+                <ScreenReaderOnly>Upload your image</ScreenReaderOnly>
+                <UploadIcon size={25} />
+              </label>
               {loading && <div>Uploading Image...{process}%</div>}
             </>
           )}
@@ -297,18 +302,53 @@ const ButtonBack = styled(Button)`
 const ButtonSubmit = styled(Button)`
   grid-column-start: 1;
   grid-column-end: 3;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+`;
+
+const Image = styled.img`
+  width: 70%;
+  position: relative;
 `;
 
 const ImageUpload = styled.div`
   grid-column-start: 1;
   grid-column-end: 3;
-  border-radius: 50%;
-  width: 50%;
-  img {
-    border-radius: 10px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  input[type='file'] {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0.1px;
+    height: 0.1px;
   }
-
+  label[for='files'] {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    padding: 10px 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-gray);
+    color: var(--color-light-gray);
+    width: 180px;
+  }
   button {
     position: absolute;
     background: transparent;
@@ -317,4 +357,14 @@ const ImageUpload = styled.div`
     color: white;
     background-color: transparent;
   }
+`;
+
+const ButtonRemoveImage = styled.button`
+  position: absolute;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  background-color: transparent;
 `;

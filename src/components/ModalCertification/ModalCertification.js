@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { GiCancel as Remove } from 'react-icons/gi';
+import { MdOutlineCloudUpload as UploadIcon } from 'react-icons/md';
 import axios from 'axios';
 import { useState } from 'react';
 import ScreenReaderOnly from '../ScreenReaderOnly';
@@ -16,47 +17,63 @@ export default function ModalCertification({ onCertModal, onCreate }) {
     <Background>
       <Modal>
         {loading && <div>Uploading Image...{process}%</div>}
-        <p>Cardfront</p>
+        <Text>Cardfront</Text>
         <ImageUpload>
           {certificateImages[0] ? (
-            <>
-              <img src={certificateImages[0]} alt={''} />
-              <button onClick={handleRemovePic}>
+            <ImageWrapper>
+              <Image src={certificateImages[0]} alt={''} />
+              <Button onClick={handleRemovePic}>
                 <Remove />
                 <ScreenReaderOnly>remove front picture</ScreenReaderOnly>
-              </button>
-            </>
+              </Button>
+            </ImageWrapper>
           ) : (
-            <input
-              type="file"
-              name="file"
-              label="front-picture-upload"
-              onChange={upload}
-            />
+            <>
+              <input
+                type="file"
+                name="file"
+                label="front-picture-upload"
+                onChange={upload}
+                id="files"
+              />
+              <label htmlFor="files">
+                image upload
+                <ScreenReaderOnly>Upload your image</ScreenReaderOnly>
+                <UploadIcon size={25} />
+              </label>
+            </>
           )}
         </ImageUpload>
-        <p>Cardback</p>
+        <Text>Cardback</Text>
         <ImageUpload>
           {certificateImages[1] ? (
-            <>
-              <img src={certificateImages[1]} alt={''} />
-              <button onClick={handleRemovePic}>
+            <ImageWrapper>
+              <Image src={certificateImages[1]} alt={''} />
+              <Button onClick={handleRemovePic}>
                 <Remove />
-                <ScreenReaderOnly>remove front picture</ScreenReaderOnly>
-              </button>
-            </>
+                <ScreenReaderOnly>remove back picture</ScreenReaderOnly>
+              </Button>
+            </ImageWrapper>
           ) : (
-            <input
-              type="file"
-              name="file"
-              label="back-picture-upload"
-              onChange={upload}
-            />
+            <>
+              <input
+                type="file"
+                name="file"
+                label="back-picture-upload"
+                onChange={upload}
+                id="files"
+              />
+              <label htmlFor="files">
+                image upload
+                <ScreenReaderOnly>Upload your image</ScreenReaderOnly>
+                <UploadIcon size={25} />
+              </label>
+            </>
           )}
         </ImageUpload>
         <div>
           <ButtonCancel onClick={onCertModal}>cancel</ButtonCancel>
-          <ButtonSafe onClick={handleSaveCert}>safe</ButtonSafe>
+          <ButtonSafe onClick={handleSaveCert}>save</ButtonSafe>
         </div>
       </Modal>
     </Background>
@@ -131,25 +148,77 @@ const Modal = styled.div`
   }
 `;
 
+const ButtonSafe = styled.button`
+  background-color: #00687e;
+  color: white;
+  width: 80px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 15px;
+  border: none;
+`;
+
+const ButtonCancel = styled.button`
+  background-color: #e0cdbf;
+  color: #00687e;
+  width: 80px;
+  margin: 10px;
+  border-radius: 15px;
+  border: none;
+`;
+
+const Button = styled.button`
+  position: absolute;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  background-color: transparent;
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+`;
+
+const Image = styled.img`
+  width: 70%;
+  position: relative;
+`;
+
 const ImageUpload = styled.div`
-  border-radius: 50%;
-  width: 90%;
-
-  img {
-    border-radius: 10px;
-    width: 50%;
-    margin: 0 auto;
-    padding: 5px;
-    border: 2px solid black;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  input[type='file'] {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0.1px;
+    height: 0.1px;
   }
-
-  input {
-    padding: 10px;
-    border: 2px solid black;
+  label[for='files'] {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    padding: 10px 5px;
+    border: 1px solid white;
     border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-gray);
+    color: var(--color-light-gray);
+    width: 180px;
   }
-
   button {
     position: absolute;
     background: transparent;
@@ -160,17 +229,6 @@ const ImageUpload = styled.div`
   }
 `;
 
-const ButtonSafe = styled.button`
-  background-color: lightgreen;
-  width: 80px;
-  padding: 5px;
-  margin: 10px;
-  border-radius: 15px;
-`;
-
-const ButtonCancel = styled.button`
-  background-color: lightcoral;
-  width: 80px;
-  margin: 10px;
-  border-radius: 15px;
+const Text = styled.p`
+  margin: 10px 0 5px 0;
 `;

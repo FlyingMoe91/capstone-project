@@ -82,7 +82,7 @@ const Card = styled.div`
   border-radius: 10px;
   max-width: 90vw;
   padding: 0 20px 20px 20px;
-  background-color: lightblue;
+  background-color: #0895a7;
 `;
 
 const CardHead = styled.div`
@@ -90,7 +90,8 @@ const CardHead = styled.div`
   grid-template-columns: 3fr 1fr;
   text-align: center;
   max-width: 90vw;
-  background-color: lightblue;
+  background-color: #0895a7;
+  color: white;
 
   p {
     margin: 5px;
@@ -111,7 +112,8 @@ const CardDetails = styled.div`
   grid-template-columns: 1fr 2fr;
   gap: 10px;
   padding: 5px;
-  background-color: aliceblue;
+  background-color: #5ab6c2;
+  color: white;
 
   p {
     margin: 0;
