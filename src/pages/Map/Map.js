@@ -17,12 +17,12 @@ import { Link } from 'react-router-dom';
 export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
   mapboxgl.accessToken = process.env.REACT_APP_ACCESSTOKEN;
   const markerIcon = new L.Icon({
-    iconUrl: require('./icon.png'),
+    iconUrl: require('./marker1.png'),
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
   const markerIconRed = new L.Icon({
-    iconUrl: require('./iconRed.png'),
+    iconUrl: require('./marker2.png'),
     iconSize: [32, 32],
     iconAnchor: [16, 32],
   });
@@ -97,9 +97,9 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
             icon={markerIcon}
           >
             <Popup>
-              <p>divespot: {dive.divespot}</p>
+              <p>{dive.divespot}</p>
               <p>
-                location: {dive.location}, {dive.country}
+                {dive.location}, {dive.country}
               </p>
               <p>{dive.date}</p>
             </Popup>

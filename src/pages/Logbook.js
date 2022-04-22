@@ -23,7 +23,7 @@ export default function Logbook({
             <ArrowBack />
             <ScreenReaderOnly>back to homepage</ScreenReaderOnly>
           </NavLinkStyled>
-          <Headline>Dive Logs</Headline>
+          <Headline>Logbook</Headline>
           <AddDiveLink to="/NewDiveForm">add new dive +</AddDiveLink>
 
           <Grid role="list">

@@ -111,6 +111,7 @@ export default function DiveLog({
         <DeleteModal
           onDelete={() => onDelete(_id)}
           onCancel={() => setModalActive(!modalActive)}
+          message="Are you sure you want to delete this dive?"
         />
       )}
     </>

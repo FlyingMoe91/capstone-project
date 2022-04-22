@@ -63,7 +63,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin: 0 auto;
-  background: teal;
+  background: #00687e;
   color: white;
   border-radius: 20px;
   padding: 0 5px;

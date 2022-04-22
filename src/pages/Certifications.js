@@ -23,6 +23,15 @@ export default function Certifications() {
         <ScreenReaderOnly>back to homepage</ScreenReaderOnly>
       </NavLinkStyled>
       <Header>Certification</Header>
+      <ButtonAddCert onClick={handleCertModal}>
+        add new certificate +
+      </ButtonAddCert>
+      {certModalActive && (
+        <ModalCertification
+          onCertModal={handleCertModal}
+          onCreate={handleCreateCert}
+        />
+      )}
       <StyledList role="list">
         {certificates?.map(certificateImages => (
           <li key={certificateImages._id}>
@@ -40,20 +49,12 @@ export default function Certifications() {
               <DeleteModal
                 onCancel={toggleDeleteModal}
                 onDelete={() => handleDeleteCertificate(certId)}
+                message="Are your sure you want to delete this certificate?"
               />
             )}
           </li>
         ))}
       </StyledList>
-      <ButtonAddCert onClick={handleCertModal}>
-        add new certificate +
-      </ButtonAddCert>
-      {certModalActive && (
-        <ModalCertification
-          onCertModal={handleCertModal}
-          onCreate={handleCreateCert}
-        />
-      )}
     </Wrapper>
   );
 
@@ -86,7 +87,7 @@ const Header = styled.h2`
   text-align: center;
   font-size: 2.5rem;
   color: white;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 `;
 
 const NavLinkStyled = styled(NavLink)`
@@ -106,7 +107,7 @@ const StyledList = styled.ul`
     position: relative;
     border: 2px solid white;
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin: 30px 0;
   }
 `;
 
@@ -121,6 +122,7 @@ const ButtonAddCert = styled.button`
   font-size: 2.5rem;
   background-color: rgba(255, 255, 255, 0.3);
   color: white;
+  border: 2px solid white;
   border-radius: 20px;
   padding: 0 5px;
   width: 90%;

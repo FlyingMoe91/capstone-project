@@ -34,7 +34,7 @@ const DiverGrid = styled.section`
   text-align: center;
   position: relative;
   margin: 20px auto;
-  background: teal;
+  background: #00687e;
   color: white;
   border-radius: 20px;
   padding: 0 5px;

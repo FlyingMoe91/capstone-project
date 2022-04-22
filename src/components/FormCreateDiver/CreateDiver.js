@@ -4,7 +4,7 @@ import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import Button from '../Button/Button';
 import ScreenReaderOnly from '../ScreenReaderOnly';
 import { GiCancel as Remove } from 'react-icons/gi';
-import { FaCloudUploadAlt as Upload } from 'react-icons/fa';
+import { FaCloudUploadAlt as UploadIcon } from 'react-icons/fa';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -84,17 +84,18 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
             }
           />
         </InputWrapper>
-        <div>
+        <ImageUpload>
           {image ? (
-            <>
-              <img
+            <ImageWrapper>
+              <Image
                 src={image}
                 alt={diverInfo.image ? diverInfo.image : undefined}
               />
-              <button onClick={handleRemovePic}>
+              <ButtonRemovePic onClick={handleRemovePic}>
                 <Remove />
-              </button>
-            </>
+                <ScreenReaderOnly>remove picture</ScreenReaderOnly>
+              </ButtonRemovePic>
+            </ImageWrapper>
           ) : (
             <>
               <input
@@ -102,15 +103,17 @@ export default function AddDive({ diverInfo, onClickBack, onCreate }) {
                 name="file"
                 aria-label="picture-upload"
                 onChange={upload}
+                id="files"
               />
-              <label>
-                upload profile picture <UploadIcon />
+              <label htmlFor="files">
+                profile picture upload
+                <ScreenReaderOnly>upload your image</ScreenReaderOnly>
+                <UploadIcon size={25} />
               </label>
-
               {loading && <div>Uploading Image...{process}%</div>}
             </>
           )}
-        </div>
+        </ImageUpload>
         <ButtonSubmit variant="submit" name="save details">
           save details
         </ButtonSubmit>
@@ -219,4 +222,59 @@ const ButtonSubmit = styled(Button)`
   grid-column-end: 3;
   background-color: rgba(0, 0, 0, 0.3);
 `;
-const UploadIcon = styled(Upload)``;
+
+const ImageUpload = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  input[type='file'] {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0.1px;
+    height: 0.1px;
+  }
+  label[for='files'] {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    padding: 10px 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-gray);
+    color: var(--color-light-gray);
+    width: 180px;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+`;
+
+const Image = styled.img`
+  width: 70%;
+  position: relative;
+`;
+
+const ButtonRemovePic = styled.button`
+  position: absolute;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  background-color: transparent;
+`;
