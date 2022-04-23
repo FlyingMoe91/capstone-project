@@ -78,18 +78,20 @@ export default function BasicMap({ onNewDiveClick, diveData, viewPort }) {
           url={osm.maptiler.url}
           attribution={osm.maptiler.attribution}
         />
-        <Marker position={position} icon={markerIconRed}>
-          <Popup>
-            Want to add a dive here?
-            <StyledLink
-              to="/NewDiveForm"
-              aria-label="go-to-divelogs"
-              onClick={() => onNewDiveClick(destinationMapbox)}
-            >
-              <Create size={20} alt="create" />
-            </StyledLink>
-          </Popup>
-        </Marker>
+        {destinationMapbox[2] ? (
+          <Marker position={position} icon={markerIconRed}>
+            <Popup>
+              Want to add a dive here?
+              <StyledLink
+                to="/NewDiveForm"
+                aria-label="go-to-divelogs"
+                onClick={() => onNewDiveClick(destinationMapbox)}
+              >
+                <Create size={20} alt="create" />
+              </StyledLink>
+            </Popup>
+          </Marker>
+        ) : undefined}
         {divesWithCoordinates.map(dive => (
           <Marker
             key={dive.coordinates}

@@ -18,6 +18,7 @@ export default function AddDive({ onCreate, locationInfos }) {
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
+  console.log(locationInfos);
 
   return (
     <Wrapper>
