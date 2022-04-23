@@ -1,14 +1,18 @@
-# Logbuddy
+# LogBuddy
+
 ## "because two buddies are better than one"
+
+
+![logbuddyall](https://user-images.githubusercontent.com/91341532/164947546-96c94b20-0409-4b04-ab19-9abe5701f0f4.png)
+
+---
 
 Logbuddy is a musthave for every passionate or professional diver and bubblemaker. 
 It connects the underwater experience to the phone.
 Keeping track of dives, divespots or photos made easy.
 With Logbuddy all important information are quickly accessible and always in your pocket with you.
 
----
-
-![Screenshot 2022-04-23 at 18 54 55](https://user-images.githubusercontent.com/91341532/164915956-af3443bf-39fe-4bd5-92cb-f867fa5a306a.png)
+Check it out on Vercel: [LogBuddy](https://logbuddy.vercel.app/)
 
 ---
 
