@@ -12,7 +12,7 @@ It connects the underwater experience to the phone.
 Keeping track of dives, divespots or photos made easy.
 With Logbuddy all important information are quickly accessible and always in your pocket with you.
 
-Check it out on Vercel: [LogBuddy](https://logbuddy.vercel.app/)
+Check it out on Vercel: [LogBuddy](https://logbuddy.vercel.app/)(opimtized for mobile!)
 
 ---
 
