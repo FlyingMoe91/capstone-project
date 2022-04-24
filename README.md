@@ -37,7 +37,7 @@ Check it out on Vercel: [LogBuddy](https://logbuddy.vercel.app/)(opimtized for m
 - clone this repository
 - install all dependencies with `npm install`
 - create an `.env.local`
-  -  you'll need to add your clouinary name and preset from your cloudinary account(free account)
+  -  you'll need to add your cloudinary name and preset from your cloudinary account(free account)
   -  also you'll need to add your accesstoken from your mapbox account(free account) 
 - run the app in dev mode with `npm start` and open it [http://localhost:3000](http://localhost:3000), if no other port is suggested
 - run Storybook with `npm run storybook`
