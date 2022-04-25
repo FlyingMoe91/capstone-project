@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Menu from '../components/Menu/Menu';
-import CreateDiver from '../components/FormCreateDiver/CreateDiver';
+import CreateDiver from '../components/Forms/FormCreateDiver/CreateDiver';
 import { useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
-import DiverInfo from '../components/DiverInfomation/DiverInfo';
+import DiverInfo from '../components/DiverInfo/DiverInfo';
 import { FaRegEdit as EditIcon } from 'react-icons/fa';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import ScreenReaderOnly from '../components/Utilities/ScreenReaderOnly';
 import DefaultProfilePc from '../images/DefaultProfilePic.jpg';
-import StatisticsModal from '../components/StatisticsModal/StatisticsModal';
+import StatisticsModal from '../components/Modal/StatisticsModal/StatisticsModal';
 
 export default function Home({ diveData }) {
   const [createDiverPageActive, setCreateDiverPageActive] = useState(false);

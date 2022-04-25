@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
-import Button from '../Button/Button';
-import ScreenReaderOnly from '../ScreenReaderOnly';
+import Button from '../../Button/Button';
+import ScreenReaderOnly from '../../Utilities/ScreenReaderOnly';
 import { GiCancel as Remove } from 'react-icons/gi';
 import { FaCloudUploadAlt as UploadIcon } from 'react-icons/fa';
 import axios from 'axios';

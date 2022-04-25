@@ -5,7 +5,7 @@ import { GiCancel as Remove } from 'react-icons/gi';
 import { MdOutlineCloudUpload as UploadIcon } from 'react-icons/md';
 import { GiPositionMarker } from 'react-icons/gi';
 import Button from '../components/Button/Button';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import ScreenReaderOnly from '../components/Utilities/ScreenReaderOnly';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';

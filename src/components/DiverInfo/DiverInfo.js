@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FaRegEdit as EditIcon } from 'react-icons/fa';
-import ScreenReaderOnly from '../ScreenReaderOnly';
+import ScreenReaderOnly from '../Utilities/ScreenReaderOnly';
 
 export default function DiverInfo({ diverInfo, onEditDiver, image }) {
   return (

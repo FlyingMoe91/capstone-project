@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ScreenReaderOnly from '../ScreenReaderOnly';
+import ScreenReaderOnly from '../../Utilities/ScreenReaderOnly';
 import { GrFormClose } from 'react-icons/gr';
 
 export default function StatisticsModal({

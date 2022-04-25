@@ -3,12 +3,12 @@ import { GiCancel as Remove } from 'react-icons/gi';
 import { MdOutlineCloudUpload as UploadIcon } from 'react-icons/md';
 import axios from 'axios';
 import { useState } from 'react';
-import ScreenReaderOnly from '../ScreenReaderOnly';
+import ScreenReaderOnly from '../../Utilities/ScreenReaderOnly';
 
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME;
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET;
 
-export default function ModalCertification({ onCertModal, onCreate }) {
+export default function CertificationModal({ onCertModal, onCreate }) {
   const [certificateImages, setCertificateImages] = useState([]);
   const [process, setProcess] = useState(0);
   const [loading, setLoading] = useState(false);
