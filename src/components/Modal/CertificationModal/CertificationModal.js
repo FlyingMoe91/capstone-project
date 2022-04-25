@@ -149,7 +149,7 @@ const Modal = styled.div`
 `;
 
 const ButtonSafe = styled.button`
-  background-color: #00687e;
+  background-color: var(--primary-color);
   color: white;
   width: 80px;
   padding: 5px;
@@ -159,7 +159,7 @@ const ButtonSafe = styled.button`
 `;
 
 const ButtonCancel = styled.button`
-  background-color: #e0cdbf;
+  background-color: var(--secondary-color);
   color: #00687e;
   width: 80px;
   margin: 10px;
@@ -214,9 +214,6 @@ const ImageUpload = styled.div`
     padding: 10px 5px;
     border: 1px solid white;
     border-radius: 10px;
-    box-shadow: var(--box-shadow);
-    background-color: var(--color-gray);
-    color: var(--color-light-gray);
     width: 180px;
   }
   button {

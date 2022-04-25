@@ -45,7 +45,7 @@ const ModalGrid = styled.div`
 `;
 
 const ButtonYes = styled.button`
-  background-color: #00687e;
+  background-color: var(--primary-color);
   width: 80px;
   margin: 10px;
   border-radius: 15px;
@@ -54,7 +54,7 @@ const ButtonYes = styled.button`
 `;
 
 const ButtonNo = styled.button`
-  background-color: #e0cdbf;
+  background-color: var(--secondary-color);
   color: #00687e;
   width: 80px;
   margin: 10px;

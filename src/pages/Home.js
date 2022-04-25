@@ -54,18 +54,22 @@ export default function Home({ diveData }) {
           onCreate={handleCreateDiver}
         />
       )}
-      {!createDiverPageActive && <Menu diveData={diveData} />}
-      <ButtonStatistic
-        onClick={handleStatisticsToggel}
-        disabled={diveData.length === 0}
-      >
-        deepest dive: {depth > 0 ? depth : '0'}m
-      </ButtonStatistic>
-      {statisticsToggle && (
-        <StatisticsModal
-          onStatisticsToggle={handleStatisticsToggel}
-          deepestDive={deepestDive}
-        />
+      {!createDiverPageActive && (
+        <>
+          <Menu diveData={diveData} />
+          <ButtonStatistic
+            onClick={handleStatisticsToggel}
+            disabled={diveData.length === 0}
+          >
+            deepest dive: {depth > 0 ? depth : '0'}m
+          </ButtonStatistic>
+          {statisticsToggle && (
+            <StatisticsModal
+              onStatisticsToggle={handleStatisticsToggel}
+              deepestDive={deepestDive}
+            />
+          )}
+        </>
       )}
     </Wrapper>
   );
@@ -98,7 +102,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin: 0 auto;
-  background: #00687e;
+  background: var(--primary-color);
   color: white;
   border-radius: 20px;
   padding: 0 5px;
