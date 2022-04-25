@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Statistics from './Statistics';
+import Menu from './Menu';
 
 const list = [{ location: 'orlando' }, { location: 'orlando' }];
 
-describe('Statistics', () => {
+describe('Menu', () => {
   it('renders a button', () => {
     render(
       <MemoryRouter>
-        <Statistics diveData={list} />
+        <Menu diveData={list} />
       </MemoryRouter>
     );
 

@@ -1,18 +1,19 @@
-import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-
 import StatisticsModal from './StatisticsModal';
 
+const deepestDive = [
+  {
+    location: 'Orlando',
+    country: 'USA',
+    divespot: 'DevilsDen',
+    date: '25.06.2013',
+    _id: '1234',
+  },
+];
+
 describe('StatisticsModal', () => {
-  it('renders a city, county, location and date', () => {
-    render(
-      <StatisticsModal
-        location="Orlando"
-        country="USA"
-        divespot="DevilsDen"
-        date="25.06.2013"
-      />
-    );
+  it('renders a divespot, county, location and date', () => {
+    render(<StatisticsModal deepestDive={deepestDive} />);
 
     const location = screen.getByText('Orlando');
     const country = screen.getByText('USA');
@@ -23,16 +24,5 @@ describe('StatisticsModal', () => {
     expect(country).toBeInTheDocument();
     expect(divespot).toBeInTheDocument();
     expect(date).toBeInTheDocument();
-  });
-
-  it('calls a function when clicking on the "x" button', () => {
-    const callback = jest.fn();
-    render(<StatisticsModal onStatisticsToggle={callback} />);
-
-    const buttonCancel = screen.getByRole('button', { name: /close/i });
-
-    userEvent.click(buttonCancel);
-
-    expect(callback).toHaveBeenCalled();
   });
 });

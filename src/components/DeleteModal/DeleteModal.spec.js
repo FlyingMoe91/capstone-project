@@ -5,7 +5,9 @@ import DeleteModal from './DeleteModal';
 
 describe('DeleteModal', () => {
   it('shows a text an two buttons', () => {
-    render(<DeleteModal />);
+    render(
+      <DeleteModal message="Are you sure you want to delete this divelog?" />
+    );
 
     const text = screen.getByText(
       'Are you sure you want to delete this divelog?'
