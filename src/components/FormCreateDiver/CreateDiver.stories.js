@@ -8,4 +8,11 @@ export default {
 const Template = args => <CreateDiver {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  diverInfo: {
+    name: 'Patrick',
+    organization: 'Padi',
+    certification: 'Divemaster',
+    cert_nr: '234234',
+  },
+};

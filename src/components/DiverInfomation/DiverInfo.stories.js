@@ -9,9 +9,10 @@ const Template = args => <DiverInfo {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  name: 'Patrick',
-  organization: 'Padi',
-  certification: 'Divemaster',
-  date: '01.01.2000',
-  certnr: '234234',
+  diverInfo: {
+    name: 'Patrick',
+    organization: 'Padi',
+    certification: 'Divemaster',
+    cert_nr: '234234',
+  },
 };

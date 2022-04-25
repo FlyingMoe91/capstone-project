@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-
 import StatisticsModal from '../StatisticsModal/StatisticsModal';
 
 export default function Statistics({ diveData }) {

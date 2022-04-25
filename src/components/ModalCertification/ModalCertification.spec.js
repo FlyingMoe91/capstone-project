@@ -10,7 +10,7 @@ describe('ModalCertification', () => {
     render(<ModalCertification onCertModal={cancel} onCreate={safe} />);
 
     const buttonCancel = screen.getByRole('button', { name: /cancel/i });
-    const buttonSafe = screen.getByRole('button', { name: /safe/i });
+    const buttonSafe = screen.getByRole('button', { name: /save/i });
 
     userEvent.click(buttonCancel);
     userEvent.click(buttonSafe);

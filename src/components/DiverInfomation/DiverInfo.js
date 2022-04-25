@@ -9,7 +9,7 @@ export default function DiverInfo({ diverInfo, onEditDiver, image }) {
         <Name>{diverInfo.name}</Name>
         {diverInfo.organization ? (
           <p>
-            {diverInfo.organization} -{' '}
+            {diverInfo.organization} -
             {diverInfo.certification ? (
               <span>{diverInfo.certification}</span>
             ) : null}

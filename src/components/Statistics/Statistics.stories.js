@@ -8,4 +8,11 @@ export default {
 const Template = args => <Statistics {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  diveData: [
+    {
+      length: '10',
+      maxDepth: '22',
+    },
+  ],
+};

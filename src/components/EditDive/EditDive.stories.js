@@ -8,4 +8,6 @@ export default {
 const Template = args => <EditDive {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  editDiveInfos: { image: '' },
+};

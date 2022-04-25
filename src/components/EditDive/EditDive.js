@@ -14,6 +14,7 @@ export default function EditDive({ onClickBack, onEditDive, editDiveInfos }) {
   const [image, setImage] = useState(editDiveInfos.image);
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(0);
+
   return (
     <Wrapper>
       <ButtonBack name="back" onClick={onClickBack}>

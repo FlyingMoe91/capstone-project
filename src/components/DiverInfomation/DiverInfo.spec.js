@@ -15,7 +15,7 @@ describe('DiverInfo', () => {
 
     const name = screen.getByText('Jon');
     const certification = screen.getByText(/AOWD/i);
-    const certnr = screen.getByText('1234');
+    const certnr = screen.getByText('cert.#: 1234');
     const organization = screen.getByText(/Padi/i);
 
     expect(name).toBeInTheDocument();
