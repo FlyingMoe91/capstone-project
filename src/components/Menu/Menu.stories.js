@@ -1,11 +1,11 @@
-import Statistics from './Statistics';
+import Menu from './Menu';
 
 export default {
-  title: 'components/Statistics',
-  component: Statistics,
+  title: 'components/Menu',
+  component: Menu,
 };
 
-const Template = args => <Statistics {...args} />;
+const Template = args => <Menu {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
