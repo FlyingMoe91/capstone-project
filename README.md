@@ -27,7 +27,6 @@ Check it out on Vercel: [LogBuddy](https://logbuddy.vercel.app/)(opimtized for m
 - Leaflet
 - Mapbox
 - Axios
-- Node.js
 - Vercel
 
 ---
