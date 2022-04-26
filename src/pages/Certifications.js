@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import { FaTrash } from 'react-icons/fa';
 
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import ScreenReaderOnly from '../components/Utilities/ScreenReaderOnly';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import ModalCertification from '../components/ModalCertification/ModalCertification';
+import CertificationModal from '../components/Modal/CertificationModal/CertificationModal';
 import { useLocalStorage } from 'usehooks-ts';
-import DeleteModal from '../components/DeleteModal/DeleteModal';
+import DeleteModal from '../components/Modal/DeleteModal/DeleteModal';
 
 export default function Certifications() {
   const [certModalActive, setCertModalActive] = useState(false);
@@ -27,7 +27,7 @@ export default function Certifications() {
         add new certificate +
       </ButtonAddCert>
       {certModalActive && (
-        <ModalCertification
+        <CertificationModal
           onCertModal={handleCertModal}
           onCreate={handleCreateCert}
         />

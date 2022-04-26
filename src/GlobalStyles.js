@@ -2,6 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 import BackgroundImage from './images/Background.png';
 
 export default createGlobalStyle`
+
+:root {
+    --primary-color:#00687e;
+    --secondary-color:#e0cdbf;
+}
+
 *{
     box-sizing: border-box;
 }

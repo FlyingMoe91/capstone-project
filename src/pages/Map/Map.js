@@ -5,7 +5,7 @@ import { FaCheck as Create } from 'react-icons/fa';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
-import ScreenReaderOnly from '../../components/ScreenReaderOnly';
+import ScreenReaderOnly from '../../components/Utilities/ScreenReaderOnly';
 import L from 'leaflet';
 import osm from './osm-provider';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';

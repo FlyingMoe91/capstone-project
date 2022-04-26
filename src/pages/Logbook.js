@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import DiveLog from '../components/DiveLog/DiveLog';
-import EditDive from '../components/EditDive/EditDive';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import EditDive from '../components/Forms/FormEditDive/EditDive';
+import ScreenReaderOnly from '../components/Utilities/ScreenReaderOnly';
 
 export default function Logbook({
   diveData,

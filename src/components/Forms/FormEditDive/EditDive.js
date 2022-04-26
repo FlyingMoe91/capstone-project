@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { IoMdArrowRoundBack as ArrowBack } from 'react-icons/io';
 import { GiCancel as Remove } from 'react-icons/gi';
 import { MdOutlineCloudUpload as UploadIcon } from 'react-icons/md';
-import Button from '../Button/Button';
-import ScreenReaderOnly from '../ScreenReaderOnly';
+import Button from '../../Button/Button';
+import ScreenReaderOnly from '../../Utilities/ScreenReaderOnly';
 import axios from 'axios';
 import { useState } from 'react';
 

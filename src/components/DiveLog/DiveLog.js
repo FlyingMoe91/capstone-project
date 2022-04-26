@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { FaRegEdit as EditIcon } from 'react-icons/fa';
 import { GoChevronDown, GoChevronUp } from 'react-icons/go';
-import ScreenReaderOnly from '../ScreenReaderOnly';
-import DeleteModal from '../DeleteModal/DeleteModal';
+import ScreenReaderOnly from '../Utilities/ScreenReaderOnly';
+import DeleteModal from '../Modal/DeleteModal/DeleteModal';
 import { Link } from 'react-router-dom';
 
 export default function DiveLog({

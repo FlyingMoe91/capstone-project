@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export default styled.button`
   width: 30px;
@@ -7,29 +7,4 @@ export default styled.button`
   background-color: #2e5bd8;
   color: white;
   cursor: pointer;
-
-  ${props =>
-    props.variant === 'round' &&
-    css`
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      background-color: #2e5bd8;
-      color: white;
-      cursor: pointer;
-    `}
-
-  ${props =>
-    props.variant === 'submit' &&
-    css`
-      background-color: #2e5bd8;
-      color: white;
-      width: 200px;
-      height: 50px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 10px;
-      font-size: 1.3rem;
-      cursor: pointer;
-    `}
 `;

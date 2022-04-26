@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Menu from '../components/Menu/Menu';
-import CreateDiver from '../components/FormCreateDiver/CreateDiver';
+import CreateDiver from '../components/Forms/FormCreateDiver/CreateDiver';
 import { useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
-import DiverInfo from '../components/DiverInfomation/DiverInfo';
+import DiverInfo from '../components/DiverInfo/DiverInfo';
 import { FaRegEdit as EditIcon } from 'react-icons/fa';
-import ScreenReaderOnly from '../components/ScreenReaderOnly';
+import ScreenReaderOnly from '../components/Utilities/ScreenReaderOnly';
 import DefaultProfilePc from '../images/DefaultProfilePic.jpg';
-import StatisticsModal from '../components/StatisticsModal/StatisticsModal';
+import StatisticsModal from '../components/Modal/StatisticsModal/StatisticsModal';
 
 export default function Home({ diveData }) {
   const [createDiverPageActive, setCreateDiverPageActive] = useState(false);
@@ -54,18 +54,22 @@ export default function Home({ diveData }) {
           onCreate={handleCreateDiver}
         />
       )}
-      {!createDiverPageActive && <Menu diveData={diveData} />}
-      <ButtonStatistic
-        onClick={handleStatisticsToggel}
-        disabled={diveData.length === 0}
-      >
-        deepest dive: {depth > 0 ? depth : '0'}m
-      </ButtonStatistic>
-      {statisticsToggle && (
-        <StatisticsModal
-          onStatisticsToggle={handleStatisticsToggel}
-          deepestDive={deepestDive}
-        />
+      {!createDiverPageActive && (
+        <>
+          <Menu diveData={diveData} />
+          <ButtonStatistic
+            onClick={handleStatisticsToggel}
+            disabled={diveData.length === 0}
+          >
+            deepest dive: {depth > 0 ? depth : '0'}m
+          </ButtonStatistic>
+          {statisticsToggle && (
+            <StatisticsModal
+              onStatisticsToggle={handleStatisticsToggel}
+              deepestDive={deepestDive}
+            />
+          )}
+        </>
       )}
     </Wrapper>
   );
@@ -98,7 +102,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-evenly;
   margin: 0 auto;
-  background: #00687e;
+  background: var(--primary-color);
   color: white;
   border-radius: 20px;
   padding: 0 5px;

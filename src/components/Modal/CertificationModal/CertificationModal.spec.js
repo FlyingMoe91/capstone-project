@@ -1,13 +1,13 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
-import ModalCertification from './ModalCertification';
+import CertificationModal from './CertificationModal';
 
-describe('ModalCertification', () => {
+describe('CertificationModal', () => {
   it('calls two functions when clicking on the "cancel" and "save" button', () => {
     const cancel = jest.fn();
     const safe = jest.fn();
-    render(<ModalCertification onCertModal={cancel} onCreate={safe} />);
+    render(<CertificationModal onCertModal={cancel} onCreate={safe} />);
 
     const buttonCancel = screen.getByRole('button', { name: /cancel/i });
     const buttonSafe = screen.getByRole('button', { name: /save/i });
