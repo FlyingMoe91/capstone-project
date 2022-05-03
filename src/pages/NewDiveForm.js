@@ -290,9 +290,13 @@ const ButtonBack = styled(NavLink)`
 `;
 
 const ButtonSubmit = styled(Button)`
-  grid-column-start: 1;
-  grid-column-end: 3;
-  background-color: rgba(0, 0, 0, 0.3);
+grid-column-start: 1;
+grid-column-end: 3;
+background-color: rgba(0, 0, 0, 0.3);
+width: 200px;
+height: 40px;
+margin: 0 auto;
+font-size: 1.2rem;
 `;
 
 const MapButton = styled(NavLink)`
